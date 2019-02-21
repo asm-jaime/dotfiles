@@ -1,0 +1,4 @@
+- name: creates dir
+  file:
+    path: /data/db
+    state: directory

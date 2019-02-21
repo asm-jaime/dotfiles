@@ -1,0 +1,22 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+pip-log.txt
+.netrwhist
+
+# personal key/accs
+conf.plugins/.floorc.json
+
+#Translations
+
+bundle
+undodir/
+view
+sessions
+autoload/
+ftplugin/
+
+z_buff
+
+*.pyc

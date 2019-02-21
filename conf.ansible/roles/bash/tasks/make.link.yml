@@ -1,0 +1,5 @@
+- name: make link bashrc
+  file:
+    src: /home/{{ this_user }}/dotfiles/conf.bash/.bashrc
+    dest: /home/{{ this_user }}/.bashrc
+    state: link

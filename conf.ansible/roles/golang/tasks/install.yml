@@ -1,0 +1,9 @@
+---
+- name: install golang-go
+  apt:
+    name: "{{ item.name }}"
+    state: present
+  with_items:
+  - name: golang-go
+  become: true
+  become_user: root

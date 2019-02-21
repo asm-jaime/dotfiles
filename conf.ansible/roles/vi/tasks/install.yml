@@ -1,0 +1,10 @@
+---
+- name: install nvim/xclip
+  sudo: yes
+  apt:
+    name: "{{ item.name }}"
+    state: present
+  with_items:
+  - name: xclip
+  - name: neovim
+

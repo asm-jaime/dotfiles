@@ -1,0 +1,10 @@
+{
+  "js": {
+    "bin": "node",
+    "e4x": true,
+    "indent_size": 2,
+    "indent_style": "space",
+    "tab_width": 2,
+    "preserve_newlines": true
+  }
+}

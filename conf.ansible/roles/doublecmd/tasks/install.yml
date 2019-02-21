@@ -1,0 +1,8 @@
+---
+- name: install doublecommander
+  sudo: yes
+  apt:
+    name: "{{ item.name }}"
+    state: present
+  with_items:
+  - name: doublecmd-qt

@@ -1,0 +1,23 @@
+- name: get mongo container
+  docker:
+    name: mongo_flagship
+    image: mongo
+    state: absent
+
+- name: start mongo container
+  docker:
+    name: mongo_flagship
+    image: mongo
+    state: reloaded
+    pull: always
+    volumes:
+    - "/data/db:/data/db"
+    ports:
+    - "27017:27017"
+
+- name: install mongo client
+  apt:
+    name: "{{ item.name }}"
+    state: present
+  with_items:
+  - name: mongodb-clients

@@ -1,0 +1,9 @@
+---
+- name: install git
+  sudo: yes
+  apt:
+    name: "{{ item.name }}"
+    state: present
+  with_items:
+  - name: git
+  - name: git-core

@@ -1,0 +1,7 @@
+---
+- name: install git
+  hosts: localhost
+  sudo: no
+  remote_user: "{{ this_user }}"
+  roles:
+  - role: git

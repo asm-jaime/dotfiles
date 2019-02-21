@@ -1,0 +1,6 @@
+---
+- name: install mongo
+  hosts: localhost
+  remote_user: "{{ this_user }}"
+  roles:
+  - role: mongodb

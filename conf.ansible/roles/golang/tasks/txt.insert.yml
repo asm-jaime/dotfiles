@@ -1,0 +1,32 @@
+---
+- name: set GOROOT to .profile
+  lineinfile:
+    backup=no
+    state=present
+    dest=/home/{{ this_user }}/.profile
+    regexp='GOROOT='
+    line='GOROOT="/usr/local/go"'
+
+- name: set GOPATH to .profile
+  lineinfile:
+    backup=no
+    state=present
+    dest=/home/{{ this_user }}/.profile
+    regexp='GOPATH='
+    line='GOPATH="$HOME/BUFF/projects/golang"'
+
+- name: set PATH to .profile
+  lineinfile:
+    backup=no
+    state=present
+    dest=/home/{{ this_user }}/.profile
+    regexp='PATH="\$GOPATH'
+    line='PATH="$GOPATH/bin:$GOROOT/bin:$PATH"'
+
+- name: set GOBIN to .profile
+  lineinfile:
+    backup=no
+    state=present
+    dest=/home/{{ this_user }}/.profile
+    regexp='GOBIN='
+    line='GOBIN="$GOPATH/bin"'

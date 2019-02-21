@@ -1,0 +1,10 @@
+- name: make link .vimrc
+  file:
+    src: /home/{{ this_user }}/dotfiles/init.vim
+    dest: /home/{{ this_user }}/.vimrc
+    state: link
+- name: make link nvim
+  file:
+    src: /home/{{ this_user }}/dotfiles
+    dest: /home/{{ this_user }}/.config/nvim
+    state: link

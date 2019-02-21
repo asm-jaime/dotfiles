@@ -1,0 +1,17 @@
+---
+- name: set ssh
+  file: path=/home/{{ this_user }}/.ssh mode=0755
+- name: set ssh rsa folder
+  file: path=/home/{{ this_user }}/.ssh/id_rsa mode=0600
+- name: set ssh rsa.pub
+  file: path=/home/{{ this_user }}/.ssh/id_rsa.pub mode=0600
+- name: set ssh hosts
+  file: path=/home/{{ this_user }}/.ssh/known_hosts mode=0644
+
+- git_config: name=user.name scope=global value="{{ git_user }}"
+- git_config: name=user.email scope=global value="{{ git_email }}"
+- git_config: name=core.editor scope=global value="vim"
+- git_config: name=push.default scope=global value="simple"
+- git_config: name=merge.tool scope=global value="vimdiff"
+- git_config: name=merge.conflictstyle scope=global value="diff3"
+- git_config: name=mergetool.prompt scope=global value="false"

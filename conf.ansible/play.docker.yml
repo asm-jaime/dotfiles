@@ -1,0 +1,6 @@
+---
+- name: install docker
+  hosts: localhost
+  remote_user: "{{ this_user }}"
+  roles:
+  - role: docker

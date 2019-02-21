@@ -1,0 +1,7 @@
+---
+- name: install general applications
+  hosts: localhost
+  sudo: yes
+  remote_user: "{{ this_user }}"
+  roles:
+  - role: general

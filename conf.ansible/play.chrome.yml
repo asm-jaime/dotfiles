@@ -1,0 +1,7 @@
+---
+- name: install chrome
+  hosts: localhost
+  vars:
+    - apt_file: /etc/apt/sources.list.d/google-chrome.list
+  roles:
+  - role: chrome

@@ -1,0 +1,10 @@
+- name: make link .eslintrc.js
+  file:
+    src: /home/{{ this_user }}/dotfiles/conf.utils/.eslintrc.js
+    dest: /home/{{ this_user }}/.eslintrc.js
+    state: link
+- name: make link .jsbeautifyrc
+  file:
+    src: /home/{{ this_user }}/dotfiles/conf.utils/.jsbeautifyrc
+    dest: /home/{{ this_user }}/.jsbeautifyrc
+    state: link

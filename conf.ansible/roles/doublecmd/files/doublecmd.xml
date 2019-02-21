@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doublecmd DCVersion="0.8.0 beta" ConfigVersion="10">
+  <Configuration Save="True" SortOrder="0">
+    <UseConfigInProgramDir>False</UseConfigInProgramDir>
+  </Configuration>
+  <Colors>
+    <FileFilters>
+      <Filter>
+        <Name>Pascal sources</Name>
+        <FileMasks>*.pas;*.pp</FileMasks>
+        <Color>32768</Color>
+        <Attributes/>
+      </Filter>
+      <Filter>
+        <Name>Pascal binaries</Name>
+        <FileMasks>*.ppu;*.o;*.dcu</FileMasks>
+        <Color>16711680</Color>
+        <Attributes/>
+      </Filter>
+      <Filter>
+        <Name>Specified Executables</Name>
+        <FileMasks>*</FileMasks>
+        <Color>55758</Color>
+        <Attributes>-rwxrwxr*x</Attributes>
+      </Filter>
+      <Filter>
+        <Name>Executables</Name>
+        <FileMasks>*</FileMasks>
+        <Color>32768</Color>
+        <Attributes>-*x*</Attributes>
+      </Filter>
+    </FileFilters>
+    <UseCursorBorder>False</UseCursorBorder>
+    <CursorBorderColor>-2147483635</CursorBorderColor>
+    <UseFrameCursor>False</UseFrameCursor>
+    <Foreground>-2147483640</Foreground>
+    <Background>-2147483643</Background>
+    <Background2>-2147483643</Background2>
+    <Cursor>-2147483635</Cursor>
+    <CursorText>-2147483634</CursorText>
+    <Mark>255</Mark>
+    <InactiveCursor>-2147483645</InactiveCursor>
+    <InactiveMark>128</InactiveMark>
+    <UseInvertedSelection>False</UseInvertedSelection>
+    <UseInactiveSelColor>False</UseInactiveSelColor>
+    <AllowOverColor>True</AllowOverColor>
+    <InactivePanelBrightness>100</InactivePanelBrightness>
+    <FreeSpaceIndicator>
+      <UseGradient>True</UseGradient>
+      <ForeColor>0</ForeColor>
+      <BackColor>16777215</BackColor>
+    </FreeSpaceIndicator>
+    <gBorderFrameWidth>1</gBorderFrameWidth>
+  </Colors>
+  <Plugins>
+    <WlxPlugins>
+      <WlxPlugin Enabled="True">
+        <Name>wlxMplayer</Name>
+        <Path>%COMMANDER_PATH%/plugins/wlx/wlxmplayer/wlxmplayer.wlx</Path>
+        <DetectString>(EXT="MPG")|(EXT="AVI")|(EXT="MPEG")|(EXT="FLV")</DetectString>
+      </WlxPlugin>
+    </WlxPlugins>
+    <DsxPlugins/>
+    <WcxPlugins>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>zip</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>735</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>tar</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>223</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>bz2</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>91</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>tbz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>95</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>gz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>91</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>tgz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>95</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>lzma</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>1</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>tlz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>95</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>xz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>91</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>txz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>95</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>zipx</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>223</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>cpio</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/cpio/cpio.wcx</Path>
+        <Flags>4</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>deb</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/deb/deb.wcx</Path>
+        <Flags>4</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>rpm</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/rpm/rpm.wcx</Path>
+        <Flags>4</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>rar</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/unrar/unrar.wcx</Path>
+        <Flags>68</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>jar</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>990</Flags>
+      </WcxPlugin>
+    </WcxPlugins>
+    <WdxPlugins>
+      <WdxPlugin>
+        <Name>deb_wdx</Name>
+        <Path>%COMMANDER_PATH%/plugins/wdx/deb_wdx/deb_wdx.wdx</Path>
+        <DetectString>EXT="DEB"</DetectString>
+      </WdxPlugin>
+      <WdxPlugin>
+        <Name>rpm_wdx</Name>
+        <Path>%COMMANDER_PATH%/plugins/wdx/rpm_wdx/rpm_wdx.wdx</Path>
+        <DetectString>EXT="RPM"</DetectString>
+      </WdxPlugin>
+      <WdxPlugin>
+        <Name>audioinfo</Name>
+        <Path>%COMMANDER_PATH%/plugins/wdx/audioinfo/audioinfo.wdx</Path>
+        <DetectString>(EXT="MP3") | (EXT="MP2") | (EXT="MP1") | (EXT="OGG") | (EXT="WMA") | (EXT="WAV") | (EXT="VQF") | (EXT="AAC") | (EXT="APE") | (EXT="MPC") | (EXT="FLAC") | (EXT="CDA") | (EXT="TTA") | (EXT="AC3") | (EXT="DTS") | (EXT="WV") | (EXT="WVC") | (EXT="OFR") | (EXT="OFS") | (EXT="M4A") | (EXT="MP4")</DetectString>
+      </WdxPlugin>
+    </WdxPlugins>
+    <WfxPlugins>
+      <WfxPlugin Enabled="True">
+        <Name>FTP</Name>
+        <Path>%commander_path%/plugins/wfx/ftp/ftp.wfx</Path>
+      </WfxPlugin>
+      <WfxPlugin Enabled="True">
+        <Name>Windows Network</Name>
+        <Path>%commander_path%/plugins/wfx/samba/samba.wfx</Path>
+      </WfxPlugin>
+    </WfxPlugins>
+  </Plugins>
+  <Toolbars>
+    <MainToolbar>
+      <Row>
+        <Command>
+          <ID>{9088F701-1046-4869-AD94-F9187BB5573C}</ID>
+          <Icon>cm_refresh</Icon>
+          <Command>cm_Refresh</Command>
+        </Command>
+        <Command>
+          <ID>{EA3C27CF-F048-4646-A76C-687ADB5C1B1A}</ID>
+          <Icon>cm_runterm</Icon>
+          <Command>cm_RunTerm</Command>
+        </Command>
+        <Program>
+          <ID>{E027A891-298A-4C53-B88A-0352DC107186}</ID>
+          <Icon>cm_runterm</Icon>
+          <Hint>Run Terminal</Hint>
+          <Command>gnome-terminal</Command>
+          <Params>echo %p</Params>
+        </Program>
+        <Command>
+          <ID>{916C083D-586E-4664-B622-F83C313CE882}</ID>
+          <Icon>cm_options</Icon>
+          <Command>cm_Options</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{CAC83EBC-602D-4A84-949B-1E5314FB4FD3}</ID>
+          <Icon>cm_briefview</Icon>
+          <Command>cm_BriefView</Command>
+        </Command>
+        <Command>
+          <ID>{856B3326-0638-4D89-8A8B-50D4F8529F85}</ID>
+          <Icon>cm_columnsview</Icon>
+          <Command>cm_ColumnsView</Command>
+        </Command>
+        <Command>
+          <ID>{C278376B-6ED0-446F-AC95-0653AF03B920}</ID>
+          <Icon>cm_thumbnailsview</Icon>
+          <Command>cm_ThumbnailsView</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{4F2A751A-8B9F-48D4-91AD-D4A54D60D3D4}</ID>
+          <Icon>cm_flatview</Icon>
+          <Command>cm_FlatView</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{481F9710-0D16-41FF-88E8-69255DC44FF8}</ID>
+          <Icon>cm_viewhistoryprev</Icon>
+          <Command>cm_ViewHistoryPrev</Command>
+        </Command>
+        <Command>
+          <ID>{2C79E07D-D2E8-42EB-A3B3-7E81EA71A597}</ID>
+          <Icon>cm_viewhistorynext</Icon>
+          <Command>cm_ViewHistoryNext</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{D91802E3-2C58-4825-B970-37285767E042}</ID>
+          <Icon>cm_markplus</Icon>
+          <Command>cm_MarkPlus</Command>
+        </Command>
+        <Command>
+          <ID>{E287C607-D814-4219-9F01-FD13DFE5F561}</ID>
+          <Icon>cm_markminus</Icon>
+          <Command>cm_MarkMinus</Command>
+        </Command>
+        <Command>
+          <ID>{66C869D9-67A6-4940-9784-D52E4146FF16}</ID>
+          <Icon>cm_markinvert</Icon>
+          <Command>cm_MarkInvert</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{7D941659-3617-4940-A905-246AF9E01AF1}</ID>
+          <Icon>cm_packfiles</Icon>
+          <Command>cm_PackFiles</Command>
+        </Command>
+        <Command>
+          <ID>{363D091B-B98D-467E-95B6-D5045F0E3EFE}</ID>
+          <Icon>cm_extractfiles</Icon>
+          <Command>cm_ExtractFiles</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{744E0DC8-F1BA-43E3-90B4-0AB0969FCA68}</ID>
+          <Icon>cm_search</Icon>
+          <Command>cm_Search</Command>
+        </Command>
+        <Command>
+          <ID>{8844A1EB-9869-4F6D-B16F-EB1080D34AC1}</ID>
+          <Icon>cm_multirename</Icon>
+          <Command>cm_MultiRename</Command>
+        </Command>
+        <Command>
+          <ID>{8AB5BDBB-7712-4D66-82C7-47B5E802111C}</ID>
+          <Icon>cm_syncdirs</Icon>
+          <Command>cm_SyncDirs</Command>
+        </Command>
+        <Command>
+          <ID>{F0544F1B-FBFE-477A-A747-688B193AF9BF}</ID>
+          <Icon>cm_copyfullnamestoclip</Icon>
+          <Command>cm_CopyFullNamesToClip</Command>
+        </Command>
+      </Row>
+    </MainToolbar>
+  </Toolbars>
+  <Language>
+    <POFileName>doublecmd.en.po</POFileName>
+  </Language>
+  <Behaviours>
+    <GoToRoot>False</GoToRoot>
+    <RunInTerminalStayOpenCmd>x-terminal-emulator</RunInTerminalStayOpenCmd>
+    <RunInTerminalStayOpenParams>--window-with-profile=jaime -e sh  -c '{command}'</RunInTerminalStayOpenParams>
+    <RunInTerminalCloseCmd>x-terminal-emulator</RunInTerminalCloseCmd>
+    <RunInTerminalCloseParams>-e sh -c {command}</RunInTerminalCloseParams>
+    <JustRunTerminal>x-terminal-emulator</JustRunTerminal>
+    <JustRunTermParams/>
+    <OnlyOneAppInstance>False</OnlyOneAppInstance>
+    <LynxLike>True</LynxLike>
+    <FileSizeFormat>0</FileSizeFormat>
+    <FileSizeDigits>1</FileSizeDigits>
+    <MinimizeToTray>False</MinimizeToTray>
+    <AlwaysShowTrayIcon>False</AlwaysShowTrayIcon>
+    <Mouse>
+      <Selection Enabled="True">
+        <Button>0</Button>
+      </Selection>
+      <SingleClickStart>0</SingleClickStart>
+      <ScrollMode>1</ScrollMode>
+      <WheelScrollLines>3</WheelScrollLines>
+    </Mouse>
+    <AutoFillColumns>False</AutoFillColumns>
+    <AutoSizeColumn>1</AutoSizeColumn>
+    <CustomColumnsChangeAllColumns>False</CustomColumnsChangeAllColumns>
+    <BriefViewFileExtAligned>False</BriefViewFileExtAligned>
+    <DateTimeFormat>mm/dd/yyyy hh:nn:ss</DateTimeFormat>
+    <CutTextToColumnWidth>True</CutTextToColumnWidth>
+    <ExtendCellWidth>False</ExtendCellWidth>
+    <ShowSystemFiles>True</ShowSystemFiles>
+    <ListFilesInThread>True</ListFilesInThread>
+    <LoadIconsSeparately>True</LoadIconsSeparately>
+    <DelayLoadingTabs>True</DelayLoadingTabs>
+    <HighlightUpdatedFiles>True</HighlightUpdatedFiles>
+    <DriveBlackList/>
+    <DriveBlackListUnmounted>False</DriveBlackListUnmounted>
+  </Behaviours>
+  <Tools>
+    <Viewer Enabled="False">
+      <Path/>
+      <Parameters/>
+      <RunInTerminal>False</RunInTerminal>
+      <KeepTerminalOpen>False</KeepTerminalOpen>
+    </Viewer>
+    <Editor Enabled="True">
+      <Path>/usr/bin/vi</Path>
+      <Parameters/>
+      <RunInTerminal>True</RunInTerminal>
+      <KeepTerminalOpen>True</KeepTerminalOpen>
+    </Editor>
+    <Differ Enabled="False">
+      <Path/>
+      <Parameters/>
+      <RunInTerminal>False</RunInTerminal>
+      <KeepTerminalOpen>False</KeepTerminalOpen>
+      <FramePosAfterComp>0</FramePosAfterComp>
+    </Differ>
+  </Tools>
+  <Fonts>
+    <Main>
+      <Name>default</Name>
+      <Size>10</Size>
+      <Style>1</Style>
+      <Quality>0</Quality>
+    </Main>
+    <Editor>
+      <Name>Monospace</Name>
+      <Size>14</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </Editor>
+    <Viewer>
+      <Name>Monospace</Name>
+      <Size>14</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </Viewer>
+    <Log>
+      <Name>Monospace</Name>
+      <Size>12</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </Log>
+    <ViewerBook>
+      <Name>default</Name>
+      <Size>16</Size>
+      <Style>1</Style>
+      <Quality>0</Quality>
+    </ViewerBook>
+    <Console>
+      <Name>Monospace</Name>
+      <Size>12</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </Console>
+    <OptionsTree>
+      <Name>default</Name>
+      <Size>10</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </OptionsTree>
+    <OptionsMain>
+      <Name>default</Name>
+      <Size>10</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </OptionsMain>
+    <SearchResults>
+      <Name>default</Name>
+      <Size>14</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </SearchResults>
+    <PathEdit>
+      <Name>default</Name>
+      <Size>8</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </PathEdit>
+    <FunctionButtons>
+      <Name>default</Name>
+      <Size>8</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </FunctionButtons>
+  </Fonts>
+  <ToolTips>
+    <ShowToolTipMode>True</ShowToolTipMode>
+    <CustomFields/>
+  </ToolTips>
+  <Layout>
+    <MainMenu>True</MainMenu>
+    <ButtonBar Enabled="True">
+      <FlatIcons>True</FlatIcons>
+      <ButtonHeight>20</ButtonHeight>
+      <IconSize>16</IconSize>
+      <ReportErrorWithCommands>False</ReportErrorWithCommands>
+    </ButtonBar>
+    <DriveBar1>True</DriveBar1>
+    <DriveBar2>True</DriveBar2>
+    <DriveBarFlat>False</DriveBarFlat>
+    <DrivesListButton Enabled="True">
+      <ShowLabel>True</ShowLabel>
+      <ShowFileSystem>True</ShowFileSystem>
+      <ShowFreeSpace>True</ShowFreeSpace>
+    </DrivesListButton>
+    <SeparateTree>False</SeparateTree>
+    <DirectoryTabs>True</DirectoryTabs>
+    <CurrentDirectory>True</CurrentDirectory>
+    <TabHeader>True</TabHeader>
+    <StatusBar>False</StatusBar>
+    <CmdLine>False</CmdLine>
+    <LogWindow>False</LogWindow>
+    <TermWindow>False</TermWindow>
+    <KeyButtons>True</KeyButtons>
+    <InterfaceFlat>False</InterfaceFlat>
+    <DriveFreeSpace>False</DriveFreeSpace>
+    <DriveIndicator>True</DriveIndicator>
+    <ProgressInMenuBar>False</ProgressInMenuBar>
+    <PanelOfOperationsInBackground>True</PanelOfOperationsInBackground>
+    <HorizontalFilePanels>False</HorizontalFilePanels>
+    <ShortFormatDriveInfo>False</ShortFormatDriveInfo>
+  </Layout>
+  <FilesViews>
+    <Sorting>
+      <CaseSensitivity>0</CaseSensitivity>
+      <NaturalSorting>False</NaturalSorting>
+      <SortFolderMode>0</SortFolderMode>
+      <NewFilesPosition>2</NewFilesPosition>
+      <UpdatedFilesPosition>2</UpdatedFilesPosition>
+    </Sorting>
+    <ColumnsView>
+      <AutoSaveWidth>True</AutoSaveWidth>
+      <TitleStyle>1</TitleStyle>
+    </ColumnsView>
+    <BriefView>
+      <FileExtAligned>False</FileExtAligned>
+      <Columns>
+        <FixedWidth>100</FixedWidth>
+        <FixedCount>2</FixedCount>
+        <AutoSize>2</AutoSize>
+      </Columns>
+    </BriefView>
+    <ExtraLineSpan>2</ExtraLineSpan>
+  </FilesViews>
+  <Keyboard>
+    <Typing>
+      <Actions>
+        <NoModifier>2</NoModifier>
+        <Alt>0</Alt>
+        <CtrlAlt>3</CtrlAlt>
+      </Actions>
+    </Typing>
+  </Keyboard>
+  <FileOperations>
+    <BufferSize>524288</BufferSize>
+    <HashBufferSize>8388608</HashBufferSize>
+    <UseMmapInSearch>False</UseMmapInSearch>
+    <PartialNameSearch>True</PartialNameSearch>
+    <WipePassNumber>1</WipePassNumber>
+    <DropReadOnlyFlag>False</DropReadOnlyFlag>
+    <ProcessComments>False</ProcessComments>
+    <RenameSelOnlyName>False</RenameSelOnlyName>
+    <ShowCopyTabSelectPanel>False</ShowCopyTabSelectPanel>
+    <UseTrash>True</UseTrash>
+    <SkipFileOpError>False</SkipFileOpError>
+    <TypeOfDuplicatedRename>0</TypeOfDuplicatedRename>
+    <ShowDialogOnDragDrop>False</ShowDialogOnDragDrop>
+    <DragAndDropTextRichtextDesireLevel>0</DragAndDropTextRichtextDesireLevel>
+    <DragAndDropTextHtmlDesireLevel>1</DragAndDropTextHtmlDesireLevel>
+    <DragAndDropTextUnicodeDesireLevel>2</DragAndDropTextUnicodeDesireLevel>
+    <DragAndDropTextSimpletextDesireLevel>3</DragAndDropTextSimpletextDesireLevel>
+    <DragAndDropAskFormatEachTime>False</DragAndDropAskFormatEachTime>
+    <DragAndDropTextAutoFilename>False</DragAndDropTextAutoFilename>
+    <DragAndDropSaveUnicodeTextInUFT8>True</DragAndDropSaveUnicodeTextInUFT8>
+    <OverwriteFolder>False</OverwriteFolder>
+    <NtfsHourTimeDelay>False</NtfsHourTimeDelay>
+    <SearchDefaultTemplate/>
+    <ProgressKind>0</ProgressKind>
+    <Confirmations>15</Confirmations>
+    <Options>
+      <Symlink>0</Symlink>
+      <CorrectLinks>False</CorrectLinks>
+      <FileExists>0</FileExists>
+      <DirectoryExists>0</DirectoryExists>
+      <SetPropertyError>0</SetPropertyError>
+      <ReserveSpace>False</ReserveSpace>
+      <CheckFreeSpace>True</CheckFreeSpace>
+      <CopyAttributes>True</CopyAttributes>
+      <CopyTime>True</CopyTime>
+      <CopyOwnership>False</CopyOwnership>
+      <CopyPermissions>False</CopyPermissions>
+      <Verify>False</Verify>
+      <ExcludeEmptyTemplateDirectories>True</ExcludeEmptyTemplateDirectories>
+    </Options>
+    <InitiallyClearFileMask>True</InitiallyClearFileMask>
+    <NewSearchClearFiltersAction>0</NewSearchClearFiltersAction>
+    <ShowMenuBarInFindFiles>True</ShowMenuBarInFindFiles>
+    <AutoExtractOpenMask/>
+  </FileOperations>
+  <Tabs>
+    <Options>115609</Options>
+    <CharacterLimit>6</CharacterLimit>
+    <Position>0</Position>
+    <ActionOnDoubleClick>2</ActionOnDoubleClick>
+    <OpenedTabs>
+      <Left>
+        <ActiveTab>0</ActiveTab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>2</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-by-example/wrapper/</Path>
+                  <Path Filename="wrapper">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-by-example/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-by-example/wrapper/</Path>
+                  <Path Filename=".git">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-by-example/</Path>
+                  <Path Filename="cgo-example">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/</Path>
+                  <Path Filename="src">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/src/</Path>
+                  <Path Filename="src">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/</Path>
+                  <Path Filename="stdlib.go">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/stdlib.go/</Path>
+                  <Path Filename="stdlib.go">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/</Path>
+                  <Path Filename="lib.cgo">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
+                  <Path Filename="cgo-example">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/</Path>
+                  <Path Filename="src">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/src/</Path>
+                  <Path Filename="src">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/</Path>
+                  <Path Filename="cgo-example">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/</Path>
+                  <Path Filename="ares.projects">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
+                  <Path Filename="cgo-test-example">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/</Path>
+                  <Path Filename="example_2">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/example_2/</Path>
+                  <Path Filename="example_1">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/example_1/</Path>
+                  <Path Filename="example_2">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
+                  <Path Filename="dvij.front">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="src">/home/jaime/BUFF/projects/golang/src/dvij.front/</Path>
+                  <Path Filename="api">/home/jaime/BUFF/projects/golang/src/dvij.front/src/</Path>
+                  <Path Filename=".cache">/home/jaime/</Path>
+                  <Path Filename="..">/run/user/1000/gvfs/</Path>
+                  <Path Filename="gvfs">/run/user/1000/</Path>
+                  <Path Filename="1000">/run/user/</Path>
+                  <Path Filename="shm">/run/</Path>
+                  <Path Filename="..">/run/shm/</Path>
+                  <Path Filename="thermald">/run/</Path>
+                  <Path Filename="media">/</Path>
+                  <Path Filename="jaime">/media/</Path>
+                  <Path Filename="04a90a52-3660-4e73-bc4a-f7a582b38a8a">/media/jaime/</Path>
+                  <Path Filename="..">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/</Path>
+                  <Path Filename="Ubuntu 17.10 amd64">/media/jaime/</Path>
+                  <Path Filename="jaime">/media/</Path>
+                  <Path Filename="home">/</Path>
+                  <Path Filename="jaime">/home/</Path>
+                  <Path Filename=".ssh">/home/jaime/</Path>
+                  <Path Filename="authorized_keys">/home/jaime/.ssh/</Path>
+                  <Path Filename=".config">/home/jaime/</Path>
+                  <Path Filename="doublecmd">/home/jaime/.config/</Path>
+                  <Path Filename="pixmaps.txt">/home/jaime/.config/doublecmd/</Path>
+                  <Path Filename="doublecmd">/home/jaime/.config/</Path>
+                  <Path Filename="..">/home/jaime/.config/doublecmd/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+      </Left>
+      <Right>
+        <ActiveTab>0</ActiveTab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>2</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/example_2/</Path>
+                  <Path Filename=".gitignore">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/</Path>
+                  <Path Filename="..">/home/jaime/</Path>
+                  <Path Filename="..">/run/vmblock-fuse/</Path>
+                  <Path Filename="home">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/</Path>
+                  <Path Filename="jaime">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/</Path>
+                  <Path Filename=".config">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/</Path>
+                  <Path Filename="..">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/.config/</Path>
+                  <Path Filename=".ssh">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/</Path>
+                  <Path Filename="..">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/.ssh/</Path>
+                  <Path Filename=".ssh">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/</Path>
+                  <Path Filename="VMware Tools1">/media/jaime/</Path>
+                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/</Path>
+                  <Path Filename="..">/media/jaime/5438f408-b0e5-47c0-8360-32fb64df7764/</Path>
+                  <Path Filename="home">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/</Path>
+                  <Path Filename="jaime">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/</Path>
+                  <Path Filename="HDDS">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
+                  <Path Filename="MEDIA">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/HDDS/</Path>
+                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/HDDS/MEDIA/</Path>
+                  <Path Filename="MEDIA">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/HDDS/</Path>
+                  <Path Filename="dotfiles">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
+                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/</Path>
+                  <Path Filename="BUFF">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
+                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/BUFF/</Path>
+                  <Path Filename=".gconf">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
+                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.gconf/</Path>
+                  <Path Filename="Downloads">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
+                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/Downloads/</Path>
+                  <Path Filename=".ansible">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
+                  <Path Filename="tmp">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/</Path>
+                  <Path Filename="ansible-tmp-1522509049.68-90959340216887">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/tmp/</Path>
+                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/tmp/ansible-tmp-1522509049.68-90959340216887/</Path>
+                  <Path Filename="ansible-tmp-1522509049.68-90959340216887">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/tmp/</Path>
+                  <Path Filename="tmp">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/</Path>
+                  <Path Filename=".ansible">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
+                  <Path Filename="jaime">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/</Path>
+                  <Path Filename=".gconf">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
+                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.gconf/</Path>
+                  <Path Filename=".config">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
+                  <Path Filename="doublecmd">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/</Path>
+                  <Path Filename="highlighters.xml">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/doublecmd/</Path>
+                  <Path Filename="QtProject">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/</Path>
+                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/QtProject/</Path>
+                  <Path Filename="QtProject">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/</Path>
+                  <Path Filename="dotfiles">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
+                  <Path Filename="conf.bash">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/</Path>
+                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/conf.bash/</Path>
+                  <Path Filename="conf.ansible">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/</Path>
+                  <Path Filename="roles">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/conf.ansible/</Path>
+                  <Path Filename="bash">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/conf.ansible/roles/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+      </Right>
+    </OpenedTabs>
+  </Tabs>
+  <Log Enabled="False" LogFileWithDateInName="False">
+    <FileName>%DC_CONFIG_PATH%/doublecmd.log</FileName>
+    <Options>1023</Options>
+  </Log>
+  <History>
+    <SearchReplaceHistory Save="True"/>
+    <DirHistory Save="True"/>
+    <CmdLineHistory Save="True"/>
+    <FileMaskHistory Save="True"/>
+  </History>
+  <QuickSearch>
+    <MatchBeginning>True</MatchBeginning>
+    <MatchEnding>True</MatchEnding>
+    <Case>1</Case>
+    <Items>2</Items>
+  </QuickSearch>
+  <QuickFilter>
+    <AutoHide>True</AutoHide>
+    <SaveSessionModifications>True</SaveSessionModifications>
+  </QuickFilter>
+  <Miscellaneous>
+    <GridVertLine>True</GridVertLine>
+    <GridHorzLine>True</GridHorzLine>
+    <ShowWarningMessages>True</ShowWarningMessages>
+    <SpaceMovesDown>False</SpaceMovesDown>
+    <DirBrackets>True</DirBrackets>
+    <InplaceRename>False</InplaceRename>
+    <HotDirAddTargetOrNot>False</HotDirAddTargetOrNot>
+    <HotDirFullExpandOrNot>False</HotDirFullExpandOrNot>
+    <ShowPathInPopup>False</ShowPathInPopup>
+    <ShowOnlyValidEnv>True</ShowOnlyValidEnv>
+    <WhereToAddNewHotDir>2</WhereToAddNewHotDir>
+    <DblClickToParent>False</DblClickToParent>
+  </Miscellaneous>
+  <Thumbnails Save="True">
+    <Width>128</Width>
+    <Height>128</Height>
+  </Thumbnails>
+  <AutoRefresh>
+    <Options>3</Options>
+    <ExcludeDirs/>
+    <Mode>1</Mode>
+  </AutoRefresh>
+  <Icons>
+    <ShowMode>3</ShowMode>
+    <ShowOverlays>False</ShowOverlays>
+    <Size>16</Size>
+    <Exclude>False</Exclude>
+    <ExcludeDirs/>
+    <ShowInMenus Enabled="False">
+      <Size>16</Size>
+    </ShowInMenus>
+    <Theme>dctheme</Theme>
+    <DiskSize>16</DiskSize>
+    <DiskAlpha>50</DiskAlpha>
+    <CustomIcons>0</CustomIcons>
+    <PixelsPerInch>96</PixelsPerInch>
+    <ShowButtonGlyphs>0</ShowButtonGlyphs>
+  </Icons>
+  <IgnoreList Enabled="False">
+    <IgnoreListFile>%DC_CONFIG_PATH%/ignorelist.txt</IgnoreListFile>
+  </IgnoreList>
+  <DirectoryHotList>
+    <HotDir Name="learn.c" Path="/home/jaime/BUFF/projects/learn.c"/>
+    <HotDir Name="learn.go" Path="/home/jaime/BUFF/projects/golang/src/"/>
+    <HotDir Name="learn.js" Path="/home/jaime/BUFF/projects/learn.js"/>
+    <HotDir Name="dotfiles" Path="/home/jaime/dotfiles"/>
+  </DirectoryHotList>
+  <Viewer>
+    <PreviewVisible>False</PreviewVisible>
+    <ImageStretch>False</ImageStretch>
+    <ImageStretchLargeOnly>False</ImageStretchLargeOnly>
+    <ImageCenter>True</ImageCenter>
+    <CopyMovePath1/>
+    <CopyMovePath2/>
+    <CopyMovePath3/>
+    <CopyMovePath4/>
+    <CopyMovePath5/>
+    <PaintMode>Pen</PaintMode>
+    <PaintWidth>5</PaintWidth>
+    <NumberOfColumns>1</NumberOfColumns>
+    <ViewerMode>1</ViewerMode>
+    <PaintColor>255</PaintColor>
+    <BackgroundColor>0</BackgroundColor>
+    <FontColor>16777215</FontColor>
+    <TextPosition>395</TextPosition>
+    <ImageExifRotate>True</ImageExifRotate>
+  </Viewer>
+  <Editor>
+    <SynEditOptions>856075</SynEditOptions>
+    <EditWaitTime>2000</EditWaitTime>
+  </Editor>
+  <SyncDirs>
+    <Subdirs>False</Subdirs>
+    <ByContent>False</ByContent>
+    <IgnoreDate>False</IgnoreDate>
+    <FilterCopyRight>True</FilterCopyRight>
+    <FilterEqual>True</FilterEqual>
+    <FilterNotEqual>True</FilterNotEqual>
+    <FilterCopyLeft>True</FilterCopyLeft>
+    <FilterDuplicates>True</FilterDuplicates>
+    <FilterSingles>True</FilterSingles>
+    <FileMask>*</FileMask>
+  </SyncDirs>
+  <InternalAssociations>
+    <OfferToAddNewFileType>False</OfferToAddNewFileType>
+    <LastCustomAction>Custom action</LastCustomAction>
+    <ExpandedContextMenu>False</ExpandedContextMenu>
+    <ExecuteViaShell>False</ExecuteViaShell>
+    <OpenSystemWithTerminalClose>False</OpenSystemWithTerminalClose>
+    <OpenSystemWithTerminalStayOpen>False</OpenSystemWithTerminalStayOpen>
+    <IncludeFileAssociation>False</IncludeFileAssociation>
+  </InternalAssociations>
+  <FavoriteTabsOptions>
+    <FavoriteTabsUseRestoreExtraOptions>False</FavoriteTabsUseRestoreExtraOptions>
+    <WhereToAdd>1</WhereToAdd>
+    <Expand>True</Expand>
+    <GotoConfigAftSav>False</GotoConfigAftSav>
+    <GotoConfigAftReSav>False</GotoConfigAftReSav>
+    <DfltLeftGoTo>0</DfltLeftGoTo>
+    <DfltRightGoTo>1</DfltRightGoTo>
+    <DfltKeep>5</DfltKeep>
+    <DfltSaveDirHistory>False</DfltSaveDirHistory>
+    <FavTabsLastUniqueID>{4A884BCD-4FA3-41C5-9676-94D920F0A29B}</FavTabsLastUniqueID>
+  </FavoriteTabsOptions>
+  <Lua>
+    <PathToLibrary>liblua5.1.so.0</PathToLibrary>
+  </Lua>
+  <NameShortcutFile>shortcuts.scf</NameShortcutFile>
+  <LastUsedPacker>zip</LastUsedPacker>
+  <UseShellForFileOperations>False</UseShellForFileOperations>
+  <LastDoAnyCommand>cm_Refresh</LastDoAnyCommand>
+  <SearchTemplates/>
+  <ColumnsSets DefaultTitleHash="540805403">
+    <ColumnsSet UseFrameCursor="False">
+      <Name>Default</Name>
+      <CustomView>False</CustomView>
+      <PixelsPerInch>96</PixelsPerInch>
+      <CursorBorder Enabled="False">
+        <Color>0</Color>
+      </CursorBorder>
+      <Columns>
+        <Column>
+          <Title>Name</Title>
+          <FuncString>[DC().GETFILENAMENOEXT{}]</FuncString>
+          <Width>144</Width>
+          <Align>0</Align>
+          <Font>
+            <Name>default</Name>
+            <Size>10</Size>
+            <Style>1</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>255</MarkColor>
+          <CursorColor>-2147483635</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>255</InactiveMarkColor>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+        <Column>
+          <Title>Ext</Title>
+          <FuncString>[DC().GETFILEEXT{}]</FuncString>
+          <Width>67</Width>
+          <Align>0</Align>
+          <Font>
+            <Name>default</Name>
+            <Size>10</Size>
+            <Style>1</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>255</MarkColor>
+          <CursorColor>-2147483635</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>255</InactiveMarkColor>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+        <Column>
+          <Title>Size</Title>
+          <FuncString>[DC().GETFILESIZE{}]</FuncString>
+          <Width>70</Width>
+          <Align>1</Align>
+          <Font>
+            <Name>default</Name>
+            <Size>10</Size>
+            <Style>1</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>255</MarkColor>
+          <CursorColor>-2147483635</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>255</InactiveMarkColor>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+        <Column>
+          <Title>Date</Title>
+          <FuncString>[DC().GETFILETIME{}]</FuncString>
+          <Width>140</Width>
+          <Align>1</Align>
+          <Font>
+            <Name>default</Name>
+            <Size>10</Size>
+            <Style>1</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>255</MarkColor>
+          <CursorColor>-2147483635</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>255</InactiveMarkColor>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+        <Column>
+          <Title>Attr</Title>
+          <FuncString>[DC().GETFILEATTR{}]</FuncString>
+          <Width>100</Width>
+          <Align>0</Align>
+          <Font>
+            <Name>default</Name>
+            <Size>10</Size>
+            <Style>1</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>255</MarkColor>
+          <CursorColor>-2147483635</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>255</InactiveMarkColor>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+      </Columns>
+    </ColumnsSet>
+  </ColumnsSets>
+  <MainWindow>
+    <Position>
+      <Left>264</Left>
+      <Top>27</Top>
+      <Width>703</Width>
+      <Height>588</Height>
+      <Maximized>False</Maximized>
+      <Splitter>50.5091649694501</Splitter>
+      <PixelsPerInch>96</PixelsPerInch>
+    </Position>
+  </MainWindow>
+  <MultiRenamePresets>
+    <LastPreset/>
+    <Presets/>
+  </MultiRenamePresets>
+  <Description>
+    <CreateNewUnicode>True</CreateNewUnicode>
+    <DefaultEncoding>2</DefaultEncoding>
+    <CreateNewEncoding>3</CreateNewEncoding>
+  </Description>
+  <TreeViewMenu>
+    <UseTVMDirectoryHotlistFMC>False</UseTVMDirectoryHotlistFMC>
+    <UseTVMDirectoryHotlistFDC>False</UseTVMDirectoryHotlistFDC>
+    <UseTVMFavoriteTabsFMC>False</UseTVMFavoriteTabsFMC>
+    <UseTVMFavoriteTabsFDC>False</UseTVMFavoriteTabsFDC>
+    <UseTVMDirHistory>False</UseTVMDirHistory>
+    <UseTVMViewHistory>False</UseTVMViewHistory>
+    <UseTVMCommandLineHistory>False</UseTVMCommandLineHistory>
+    <TreeViewMenuShortcutExit>True</TreeViewMenuShortcutExit>
+    <TreeViewMenuSingleClickExit>True</TreeViewMenuSingleClickExit>
+    <TreeViewMenuDoubleClickExit>True</TreeViewMenuDoubleClickExit>
+    <Context00>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context00>
+    <Context01>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context01>
+    <Context02>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context02>
+    <Context03>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context03>
+    <Context04>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context04>
+    <Context05>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context05>
+    <Context06>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context06>
+    <TreeViewMenuUseKeyboardShortcut>True</TreeViewMenuUseKeyboardShortcut>
+    <BackgroundColor>-2147483617</BackgroundColor>
+    <ShortcutColor>255</ShortcutColor>
+    <NormalTextColor>-2147483640</NormalTextColor>
+    <SecondaryTextColor>-2147483642</SecondaryTextColor>
+    <FoundTextColor>-2147483635</FoundTextColor>
+    <UnselectableTextColor>-2147483631</UnselectableTextColor>
+    <CursorColor>-2147483635</CursorColor>
+    <ShortcutUnderCursor>-2147483634</ShortcutUnderCursor>
+    <NormalTextUnderCursor>-2147483634</NormalTextUnderCursor>
+    <SecondaryTextUnderCursor>-2147483628</SecondaryTextUnderCursor>
+    <FoundTextUnderCursor>65535</FoundTextUnderCursor>
+    <UnselectableUnderCursor>-2147483631</UnselectableUnderCursor>
+  </TreeViewMenu>
+  <HotKeySortOrder>0</HotKeySortOrder>
+  <UseEnterToCloseHotKeyEditor>True</UseEnterToCloseHotKeyEditor>
+  <MarkMaskCaseSensitive>False</MarkMaskCaseSensitive>
+  <MarkMaskIgnoreAccents>False</MarkMaskIgnoreAccents>
+  <MarkMaskFilterWindows>False</MarkMaskFilterWindows>
+  <MarkShowWantedAttribute>False</MarkShowWantedAttribute>
+  <MarkDefaultWantedAttribute/>
+  <MarkLastWantedAttribute/>
+</doublecmd>
