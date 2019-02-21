@@ -1,26 +1,27 @@
 ### dotfiles
 
- My currently config:
+ Here are my personal environment. I'm use:
   * vm: vmware, docker
   * system: ubuntu
   * installer: ansible
   * shell: bash
-  * editor: vi
+  * editor: nvim
   * browser: chrome
   * file manager: doublecmd
-  * exec: python+node+golang
+  * for edit source files: golang/c/javascript
 
 #### how it looks
 
 ![Image of tmux panel](docs/example.vi.png)
 
-You can see another things in [/docs](./docs)
+Another examples in here [/docs](./docs)
 
 #### Folders
 
   * `conf.ansible` - instructions/scripts/files for configure/install environment
-  * `conf.bash` - config for std.shell
-  * `docs`- docs/faqs examples
+  * `conf.bash` - dotfiles for std.shell
+  * `conf.util` - dotfiles for all other utilites, like eslint/youcompleteme/..
+  * `docs`- docs/faqs/examples
 
 #### Preparation
 
@@ -30,7 +31,7 @@ You can see another things in [/docs](./docs)
   * `bash ~/dotfiles/conf.ansible/start.install.ansible.sh`
   * `sudo apt install gcc && sudo apt install build-essential && sudo apt-get update && sudo apt install net-tools`
   
-#### vmwtools (the only for vmware users)
+#### vmwtools (the only when under vmware environment)
   * `put the linux.iso from host system to virtual cdrom, or click 'menu->Install VMware Tools...'`
   * `copy VMWareTools*.gz to /tmp and cd /tmp/vmware-tools`
   * `sudo ./vmware-install.pl`
