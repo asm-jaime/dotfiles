@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doublecmd DCVersion="0.8.0 beta" ConfigVersion="10">
+<doublecmd DCVersion="0.8.4 beta" ConfigVersion="10">
   <Configuration Save="True" SortOrder="0">
     <UseConfigInProgramDir>False</UseConfigInProgramDir>
   </Configuration>
@@ -185,11 +185,11 @@
           <Command>cm_RunTerm</Command>
         </Command>
         <Program>
-          <ID>{E027A891-298A-4C53-B88A-0352DC107186}</ID>
+          <ID>{64615C6E-8A38-4A03-8B54-034843FE72A3}</ID>
           <Icon>cm_runterm</Icon>
           <Hint>Run Terminal</Hint>
           <Command>gnome-terminal</Command>
-          <Params>echo %p</Params>
+          <Params>--command="bash -c 'vi %vs';bash"</Params>
         </Program>
         <Command>
           <ID>{916C083D-586E-4664-B622-F83C313CE882}</ID>
@@ -288,7 +288,7 @@
     <RunInTerminalStayOpenCmd>x-terminal-emulator</RunInTerminalStayOpenCmd>
     <RunInTerminalStayOpenParams>--window-with-profile=jaime -e sh  -c '{command}'</RunInTerminalStayOpenParams>
     <RunInTerminalCloseCmd>x-terminal-emulator</RunInTerminalCloseCmd>
-    <RunInTerminalCloseParams>-e sh -c {command}</RunInTerminalCloseParams>
+    <RunInTerminalCloseParams/>
     <JustRunTerminal>x-terminal-emulator</JustRunTerminal>
     <JustRunTermParams/>
     <OnlyOneAppInstance>False</OnlyOneAppInstance>
@@ -417,8 +417,8 @@
     <MainMenu>True</MainMenu>
     <ButtonBar Enabled="True">
       <FlatIcons>True</FlatIcons>
-      <ButtonHeight>20</ButtonHeight>
-      <IconSize>16</IconSize>
+      <ButtonHeight>24</ButtonHeight>
+      <IconSize>20</IconSize>
       <ReportErrorWithCommands>False</ReportErrorWithCommands>
     </ButtonBar>
     <DriveBar1>True</DriveBar1>
@@ -450,7 +450,7 @@
     <Sorting>
       <CaseSensitivity>0</CaseSensitivity>
       <NaturalSorting>False</NaturalSorting>
-      <SortFolderMode>0</SortFolderMode>
+      <SortFolderMode>1</SortFolderMode>
       <NewFilesPosition>2</NewFilesPosition>
       <UpdatedFilesPosition>2</UpdatedFilesPosition>
     </Sorting>
@@ -530,12 +530,12 @@
     <ActionOnDoubleClick>2</ActionOnDoubleClick>
     <OpenedTabs>
       <Left>
-        <ActiveTab>0</ActiveTab>
+        <ActiveTab>1</ActiveTab>
         <Tab>
           <FileView Type="columns">
             <Sortings>
               <Sorting>
-                <Direction>2</Direction>
+                <Direction>1</Direction>
                 <Function>12</Function>
               </Sorting>
             </Sortings>
@@ -543,56 +543,126 @@
               <Entry Active="True">
                 <FileSource Type="FileSystem"/>
                 <Paths>
-                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-by-example/wrapper/</Path>
-                  <Path Filename="wrapper">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-by-example/</Path>
-                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-by-example/wrapper/</Path>
-                  <Path Filename=".git">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-by-example/</Path>
-                  <Path Filename="cgo-example">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/</Path>
-                  <Path Filename="src">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/</Path>
-                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/src/</Path>
-                  <Path Filename="src">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/</Path>
-                  <Path Filename="stdlib.go">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/</Path>
-                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/stdlib.go/</Path>
-                  <Path Filename="stdlib.go">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/</Path>
-                  <Path Filename="lib.cgo">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
-                  <Path Filename="cgo-example">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/</Path>
-                  <Path Filename="src">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/</Path>
-                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/src/</Path>
-                  <Path Filename="src">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/cgo-example/</Path>
-                  <Path Filename="cgo-example">/home/jaime/BUFF/projects/golang/src/learn.go/lib.cgo/</Path>
-                  <Path Filename="ares.projects">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
-                  <Path Filename="cgo-test-example">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/</Path>
-                  <Path Filename="example_2">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/</Path>
-                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/example_2/</Path>
-                  <Path Filename="example_1">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/</Path>
-                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/example_1/</Path>
-                  <Path Filename="example_2">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/</Path>
+                  <Path Filename="faiss">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="learn.go">/home/jaime/BUFF/projects/golang/src/</Path>
                   <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
-                  <Path Filename="dvij.front">/home/jaime/BUFF/projects/golang/src/</Path>
-                  <Path Filename="src">/home/jaime/BUFF/projects/golang/src/dvij.front/</Path>
-                  <Path Filename="api">/home/jaime/BUFF/projects/golang/src/dvij.front/src/</Path>
-                  <Path Filename=".cache">/home/jaime/</Path>
-                  <Path Filename="..">/run/user/1000/gvfs/</Path>
-                  <Path Filename="gvfs">/run/user/1000/</Path>
-                  <Path Filename="1000">/run/user/</Path>
-                  <Path Filename="shm">/run/</Path>
-                  <Path Filename="..">/run/shm/</Path>
-                  <Path Filename="thermald">/run/</Path>
-                  <Path Filename="media">/</Path>
-                  <Path Filename="jaime">/media/</Path>
-                  <Path Filename="04a90a52-3660-4e73-bc4a-f7a582b38a8a">/media/jaime/</Path>
-                  <Path Filename="..">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/</Path>
-                  <Path Filename="Ubuntu 17.10 amd64">/media/jaime/</Path>
-                  <Path Filename="jaime">/media/</Path>
-                  <Path Filename="home">/</Path>
-                  <Path Filename="jaime">/home/</Path>
-                  <Path Filename=".ssh">/home/jaime/</Path>
-                  <Path Filename="authorized_keys">/home/jaime/.ssh/</Path>
-                  <Path Filename=".config">/home/jaime/</Path>
-                  <Path Filename="doublecmd">/home/jaime/.config/</Path>
-                  <Path Filename="pixmaps.txt">/home/jaime/.config/doublecmd/</Path>
-                  <Path Filename="doublecmd">/home/jaime/.config/</Path>
-                  <Path Filename="..">/home/jaime/.config/doublecmd/</Path>
+                  <Path Filename="facefinder">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="faiss">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="c_api">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="bin">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/c_api/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/c_api/bin/</Path>
+                  <Path Filename="example_c.c">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/c_api/</Path>
+                  <Path Filename="c_api">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="faissloader.go">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="faiss">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="c_api">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/c_api/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="src">/home/jaime/BUFF/projects/golang/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="faiss">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="OnDiskInvertedLists.cpp">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="faiss">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="faiss_go">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/faiss_go/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="faiss">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="facefinder">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="search">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="Godeps">/home/jaime/BUFF/projects/golang/src/facefinder/search/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/facefinder/search/Godeps/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/facefinder/search/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="facefinder">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="findface">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/facefinder/findface/</Path>
+                  <Path Filename="crawler">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="v.devs.env">/home/jaime/BUFF/projects/golang/src/facefinder/crawler/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>1</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="learn.go">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
+                  <Path Filename="facefinder">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="faiss">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="c_api">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="bin">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/c_api/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/c_api/bin/</Path>
+                  <Path Filename="example_c.c">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/c_api/</Path>
+                  <Path Filename="c_api">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="faissloader.go">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="faiss">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="c_api">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/c_api/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="src">/home/jaime/BUFF/projects/golang/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="faiss">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="OnDiskInvertedLists.cpp">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="faiss">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="faiss_go">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/faiss_go/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/faiss/</Path>
+                  <Path Filename="faiss">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="facefinder">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="search">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="Godeps">/home/jaime/BUFF/projects/golang/src/facefinder/search/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/facefinder/search/Godeps/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/facefinder/search/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="facefinder">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="findface">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/facefinder/findface/</Path>
+                  <Path Filename="crawler">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="main.go">/home/jaime/BUFF/projects/golang/src/facefinder/crawler/</Path>
+                  <Path Filename="findface">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="start.service.sh">/home/jaime/BUFF/projects/golang/src/facefinder/findface/</Path>
                 </Paths>
               </Entry>
             </History>
@@ -603,12 +673,12 @@
         </Tab>
       </Left>
       <Right>
-        <ActiveTab>0</ActiveTab>
+        <ActiveTab>1</ActiveTab>
         <Tab>
           <FileView Type="columns">
             <Sortings>
               <Sorting>
-                <Direction>2</Direction>
+                <Direction>1</Direction>
                 <Function>12</Function>
               </Sorting>
             </Sortings>
@@ -616,56 +686,126 @@
               <Entry Active="True">
                 <FileSource Type="FileSystem"/>
                 <Paths>
-                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/example_2/</Path>
-                  <Path Filename=".gitignore">/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/cgo-test-example/</Path>
-                  <Path Filename="..">/home/jaime/</Path>
-                  <Path Filename="..">/run/vmblock-fuse/</Path>
-                  <Path Filename="home">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/</Path>
-                  <Path Filename="jaime">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/</Path>
-                  <Path Filename=".config">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/</Path>
-                  <Path Filename="..">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/.config/</Path>
-                  <Path Filename=".ssh">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/</Path>
-                  <Path Filename="..">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/.ssh/</Path>
-                  <Path Filename=".ssh">/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/</Path>
-                  <Path Filename="VMware Tools1">/media/jaime/</Path>
-                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/</Path>
-                  <Path Filename="..">/media/jaime/5438f408-b0e5-47c0-8360-32fb64df7764/</Path>
-                  <Path Filename="home">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/</Path>
-                  <Path Filename="jaime">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/</Path>
-                  <Path Filename="HDDS">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
-                  <Path Filename="MEDIA">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/HDDS/</Path>
-                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/HDDS/MEDIA/</Path>
-                  <Path Filename="MEDIA">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/HDDS/</Path>
-                  <Path Filename="dotfiles">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
-                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/</Path>
-                  <Path Filename="BUFF">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
-                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/BUFF/</Path>
-                  <Path Filename=".gconf">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
-                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.gconf/</Path>
-                  <Path Filename="Downloads">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
-                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/Downloads/</Path>
-                  <Path Filename=".ansible">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
-                  <Path Filename="tmp">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/</Path>
-                  <Path Filename="ansible-tmp-1522509049.68-90959340216887">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/tmp/</Path>
-                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/tmp/ansible-tmp-1522509049.68-90959340216887/</Path>
-                  <Path Filename="ansible-tmp-1522509049.68-90959340216887">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/tmp/</Path>
-                  <Path Filename="tmp">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/</Path>
-                  <Path Filename=".ansible">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
-                  <Path Filename="jaime">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/</Path>
-                  <Path Filename=".gconf">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
-                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.gconf/</Path>
-                  <Path Filename=".config">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
-                  <Path Filename="doublecmd">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/</Path>
-                  <Path Filename="highlighters.xml">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/doublecmd/</Path>
-                  <Path Filename="QtProject">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/</Path>
-                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/QtProject/</Path>
-                  <Path Filename="QtProject">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/</Path>
-                  <Path Filename="dotfiles">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Path>
-                  <Path Filename="conf.bash">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/</Path>
-                  <Path Filename="..">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/conf.bash/</Path>
-                  <Path Filename="conf.ansible">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/</Path>
-                  <Path Filename="roles">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/conf.ansible/</Path>
-                  <Path Filename="bash">/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/conf.ansible/roles/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/facefinder/findface/</Path>
+                  <Path Filename="search">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="kdtree_loader.go">/home/jaime/BUFF/projects/golang/src/facefinder/search/</Path>
+                  <Path Filename="search">/home/jaime/BUFF/projects/golang/src/facefinder/</Path>
+                  <Path Filename="kdtree">/home/jaime/BUFF/projects/golang/src/facefinder/search/</Path>
+                  <Path Filename="type.interface">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
+                  <Path Filename="iface.simple">/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/</Path>
+                  <Path Filename="main.go">/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/iface.simple/</Path>
+                  <Path Filename="iface.simple">/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/iface.simple/</Path>
+                  <Path Filename="iface.data">/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/iface.data/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="goffv">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="test.log">/home/jaime/BUFF/projects/golang/src/goffv/</Path>
+                  <Path Filename="..">/home/jaime/dotfiles/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BUFFER/</Path>
+                  <Path Filename="BACKUP">/home/jaime/HDDS/</Path>
+                  <Path Filename="configs">/home/jaime/HDDS/BACKUP/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/</Path>
+                  <Path Filename="distrib">/home/jaime/HDDS/BACKUP/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/distrib/</Path>
+                  <Path Filename="configs">/home/jaime/HDDS/BACKUP/</Path>
+                  <Path Filename="config.dotfiles">/home/jaime/HDDS/BACKUP/configs/</Path>
+                  <Path Filename="store.1">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/</Path>
+                  <Path Filename="store.2">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.2/</Path>
+                  <Path Filename="store.1">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/</Path>
+                  <Path Filename="store.1">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/</Path>
+                  <Path Filename="doc">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/</Path>
+                  <Path Filename="examples">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/doc/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/doc/examples/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/doc/</Path>
+                  <Path Filename="init.vim">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/</Path>
+                  <Path Filename="worlds">/home/jaime/HDDS/BUFFER/</Path>
+                  <Path Filename="irl.математика">/home/jaime/HDDS/BUFFER/worlds/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BUFFER/worlds/irl.математика/</Path>
+                  <Path Filename="learn.mathematica">/home/jaime/HDDS/BUFFER/worlds/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BUFFER/worlds/learn.mathematica/</Path>
+                  <Path Filename="Paolo Aluffi-Algebra_ Chapter 0 (Graduate Studies in Mathematics) (2009).pdf">/home/jaime/HDDS/BUFFER/worlds/learn.mathematica/theory.algebra.derivatives/</Path>
+                  <Path Filename="dactyl">/tmp/</Path>
+                  <Path Filename="downloads">/tmp/dactyl/</Path>
+                  <Path Filename="pentadactyl-1.2pre.xpi">/tmp/dactyl/downloads/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
+                  <Path Filename="goffv">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="main.go">/home/jaime/BUFF/projects/golang/src/goffv/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>1</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="iface.simple">/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/iface.simple/</Path>
+                  <Path Filename="iface.data">/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/iface.data/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
+                  <Path Filename="fcsearch">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/fcsearch/</Path>
+                  <Path Filename="goffv">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="test.log">/home/jaime/BUFF/projects/golang/src/goffv/</Path>
+                  <Path Filename="..">/home/jaime/dotfiles/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BUFFER/</Path>
+                  <Path Filename="BACKUP">/home/jaime/HDDS/</Path>
+                  <Path Filename="configs">/home/jaime/HDDS/BACKUP/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/</Path>
+                  <Path Filename="distrib">/home/jaime/HDDS/BACKUP/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/distrib/</Path>
+                  <Path Filename="configs">/home/jaime/HDDS/BACKUP/</Path>
+                  <Path Filename="config.dotfiles">/home/jaime/HDDS/BACKUP/configs/</Path>
+                  <Path Filename="store.1">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/</Path>
+                  <Path Filename="store.2">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.2/</Path>
+                  <Path Filename="store.1">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/</Path>
+                  <Path Filename="store.1">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/</Path>
+                  <Path Filename="doc">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/</Path>
+                  <Path Filename="examples">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/doc/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/doc/examples/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/doc/</Path>
+                  <Path Filename="init.vim">/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/</Path>
+                  <Path Filename="worlds">/home/jaime/HDDS/BUFFER/</Path>
+                  <Path Filename="irl.математика">/home/jaime/HDDS/BUFFER/worlds/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BUFFER/worlds/irl.математика/</Path>
+                  <Path Filename="learn.mathematica">/home/jaime/HDDS/BUFFER/worlds/</Path>
+                  <Path Filename="..">/home/jaime/HDDS/BUFFER/worlds/learn.mathematica/</Path>
+                  <Path Filename="Paolo Aluffi-Algebra_ Chapter 0 (Graduate Studies in Mathematics) (2009).pdf">/home/jaime/HDDS/BUFFER/worlds/learn.mathematica/theory.algebra.derivatives/</Path>
+                  <Path Filename="dactyl">/tmp/</Path>
+                  <Path Filename="downloads">/tmp/dactyl/</Path>
+                  <Path Filename="pentadactyl-1.2pre.xpi">/tmp/dactyl/downloads/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
+                  <Path Filename="goffv">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="main.go">/home/jaime/BUFF/projects/golang/src/goffv/</Path>
+                  <Path Filename="type.go.chan">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
+                  <Path Filename="go.FillSlice">/home/jaime/BUFF/projects/golang/src/learn.go/type.go.chan/</Path>
+                  <Path Filename="main.go">/home/jaime/BUFF/projects/golang/src/learn.go/type.go.chan/go.FillSlice/</Path>
+                  <Path Filename="go.FillSlice">/home/jaime/BUFF/projects/golang/src/learn.go/type.go.chan/</Path>
+                  <Path Filename="..">/home/jaime/BUFF/projects/golang/src/learn.go/</Path>
+                  <Path Filename="faceporn">/home/jaime/BUFF/projects/golang/src/</Path>
+                  <Path Filename="mdmongo">/home/jaime/BUFF/projects/golang/src/faceporn/</Path>
+                  <Path Filename="mongo.data.go">/home/jaime/BUFF/projects/golang/src/faceporn/mdmongo/</Path>
                 </Paths>
               </Entry>
             </History>
@@ -741,9 +881,11 @@
   </IgnoreList>
   <DirectoryHotList>
     <HotDir Name="learn.c" Path="/home/jaime/BUFF/projects/learn.c"/>
-    <HotDir Name="learn.go" Path="/home/jaime/BUFF/projects/golang/src/"/>
     <HotDir Name="learn.js" Path="/home/jaime/BUFF/projects/learn.js"/>
+    <HotDir Name="learn.go" Path="/home/jaime/BUFF/projects/golang/src/learn.go"/>
     <HotDir Name="dotfiles" Path="/home/jaime/dotfiles"/>
+    <HotDir Name="projects.active" Path="/home/jaime/BUFF/projects/projects.active"/>
+    <HotDir Name="buffer" Path="/home/jaime/HDDS/BUFFER"/>
   </DirectoryHotList>
   <Viewer>
     <PreviewVisible>False</PreviewVisible>
@@ -762,7 +904,7 @@
     <PaintColor>255</PaintColor>
     <BackgroundColor>0</BackgroundColor>
     <FontColor>16777215</FontColor>
-    <TextPosition>395</TextPosition>
+    <TextPosition>26046</TextPosition>
     <ImageExifRotate>True</ImageExifRotate>
   </Viewer>
   <Editor>
@@ -816,13 +958,13 @@
       <CustomView>False</CustomView>
       <PixelsPerInch>96</PixelsPerInch>
       <CursorBorder Enabled="False">
-        <Color>0</Color>
+        <Color>-2147483635</Color>
       </CursorBorder>
       <Columns>
         <Column>
           <Title>Name</Title>
           <FuncString>[DC().GETFILENAMENOEXT{}]</FuncString>
-          <Width>144</Width>
+          <Width>159</Width>
           <Align>0</Align>
           <Font>
             <Name>default</Name>
@@ -845,7 +987,7 @@
         <Column>
           <Title>Ext</Title>
           <FuncString>[DC().GETFILEEXT{}]</FuncString>
-          <Width>67</Width>
+          <Width>63</Width>
           <Align>0</Align>
           <Font>
             <Name>default</Name>
@@ -939,12 +1081,12 @@
   </ColumnsSets>
   <MainWindow>
     <Position>
-      <Left>264</Left>
-      <Top>27</Top>
-      <Width>703</Width>
-      <Height>588</Height>
+      <Left>1006</Left>
+      <Top>168</Top>
+      <Width>759</Width>
+      <Height>680</Height>
       <Maximized>False</Maximized>
-      <Splitter>50.5091649694501</Splitter>
+      <Splitter>50</Splitter>
       <PixelsPerInch>96</PixelsPerInch>
     </Position>
   </MainWindow>

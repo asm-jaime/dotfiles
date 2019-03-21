@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doublecmd DCVersion="0.8.0 beta">
+<doublecmd DCVersion="0.8.4 beta">
   <Hotkeys Version="42">
     <Form Name="Main">
       <Hotkey>
@@ -17,10 +17,6 @@
       <Hotkey>
         <Shortcut>F3</Shortcut>
         <Command>cm_View</Command>
-      </Hotkey>
-      <Hotkey>
-        <Shortcut>F4</Shortcut>
-        <Command>cm_Edit</Command>
       </Hotkey>
       <Hotkey>
         <Shortcut>F5</Shortcut>
@@ -282,6 +278,19 @@
       <Hotkey>
         <Shortcut>Ctrl+Shift+F7</Shortcut>
         <Command>cm_AddNewSearch</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+Shift+T</Shortcut>
+        <Command>cm_ExecuteToolbarItem</Command>
+        <Param>ToolItemID={EA3C27CF-F048-4646-A76C-687ADB5C1B1A}</Param>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>F4</Shortcut>
+        <Command>cm_Edit</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+Shift+F2</Shortcut>
+        <Command>cm_EditPath</Command>
       </Hotkey>
       <Hotkey>
         <Shortcut>Del</Shortcut>

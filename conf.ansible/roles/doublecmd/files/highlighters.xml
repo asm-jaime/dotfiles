@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <doublecmd>
   <Highlighters Version="1">
     <Highlighter Tag="0" Name="Plain text">
@@ -703,6 +703,90 @@
         <Style>0</Style>
         <StyleMask>0</StyleMask>
         <Foreground>536870911</Foreground>
+        <Background>536870911</Background>
+        <FrameColor>536870911</FrameColor>
+        <FrameStyle>0</FrameStyle>
+        <FrameEdges>1</FrameEdges>
+      </Attribute>
+    </Highlighter>
+    <Highlighter Tag="1" Name="Lua Script">
+      <DefaultFilter>Lua Script File (*.lua)|*.lua</DefaultFilter>
+      <Attribute Name="Comment">
+        <Style>0</Style>
+        <StyleMask>0</StyleMask>
+        <Foreground>32768</Foreground>
+        <Background>536870911</Background>
+        <FrameColor>536870911</FrameColor>
+        <FrameStyle>0</FrameStyle>
+        <FrameEdges>1</FrameEdges>
+      </Attribute>
+      <Attribute Name="Default text">
+        <Style>0</Style>
+        <StyleMask>0</StyleMask>
+        <Foreground>-2147483640</Foreground>
+        <Background>-2147483643</Background>
+        <FrameColor>536870911</FrameColor>
+        <FrameStyle>0</FrameStyle>
+        <FrameEdges>1</FrameEdges>
+      </Attribute>
+      <Attribute Name="Function">
+        <Style>0</Style>
+        <StyleMask>0</StyleMask>
+        <Foreground>12603392</Foreground>
+        <Background>536870911</Background>
+        <FrameColor>536870911</FrameColor>
+        <FrameStyle>0</FrameStyle>
+        <FrameEdges>1</FrameEdges>
+      </Attribute>
+      <Attribute Name="Identifier">
+        <Style>0</Style>
+        <StyleMask>0</StyleMask>
+        <Foreground>-2147483640</Foreground>
+        <Background>536870911</Background>
+        <FrameColor>536870911</FrameColor>
+        <FrameStyle>0</FrameStyle>
+        <FrameEdges>1</FrameEdges>
+      </Attribute>
+      <Attribute Name="Number">
+        <Style>0</Style>
+        <StyleMask>0</StyleMask>
+        <Foreground>8388736</Foreground>
+        <Background>536870911</Background>
+        <FrameColor>536870911</FrameColor>
+        <FrameStyle>0</FrameStyle>
+        <FrameEdges>1</FrameEdges>
+      </Attribute>
+      <Attribute Name="Reserved word">
+        <Style>0</Style>
+        <StyleMask>0</StyleMask>
+        <Foreground>16711680</Foreground>
+        <Background>536870911</Background>
+        <FrameColor>536870911</FrameColor>
+        <FrameStyle>0</FrameStyle>
+        <FrameEdges>1</FrameEdges>
+      </Attribute>
+      <Attribute Name="Space">
+        <Style>0</Style>
+        <StyleMask>0</StyleMask>
+        <Foreground>536870911</Foreground>
+        <Background>536870911</Background>
+        <FrameColor>536870911</FrameColor>
+        <FrameStyle>0</FrameStyle>
+        <FrameEdges>1</FrameEdges>
+      </Attribute>
+      <Attribute Name="String">
+        <Style>0</Style>
+        <StyleMask>0</StyleMask>
+        <Foreground>128</Foreground>
+        <Background>536870911</Background>
+        <FrameColor>536870911</FrameColor>
+        <FrameStyle>0</FrameStyle>
+        <FrameEdges>1</FrameEdges>
+      </Attribute>
+      <Attribute Name="Symbol">
+        <Style>0</Style>
+        <StyleMask>0</StyleMask>
+        <Foreground>8388608</Foreground>
         <Background>536870911</Background>
         <FrameColor>536870911</FrameColor>
         <FrameStyle>0</FrameStyle>

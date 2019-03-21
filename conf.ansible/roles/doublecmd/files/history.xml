@@ -2,60 +2,78 @@
 <doublecmd>
   <History>
     <Navigation>
-      <Item>/home/jaime/.config/doublecmd/</Item>
-      <Item>/home/jaime/.config/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/conf.ansible/roles/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/conf.ansible/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/dotfiles/conf.bash/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/QtProject/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.config/doublecmd/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.gconf/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/tmp/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/.ansible/tmp/ansible-tmp-1522509049.68-90959340216887/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/Downloads/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/BUFF/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/HDDS/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/home/jaime/HDDS/MEDIA/</Item>
-      <Item>/home/jaime/</Item>
-      <Item>/media/jaime/2dcc8022-021e-4519-9742-03264163ab79/</Item>
-      <Item>/media/jaime/5438f408-b0e5-47c0-8360-32fb64df7764/</Item>
-      <Item>/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/</Item>
-      <Item>/home/jaime/.ssh/</Item>
-      <Item>/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/.ssh/</Item>
-      <Item>/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/jaime/.config/</Item>
-      <Item>/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/home/</Item>
-      <Item>/home/</Item>
-      <Item>/</Item>
-      <Item>/media/</Item>
-      <Item>/media/jaime/</Item>
-      <Item>/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/</Item>
-      <Item>/run/</Item>
-      <Item>/run/shm/</Item>
-      <Item>/run/user/</Item>
-      <Item>/run/user/1000/</Item>
-      <Item>/run/user/1000/gvfs/</Item>
-      <Item>/run/vmblock-fuse/</Item>
-      <Item>/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/gen/</Item>
-      <Item>/home/jaime/BUFF/projects/golang/src/learn.go/ares.projects/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/facefinder/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/facefinder/crawler/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/faceporn/mdmongo/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/faceporn/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/</Item>
       <Item>/home/jaime/BUFF/projects/golang/src/learn.go/</Item>
-      <Item>/home/jaime/BUFF/projects/learn.js/ares.projects/res.vue/easy-vue/src/components/</Item>
-      <Item>/home/jaime/BUFF/projects/learn.js/ares.projects/res.vue/easy-vue/src/</Item>
-      <Item>/home/jaime/BUFF/projects/learn.js/ares.projects/res.vue/easy-vue/</Item>
-      <Item>/home/jaime/BUFF/projects/learn.js/ares.projects/res.vue/</Item>
-      <Item>/home/jaime/BUFF/projects/learn.js/ares.projects/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/learn.go/type.go.chan/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/learn.go/type.go.chan/go.FillSlice/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/facefinder/findface/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/goffv/</Item>
+      <Item>/tmp/dactyl/downloads/</Item>
+      <Item>/tmp/dactyl/</Item>
+      <Item>/tmp/</Item>
+      <Item>/home/jaime/HDDS/BUFFER/worlds/learn.mathematica/theory.algebra.derivatives/</Item>
+      <Item>/home/jaime/HDDS/BUFFER/worlds/learn.mathematica/</Item>
+      <Item>/home/jaime/HDDS/BUFFER/worlds/</Item>
+      <Item>/home/jaime/HDDS/BUFFER/worlds/irl.математика/</Item>
+      <Item>/home/jaime/HDDS/BUFFER/</Item>
+      <Item>/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/</Item>
+      <Item>/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/doc/</Item>
+      <Item>/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/doc/examples/</Item>
+      <Item>/home/jaime/HDDS/BACKUP/configs/config.dotfiles/</Item>
+      <Item>/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.2/</Item>
+      <Item>/home/jaime/HDDS/BACKUP/configs/</Item>
+      <Item>/home/jaime/HDDS/BACKUP/</Item>
+      <Item>/home/jaime/HDDS/BACKUP/distrib/</Item>
+      <Item>/home/jaime/HDDS/</Item>
+      <Item>/home/jaime/dotfiles/</Item>
+      <Item>/home/jaime/HDDS/BUFFER/downloads/_downloads_torrent/</Item>
+      <Item>/home/jaime/HDDS/BUFFER/downloads/</Item>
+      <Item>/home/jaime/BUFF/projects/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/</Item>
+      <Item>/home/jaime/HDDS/MEDIA/</Item>
+      <Item>/home/jaime/HDDS/MEDIA/books/</Item>
+      <Item>/home/jaime/HDDS/MEDIA/books/res.life/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/fcsearch/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/facefinder/search/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/facefinder/search/Godeps/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/iface.data/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/learn.go/type.interface/iface.simple/</Item>
+      <Item>/home/jaime/BUFF/projects/learn.js/atemp.express.mongoose/some-data/</Item>
+      <Item>/home/jaime/BUFF/projects/learn.js/atemp.express.mongoose/</Item>
       <Item>/home/jaime/BUFF/projects/learn.js/</Item>
-      <Item>/home/jaime/.vim/</Item>
-      <Item>/home/jaime/BUFF/projects/learn.js/ares.projects/res.vue/vue-d3-gallery/src/</Item>
-      <Item>/home/jaime/BUFF/projects/learn.js/ares.projects/res.vue/vue-d3-gallery/src/components/</Item>
-      <Item>/home/jaime/BUFF/projects/learn.js/ares.projects/res.vue/vue-d3-gallery/public/</Item>
+      <Item>/home/jaime/dotfiles/conf.utils/</Item>
+      <Item>/home/jaime/dotfiles/conf.ansible/</Item>
+      <Item>/media/jaime/04a90a52-3660-4e73-bc4a-f7a582b38a8a/</Item>
+      <Item>/home/jaime/HDDS/MEDIA/books/res.life/SEX/</Item>
+      <Item>/home/jaime/.config/ranger/</Item>
+      <Item>/home/jaime/.config/</Item>
     </Navigation>
     <CommandLine/>
     <FileMask>
+      <Item>aluff</Item>
+      <Item>bmp</Item>
+      <Item>tro</Item>
+      <Item>тро</Item>
+      <Item>chat</Item>
+      <Item>hub</Item>
+      <Item>libdlib.so</Item>
+      <Item>tern</Item>
+      <Item>jpg</Item>
+      <Item>sin</Item>
+      <Item>PID</Item>
+      <Item>speed_fr</Item>
+      <Item>svgen</Item>
+      <Item>rmp</Item>
+      <Item>rampgen</Item>
+      <Item>ipark</Item>
+      <Item>PID_REG</Item>
+      <Item>pid3</Item>
+      <Item>general</Item>
       <Item>awesome*</Item>
       <Item>awesome</Item>
       <Item>*</Item>
@@ -64,41 +82,63 @@
       <Item>search-layout-container</Item>
       <Item>ppa</Item>
       <Item>ppa:</Item>
+      <Item>*.*</Item>
     </FileMask>
     <SearchText>
-      <Item>library</Item>
-      <Item>Unmarshal</Item>
-      <Item>rndStr</Item>
-      <Item>genbase64</Item>
-      <Item>prox.urls</Item>
-      <Item>prox.list</Item>
-      <Item>prox.tlist</Item>
-      <Item>prox.tfile</Item>
-      <Item>prox.file</Item>
-      <Item>Dial(</Item>
-      <Item>Dial</Item>
-      <Item>pulls/</Item>
-      <Item>thisSession</Item>
-      <Item>models.</Item>
-      <Item>RandToken</Item>
-      <Item>APIError</Item>
-      <Item>rebase</Item>
-      <Item>Post</Item>
-      <Item>method</Item>
-      <Item>Post no</Item>
-      <Item>CaseSensitiveSort</Item>
-      <Item>golint</Item>
-      <Item>goling</Item>
-      <Item>disable</Item>
-      <Item>HostName</Item>
-      <Item>request</Item>
-      <Item>search-layout'</Item>
-      <Item>SearchFormContainer</Item>
-      <Item>search-layout-container</Item>
-      <Item>ppa:</Item>
+      <Item>setRn</Item>
+      <Item>ale</Item>
+      <Item>jpeg.Encode</Item>
+      <Item>reqPic</Item>
+      <Item>fetc</Item>
+      <Item>facere</Item>
+      <Item>float32</Item>
+      <Item>float64</Item>
+      <Item>mp4</Item>
+      <Item>Attr</Item>
+      <Item>Parent</Item>
+      <Item>base64</Item>
+      <Item>md.Face</Item>
+      <Item>load_mem_jpeg</Item>
+      <Item>strings</Item>
+      <Item>namecheap</Item>
+      <Item>or</Item>
+      <Item>Or</Item>
+      <Item>Configure</Item>
+      <Item>Init</Item>
+      <Item>getLoginURL</Item>
+      <Item>AuthCod</Item>
+      <Item>GetFiltered</Item>
+      <Item>YouCom</Item>
+      <Item>ALE</Item>
+      <Item>.vim</Item>
+      <Item>02200036</Item>
+      <Item>Casting Net</Item>
+      <Item>Set of Dismantling Tools</Item>
+      <Item>Stern Deck</Item>
+      <Item>Stern Deck </Item>
+      <Item>Munitions Chambers</Item>
+      <Item>admiral</Item>
+      <Item>factor</Item>
+      <Item>iqG_SIN</Item>
+      <Item>Timer</Item>
+      <Item>Freq</Item>
+      <Item>_IQ24</Item>
+      <Item>reset</Item>
+      <Item>F281X_EV2_PWM_Init</Item>
+      <Item>F281X_EV1_PWM_Init</Item>
+      <Item>PWMGEN_DEFAULTS</Item>
+      <Item>typedef unsigned</Item>
+      <Item>dmctype.h</Item>
+      <Item>typedef unsigned long Uint32</Item>
+      <Item>"iqmathlib.h"</Item>
+      <Item>iqmathlib.h</Item>
+      <Item>setObjectName</Item>
+      <Item>SetObjectName</Item>
+      <Item>QApplication</Item>
     </SearchText>
     <SearchTextPath/>
     <ReplaceText>
+      <Item>"IQMathLib.h"</Item>
       <Item>lib</Item>
       <Item>RndStr</Item>
       <Item>prox.Urls</Item>
@@ -110,7 +150,37 @@
       <Item>ApiError</Item>
     </ReplaceText>
     <ReplaceTextPath/>
-    <SearchDirectories/>
+    <SearchDirectories>
+      <Item>/home/jaime/HDDS/BUFFER/worlds/learn.mathematica/</Item>
+      <Item>/home/jaime/HDDS/BACKUP/configs/config.dotfiles/store.1/doc/examples/</Item>
+      <Item>/home/jaime/HDDS/BUFFER/buffer/buff.danger/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/faceporn/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/facefinder/frontend/</Item>
+      <Item>/home/jaime/HDDS/MEDIA/video/films/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/facefinder/search/kdtree/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/learn.go/</Item>
+      <Item>/usr/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/github.com/Kagami/go-face/</Item>
+      <Item>/home/jaime/HDDS/BUFFER/worlds/learn.programming/language.go/golang.basic/Files/go-by-example-source-code/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/web-design-site/</Item>
+      <Item>/home/jaime/BUFF/projects/golang/src/pw.app/controller/</Item>
+      <Item>/home/jaime/dotfiles/.git/</Item>
+      <Item>/home/jaime/BUFF/projects/learn.js/quiz.any/</Item>
+      <Item>/home/jaime/HDDS/BACKUP/storage/store.works.golden_ring.city/05.09.2015/aka-golden-ring.ru/docs/</Item>
+      <Item>/home/jaime/BUFF/projects/asp.dfim/material.mexbios/MexBIOS.2.15/</Item>
+      <Item>/home/jaime/BUFF/projects/electric-blocks/blocks/</Item>
+      <Item>/home/jaime/BUFF/projects/electric-blocks/z_buff/ti_mexbios/</Item>
+      <Item>/home/jaime/BUFF/projects/electric-blocks/z_buff/blocks/</Item>
+      <Item>/home/jaime/BUFF/projects/vector_control_F2812/src/</Item>
+      <Item>/home/jaime/BUFF/projects/vector_control_F2812/include/</Item>
+      <Item>/home/jaime/BUFF/projects/vector_control_F2812/modules/</Item>
+      <Item>/home/jaime/BUFF/projects/electric-blocks/src/</Item>
+      <Item>/home/jaime/BUFF/projects/learn.c/ares.projects/electric-blocks1/blocks/</Item>
+      <Item>/home/jaime/BUFF/projects/learn.js/lib.qt/node-qt/node_modules/shimmy-shimmy-yam-qt/</Item>
+      <Item>/home/jaime/BUFF/projects/learn.js/lib.qt/node-qt/node_modules/shimmy-shimmy-yam-qt/src/</Item>
+      <Item>/home/jaime/BUFF/projects/learn.js/lib.qt/node-qt/node_modules/shimmy-shimmy-yam-qt/src/QtWidgets/</Item>
+      <Item>/home/jaime/.vim/conf.ansible/</Item>
+    </SearchDirectories>
     <SearchExcludeFiles/>
     <SearchExcludeDirectories/>
   </History>
