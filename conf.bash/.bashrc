@@ -91,3 +91,6 @@ export GOBIN=$GOPATH/bin
 
 # ========== javascript settings
 export PATH="$PATH:./node_modules/.bin"
+
+# ========== ranger settings
+export EDITOR=vim

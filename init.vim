@@ -32,7 +32,7 @@ set splitright                  " vertical split to right of current
 
 " ========== window setting
 set number
-set lines=30
+set lines=45
 set columns=90
 
 " ==================== tab of editor
@@ -92,6 +92,12 @@ let g:netrw_chgwin=1    " open files in left window by default
 " netrw on sidebar
 nmap <silent> <leader>f :leftabove 20vs<CR>:e .<CR>
 
+" === ALE, error checker
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_echo_cursor = 1
+let g:ale_open_list = 1
+let g:ale_lint_on_enter = 1
+
 " === YouCompleteMe
 let g:ycm_min_num_identifier_candidate_chars = 0
 let g:ycm_min_num_of_chars_for_completion = 2
@@ -121,11 +127,12 @@ let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
 " === keybinding
 autocmd FileType go nmap <leader>df <Plug>(go-def-tab)
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>b <Plug>(go-build)
-autocmd FileType go nmap <leader>t <Plug>(go-test)
-autocmd FileType go nmap <leader>c <Plug>(go-coverage)
-autocmd FileType go nmap <leader>dd <Plug>(go-doc)
-autocmd FileType go nmap <leader>s <Plug>(go-implements)
-autocmd FileType go nmap <leader>i <Plug>(go-info)
-autocmd FileType go nmap <leader>e <Plug>(go-rename)
+
+" ==================== c
+let g:ycm_global_ycm_extra_conf = "~/dotfiles/conf.utils/.ycm_с_conf.py"
+
+" === gf command (<C-W><C-F>), to open file in new tab
+let &path.="src/include,/usr/include/AL,"
+
+" ==================== html
+autocmd Filetype html setlocal expandtab
