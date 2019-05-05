@@ -6,7 +6,6 @@ call vundle#begin("~/dotfiles/bundle")
 Plugin 'gmarik/Vundle.vim'
 Plugin 'fatih/vim-go'
 Plugin 'w0rp/ale'
-Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer --clang-completer' }
 call vundle#end()
 
 " ========== syntax
@@ -14,21 +13,16 @@ syntax off  " disable any light syntax
 
 " ========== colorscheme
 colorscheme darkness
-" set lazyredraw
 
 " ========== leader
-let mapleader = ","
-let g:mapleader = ","
+"let mapleader = ","
+"let g:mapleader = ","
 
 " ========== set working directory to the current file
 set autochdir
 
 " ========== newline setting
 set textwidth=0 wrapmargin=0    " prevent from autoinsert line breaks in new text
-
-" ========== more natural splits
-set splitbelow                  " horizontal split below current
-set splitright                  " vertical split to right of current
 
 " ========== window setting
 set number
@@ -85,27 +79,32 @@ set nocursorcolumn  " hide counter colum
 set nocursorline    " hide counter cursor
 
 " ==================== netrw
-set mouse=a             " enable mouse usage
 let g:netrw_banner=0    " hide netrw top message
 let g:netrw_liststyle=3 " tree listing by default
 let g:netrw_chgwin=1    " open files in left window by default
-" netrw on sidebar
-nmap <silent> <leader>f :leftabove 20vs<CR>:e .<CR>
+nmap <silent> <leader><leader>f :leftabove 20vs<CR>:e .<CR>
 
 " === ALE, error checker
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_echo_cursor = 1
-let g:ale_open_list = 1
-let g:ale_lint_on_enter = 1
 
-" === YouCompleteMe
-let g:ycm_min_num_identifier_candidate_chars = 0
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_auto_trigger = 1
+let g:ale_linters = {'go': ['gobuild', 'gofmt', 'golint', 'gotype', 'govet', 'golangserver']}
+let g:ale_linters_explicit = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
 
-autocmd FileType javascript,go,c,cpp set omnifunc=syntaxcomplete#Complete
+let g:ale_set_loclist = 0
+"let g:ale_set_quickfix = 1
+
+"let g:ale_open_list = 1
+let g:ale_keep_list_window_open = 0
+
+"let g:ale_completion_enabled = 1
+"let g:deoplete#sources = {'_': ['ale']}
+
+"let g:ale_completion_delay = 100
+"let g:ale_completion_max_suggestions = 50
+
+noremap <Leader>def :ALEGoToDefinitionInTab<CR>
+noremap <Leader>ref :ALEFindReferences<CR>
 
 " ==================== go
 " # for using vim-go, need to append this strings to .zshrc or .bashrc
@@ -118,21 +117,19 @@ autocmd FileType javascript,go,c,cpp set omnifunc=syntaxcomplete#Complete
 " # after that, run the :GoInstall/:GoInstallBinaries
 
 let g:go_autodetect_gopath = 1
-
 let g:go_fmt_autosave = 1
 " let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 0
+" let g:go_fmt_fail_silently = 0
 
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+
+setlocal omnifunc=go#complete#Complete
 
 " === keybinding
-autocmd FileType go nmap <leader>df <Plug>(go-def-tab)
+" autocmd FileType go nmap <leader>df <Plug>(go-def-tab)
+" au BufWritePost *.go :!gofmt -w %
 
 " ==================== c
-let g:ycm_global_ycm_extra_conf = "~/dotfiles/conf.utils/.ycm_с_conf.py"
-
-" === gf command (<C-W><C-F>), to open file in new tab
-let &path.="src/include,/usr/include/AL,"
 
 " ==================== html
 autocmd Filetype html setlocal expandtab
