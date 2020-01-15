@@ -19,3 +19,4 @@
   - name: babel-eslint
   - name: babel-cli
   - name: eslint-plugin-json
+  - name: eslint-plugin-react

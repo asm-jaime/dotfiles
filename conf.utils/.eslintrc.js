@@ -10,7 +10,7 @@ module.exports = {
     'plugin:react/recommended',
   ],
   plugins: [
-    "json"
+    'json'
   ],
   parser: 'babel-eslint',
   parserOptions: {

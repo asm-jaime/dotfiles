@@ -1,7 +1,6 @@
 ---
 - name: install and configure bash
   hosts: localhost
-  sudo: no
   remote_user: "{{ this_user }}"
   roles:
   - role: bash

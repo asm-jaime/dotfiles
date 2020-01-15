@@ -1,6 +1,5 @@
 ---
 - name: install doublecommander
-  sudo: yes
   apt:
     name: "{{ item.name }}"
     state: present

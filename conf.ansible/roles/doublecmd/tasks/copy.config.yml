@@ -1,4 +1,3 @@
 ---
-- name: copy from .vim configs to doublecmd
-  sudo: no
+- name: copy from dotfiles configs to doublecmd
   copy: src=./roles/doublecmd/files/ dest=/home/{{ this_user }}/.config/doublecmd

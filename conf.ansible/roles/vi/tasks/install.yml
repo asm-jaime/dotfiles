@@ -1,6 +1,5 @@
 ---
 - name: install nvim/xclip
-  sudo: yes
   apt:
     name: "{{ item.name }}"
     state: present

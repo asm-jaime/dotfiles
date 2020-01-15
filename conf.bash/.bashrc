@@ -84,7 +84,7 @@ trap 'tab_title' DEBUG
 
 # ========== golang settings
 
-export GOROOT=/usr/local/go
+#export GOROOT=/usr/local/go
 export GOPATH=$HOME/BUFF/projects/golang
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export GOBIN=$GOPATH/bin
@@ -94,3 +94,6 @@ export PATH="$PATH:./node_modules/.bin"
 
 # ========== ranger settings
 export EDITOR=vim
+
+# ========== npm
+export PATH=~/.npm-global/bin:$PATH

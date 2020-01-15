@@ -1,3 +1,7 @@
+- name: Remove current .bashrc
+  file:
+    path: /home/{{ this_user }}/.bashrc
+    state: absent
 - name: make link bashrc
   file:
     src: /home/{{ this_user }}/dotfiles/conf.bash/.bashrc

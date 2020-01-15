@@ -6,6 +6,7 @@ call vundle#begin("~/dotfiles/bundle")
 Plugin 'gmarik/Vundle.vim'
 Plugin 'fatih/vim-go'
 Plugin 'w0rp/ale'
+Plugin 'zxqfl/tabnine-vim'
 call vundle#end()
 
 " ========== syntax
@@ -48,7 +49,7 @@ vmap <leader>y y:new ~/.vbuf<CR>VGp:x<CR> " copy to file
 nmap <leader>p :r ~/.vbuf<CR>             " paste from file
 
 " ==================== history
-let g:netrw_dirhistmax = 0      " netrw will save no history or bookmarks
+let g:netrw_dirhistmax = 0        " will stop writing to the history file
 set history=10000
 set undodir=~/dotfiles/undodir/
 set undofile
@@ -86,7 +87,8 @@ nmap <silent> <leader><leader>f :leftabove 20vs<CR>:e .<CR>
 
 " === ALE, error checker
 
-let g:ale_linters = {'go': ['gobuild', 'gofmt', 'golint', 'gotype', 'govet', 'golangserver']}
+let g:ale_linters = {'c': ['gcc', 'clangcheck', 'clangtidy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'clang'], 'go': ['gobuild', 'gofmt', 'golint', 'gotype', 'govet', 'golangserver'], 'javascript': ['eslint']}
+
 let g:ale_linters_explicit = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
@@ -132,4 +134,5 @@ setlocal omnifunc=go#complete#Complete
 " ==================== c
 
 " ==================== html
-autocmd Filetype html setlocal expandtab
+ autocmd Filetype html setlocal expandtab
+ autocmd Filetype javascript setlocal expandtab
