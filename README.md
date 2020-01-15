@@ -5,10 +5,10 @@
   * system: ubuntu
   * installer: ansible
   * shell: bash
-  * editor: nvim
+  * editor: neovim
   * browser: chrome
   * file manager: doublecmd
-  * for edit source files: golang/c/javascript
+ All of this configured for edit/execute source files like: c/go/js.
 
 #### how it looks
 
@@ -29,9 +29,14 @@ Another examples in here [/docs](./docs)
   * `sudo apt-get install git`
   * `git clone https://github.com/asm-jaime/dotfiles`
   * `bash ~/dotfiles/conf.ansible/start.install.ansible.sh`
-  * `sudo apt install gcc && sudo apt install build-essential && sudo apt-get update && sudo apt install net-tools`
+  * `sudo apt install gcc && sudo apt install build-essential && sudo apt-get update`
+#### SSH
+  * copy your `.ssh` to your home directory
+  * `cd ~`
+  * `chown -R your_user:your_user .ssh` (`chown -R jaime:jaime .ssh`)
   
 #### vmwtools (the only when under vmware environment)
+  * `sudo apt install net-tools`
   * `put the linux.iso from host system to virtual cdrom, or click 'menu->Install VMware Tools...'`
   * `copy VMWareTools*.gz to /tmp and cd /tmp/vmware-tools`
   * `sudo ./vmware-install.pl`
@@ -39,7 +44,8 @@ Another examples in here [/docs](./docs)
     * if the warning: 'Would you like to enable VMware automatic kernel modules?', press 'y'
 
 #### Individual/sequence of installation (ansible and sudo password required):
-  * `cd ~/.vim/conf.ansible`
+  * `cd ~/dotfiles/conf.ansible`
+  * `ansible-playbook play.bash.yml`
   * `ansible-playbook play.chrome.yml`
   * `ansible-playbook play.doublecmd.yml`
   * `ansible-playbook play.git.yml` (quick configure your git. `~/.ssh` keys required)
@@ -47,3 +53,4 @@ Another examples in here [/docs](./docs)
   * `ansible-playbook play.docker.yml` (logout required)
   * `ansible-playbook play.mongodb.yml`
   * `ansible-playbook play.vi.yml`
+  * `ansible-playbook play.vi-ale.yml`
