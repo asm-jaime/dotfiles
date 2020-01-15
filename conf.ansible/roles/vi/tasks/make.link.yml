@@ -1,3 +1,7 @@
+- name: creates directory if does not exist
+  file:
+    path: /home/{{ this_user }}/.config
+    state: directory
 - name: make link .vimrc
   file:
     src: /home/{{ this_user }}/dotfiles/init.vim

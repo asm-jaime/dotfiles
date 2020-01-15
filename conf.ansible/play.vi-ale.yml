@@ -1,0 +1,6 @@
+---
+- name: install vi ale component dependences
+  hosts: localhost
+  remote_user: "{{ this_user }}"
+  roles:
+  - role: vi-ale
