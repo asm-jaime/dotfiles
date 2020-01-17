@@ -96,4 +96,7 @@ export PATH="$PATH:./node_modules/.bin"
 export EDITOR=vim
 
 # ========== npm
-export PATH=~/.npm-global/bin:$PATH
+# export PATH=~/.npm-global/bin:$PATH
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"

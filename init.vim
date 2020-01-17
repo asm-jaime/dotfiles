@@ -46,7 +46,7 @@ set columns=90
 
 " ==================== tab of editor
 set smarttab                    " tabs as shiftwidth
-set list                        " show whitespace. end of lines show as '$'
+set nolist                      " hide whitespace and of lines symbols like '$'
 set expandtab                   " insert spaces when TAB is pressed
 set tabstop=2                   " set n whitespase as tabs
 set shiftwidth=2                " set n whitespace when pressed >> and <<.
@@ -58,11 +58,11 @@ set cindent                     " enable indents with C style
 autocmd BufWinLeave * silent! mkview    " save view (state) (folds, cursor, etc)
 autocmd BufWinEnter * silent! loadview  " load view (state)
 
-" ===================== copy-paste
+" ===================== copy-paste/clipboard/yank
 vmap <leader>y y:new ~/.vbuf<CR>VGp:x<CR> " copy to file
 nmap <leader>p :r ~/.vbuf<CR>             " paste from file
 
-" ==================== history
+" ==================== history/save
 let g:netrw_dirhistmax = 0        " will stop writing to the history file
 set history=10000
 set undodir=~/dotfiles/undodir/

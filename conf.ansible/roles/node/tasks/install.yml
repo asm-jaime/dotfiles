@@ -1,5 +1,6 @@
 ---
-- name: install node
+- name: install npm and node
+  become: yes
   apt:
     name: "{{ item.name }}"
     state: present
@@ -7,7 +8,18 @@
   - name: nodejs
   - name: npm
 
+- name: creates directory for packages
+  become: no
+  file:
+    path: /home/{{ this_user }}/.npm-packages
+    state: directory
+
+- name: set path for global npm packages
+  become: no
+  command: bash -lc "npm config set prefix /home/{{ this_user }}/.npm-packages"
+
 - name: Install required node execution
+  become: no
   npm:
     name: "{{ item.name }}"
     global: yes
