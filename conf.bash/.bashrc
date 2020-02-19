@@ -84,10 +84,10 @@ trap 'tab_title' DEBUG
 
 # ========== golang settings
 
-#export GOROOT=/usr/local/go
-export GOPATH=$HOME/BUFF/projects/golang
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-export GOBIN=$GOPATH/bin
+#export GOROOT=/usr/lib/go-1.13
+#export GOPATH=$HOME/go
+export PATH=$HOME/go/bin:$PATH
+#export GOBIN=$GOPATH/bin
 
 # ========== javascript settings
 export PATH="$PATH:./node_modules/.bin"

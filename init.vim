@@ -13,7 +13,6 @@ call vundle#end()
 syntax off  " disable any light syntax
 
 " ========== colorscheme
-" colorscheme darkness
 
 set background=dark
 
@@ -24,10 +23,10 @@ hi StatusLine   ctermfg=black ctermbg=white
 hi StatusLineNC ctermfg=black ctermbg=white
 
 " === complete menu
-" hi Pmenu           ctermfg=white ctermbg=black
-" hi PmenuSel        ctermfg=black ctermbg=white
-" hi PmenuSbar       ctermbg=white
-" hi PmenuThumb      ctermfg=black
+hi Pmenu           ctermfg=white ctermbg=black
+hi PmenuSel        ctermfg=black ctermbg=white
+hi PmenuSbar       ctermbg=white
+hi PmenuThumb      ctermfg=black
 
 " ========== leader
 "let mapleader = ","
@@ -41,8 +40,8 @@ set textwidth=0 wrapmargin=0    " prevent from autoinsert line breaks in new tex
 
 " ========== window setting
 set number
-set lines=45
-set columns=90
+" set lines=45
+" set columns=90
 
 " ==================== tab of editor
 set smarttab                    " tabs as shiftwidth
