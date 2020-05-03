@@ -43,6 +43,9 @@ set number
 " set lines=45
 " set columns=90
 
+" ========== terminal
+tnoremap <Esc> <C-\><C-n>       " exit from terminal mode on Esc
+
 " ==================== tab of editor
 set smarttab                    " tabs as shiftwidth
 set nolist                      " hide whitespace and of lines symbols like '$'
