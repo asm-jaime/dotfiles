@@ -44,7 +44,8 @@ set number
 " set columns=90
 
 " ========== terminal
-tnoremap <Esc> <C-\><C-n>       " exit from terminal mode on Esc
+" exit from terminal mode on Esc
+tnoremap <Esc> <C-\><C-n>
 
 " ==================== tab of editor
 set smarttab                    " tabs as shiftwidth
