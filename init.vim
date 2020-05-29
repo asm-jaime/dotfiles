@@ -125,6 +125,10 @@ let g:ale_keep_list_window_open = 0
 noremap <Leader>def :ALEGoToDefinitionInTab<CR>
 noremap <Leader>ref :ALEFindReferences<CR>
 
+" ==================== tabnine
+
+let g:ycm_autoclose_preview_window_after_completion = 1
+
 " ==================== go
 " # for using vim-go, need to append this strings to .zshrc or .bashrc
 " ===
