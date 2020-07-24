@@ -29,8 +29,8 @@ hi PmenuSbar       ctermbg=white
 hi PmenuThumb      ctermfg=black
 
 " ========== leader
-"let mapleader = ","
-"let g:mapleader = ","
+let mapleader = ","
+let g:mapleader = ","
 
 " ========== set working directory to the current file
 set autochdir
