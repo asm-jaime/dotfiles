@@ -1,3 +1,5 @@
 ---
+- include: make.dir.yml
 - include: install.yml
 - include: make.link.yml
+- include: install-npm-packages.yml

@@ -1,0 +1,6 @@
+---
+- name: make directory for packages
+  become: no
+  file:
+    path: /home/{{ this_user }}/.npm-global
+    state: directory

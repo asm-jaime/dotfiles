@@ -89,14 +89,9 @@ trap 'tab_title' DEBUG
 export PATH=$HOME/go/bin:$PATH
 #export GOBIN=$GOPATH/bin
 
-# ========== javascript settings
-export PATH="$PATH:./node_modules/.bin"
-
 # ========== ranger settings
 export EDITOR=vim
 
 # ========== npm
-# export PATH=~/.npm-global/bin:$PATH
-NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="$PATH:$NPM_PACKAGES/bin"
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+export PATH=~/.npm-global/bin:$PATH
+export MANPATH="${MANPATH-$(manpath)}:~/.npm-global/share/man"

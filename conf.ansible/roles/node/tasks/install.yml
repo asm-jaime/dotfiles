@@ -8,27 +8,6 @@
   - name: nodejs
   - name: npm
 
-- name: creates directory for packages
-  become: no
-  file:
-    path: /home/{{ this_user }}/.npm-packages
-    state: directory
-
 - name: set path for global npm packages
   become: no
-  command: bash -lc "npm config set prefix /home/{{ this_user }}/.npm-packages"
-
-- name: Install required node execution
-  become: no
-  npm:
-    name: "{{ item.name }}"
-    global: yes
-    state: latest
-  with_items:
-  - name: jsbeautify
-  - name: node-gyp
-  - name: eslint
-  - name: babel-eslint
-  - name: babel-cli
-  - name: eslint-plugin-json
-  - name: eslint-plugin-react
+  command: bash -lc "npm config set prefix /home/{{ this_user }}/.npm-global"

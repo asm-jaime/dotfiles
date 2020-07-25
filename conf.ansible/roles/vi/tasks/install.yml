@@ -5,4 +5,22 @@
     state: present
   with_items:
   - name: neovim
-
+- name: Deploy Code From Github
+  git: 
+    dest={{ this_user }}/dotfiles/bundle/Vundle.vim
+    repo=https://github.com/gmarik/Vundle.vim.git
+    accept_hostkey=yes
+    update=yes
+    force=yes
+- name: set nvim as vi/vim in command line 1
+  command: bash -lc "sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60"
+- name: set nvim as vi/vim in command line 2
+  command: bash -lc "sudo update-alternatives --config vi"
+- name: set nvim as vi/vim in command line 3
+  command: bash -lc "sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60"
+- name: set nvim as vi/vim in command line 4
+  command: bash -lc "sudo update-alternatives --config vim"
+- name: set nvim as vi/vim in command line 5
+  command: bash -lc "sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60"
+- name: set nvim as vi/vim in command line 6
+  command: bash -lc "sudo update-alternatives --config editor"

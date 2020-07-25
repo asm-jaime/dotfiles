@@ -1,0 +1,14 @@
+- name: Install npm packages
+  become: no
+  npm:
+    name: "{{ item.name }}"
+    global: yes
+    state: latest
+  with_items:
+  - name: jsbeautify
+  - name: node-gyp
+  - name: eslint
+  - name: babel-eslint
+  - name: babel-cli
+  - name: eslint-plugin-json
+  - name: eslint-plugin-react
