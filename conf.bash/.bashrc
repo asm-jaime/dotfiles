@@ -95,3 +95,26 @@ export EDITOR=vim
 # ========== npm
 export PATH=~/.npm-global/bin:$PATH
 export MANPATH="${MANPATH-$(manpath)}:~/.npm-global/share/man"
+
+# ========== JAVA
+export JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64/'
+
+# ========== deno
+export DENO_INSTALL="/home/jaime/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export PATH="$PATH:$JAVA_HOME/bin"
+
+export ANDROID_HOME=/home/jaime/Android
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+# ========== nmap
+alias nmap='"/mnt/c/Program Files (x86)/Nmap/nmap.exe"'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/jaime/.sdkman"
+[[ -s "/home/jaime/.sdkman/bin/sdkman-init.sh" ]] && source "/home/jaime/.sdkman/bin/sdkman-init.sh"
