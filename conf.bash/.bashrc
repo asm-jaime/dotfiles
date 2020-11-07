@@ -85,9 +85,9 @@ trap 'tab_title' DEBUG
 # ========== golang settings
 
 #export GOROOT=/usr/lib/go-1.13
-#export GOPATH=$HOME/go
+export GOPATH=$HOME/go
 export PATH=$HOME/go/bin:$PATH
-#export GOBIN=$GOPATH/bin
+export GOBIN=$GOPATH/bin
 
 # ========== ranger settings
 export EDITOR=vim
@@ -118,3 +118,7 @@ alias nmap='"/mnt/c/Program Files (x86)/Nmap/nmap.exe"'
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/jaime/.sdkman"
 [[ -s "/home/jaime/.sdkman/bin/sdkman-init.sh" ]] && source "/home/jaime/.sdkman/bin/sdkman-init.sh"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

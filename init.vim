@@ -4,13 +4,11 @@ filetype plugin on
 set rtp+=~/dotfiles/bundle/Vundle.vim
 call vundle#begin("~/dotfiles/bundle")
 Plugin 'gmarik/Vundle.vim'
-Plugin 'fatih/vim-go'
 Plugin 'w0rp/ale'
-Plugin 'zxqfl/tabnine-vim'
 call vundle#end()
 
 " ========== syntax
-syntax off  " disable any light syntax
+syntax off  " disable all syntax highlighting
 
 " ========== colorscheme
 
@@ -32,11 +30,11 @@ hi PmenuThumb      ctermfg=black
 let mapleader = ","
 let g:mapleader = ","
 
-" ========== set working directory to the current file
+" ========== set the work directory to the file directory
 set autochdir
 
 " ========== newline setting
-set textwidth=0 wrapmargin=0    " prevent from autoinsert line breaks in new text
+set textwidth=0 wrapmargin=0    " prevent the line break autoinsert to new text
 
 " ========== window setting
 set number
@@ -47,9 +45,9 @@ set number
 " exit from terminal mode on Esc
 tnoremap <Esc> <C-\><C-n>
 
-" ==================== tab of editor
-set smarttab                    " tabs as shiftwidth
-set nolist                      " hide whitespace and of lines symbols like '$'
+" ==================== smart whitespaces for the insert mode
+set smarttab                    " smart shiftwidth on each new line
+set nolist                      " hide the word separators as '$'
 set expandtab                   " insert spaces when TAB is pressed
 set tabstop=2                   " set n whitespase as tabs
 set shiftwidth=2                " set n whitespace when pressed >> and <<.
@@ -104,7 +102,7 @@ nmap <silent> <leader><leader>f :leftabove 20vs<CR>:e .<CR>
 
 " === ALE, error checker
 
-let g:ale_linters = {'c': ['gcc', 'clangcheck', 'clangtidy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'clang'], 'go': ['gobuild', 'gofmt', 'golint', 'gotype', 'govet', 'golangserver'], 'javascript': ['eslint']}
+let g:ale_linters = {'c': ['gcc', 'clangcheck', 'clangtidy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'clang'], 'javascript': ['eslint']}
 
 let g:ale_linters_explicit = 1
 let g:ale_lint_on_text_changed = 0
@@ -128,25 +126,6 @@ noremap <Leader>ref :ALEFindReferences<CR>
 " ==================== tabnine
 
 let g:ycm_autoclose_preview_window_after_completion = 1
-
-" ==================== go
-" # for using vim-go, need to append this strings to .zshrc or .bashrc
-" ===
-" export GOROOT=/usr/local/go
-" export GOPATH=$HOME/BUFF/projects/golang
-" export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-" export GOBIN=$GOPATH/bin
-" ===
-" # after that, run the :GoInstall/:GoInstallBinaries
-
-let g:go_autodetect_gopath = 1
-let g:go_fmt_autosave = 1
-" let g:go_fmt_command = "goimports"
-" let g:go_fmt_fail_silently = 0
-
-" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-
-setlocal omnifunc=go#complete#Complete
 
 " === keybinding
 " autocmd FileType go nmap <leader>df <Plug>(go-def-tab)
