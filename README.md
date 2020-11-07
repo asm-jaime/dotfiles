@@ -1,26 +1,26 @@
 ### dotfiles
 
- Here are my personal environment. I'm use:
+ Here are my personal environment:
   * vm: vmware, docker
-  * system: ubuntu
+  * operation system: ubuntu
   * installer: ansible
   * shell: bash
   * editor: neovim
   * browser: chrome
   * file manager: doublecmd
- All of this configured for edit/execute source files like: c/go/js.
+  The personal enviromnment configured for c/go/js programming.
 
-#### how it looks
+#### Example:
 
 ![Image of tmux panel](docs/example.vi.png)
 
-Another examples in here [/docs](./docs)
+Other examples are here [/docs](./docs)
 
-#### Folders
+#### Dirs
 
   * `conf.ansible` - instructions/scripts/files for configure/install environment
   * `conf.bash` - dotfiles for std.shell
-  * `conf.util` - dotfiles for all other utilites, like eslint/youcompleteme/..
+  * `conf.util` - dotfiles for all other utilites like eslint/youcompleteme/..
   * `docs`- docs/faqs/examples
 
 #### Preparation
@@ -35,7 +35,7 @@ Another examples in here [/docs](./docs)
   * `cd ~`
   * `chown -R your_user:your_user .ssh` (`chown -R jaime:jaime .ssh`)
   
-#### vmwtools (the only when under vmware environment)
+#### vmwtools (only when under vmware environment)
   * `sudo apt install net-tools`
   * `put the linux.iso from host system to virtual cdrom, or click 'menu->Install VMware Tools...'`
   * `copy VMWareTools*.gz to /tmp and cd /tmp/vmware-tools`
@@ -43,7 +43,7 @@ Another examples in here [/docs](./docs)
     * if the warning: 'the path is not valid path to the gcc binary', press 'y'->'/usr/bin/gcc'->'n'
     * if the warning: 'Would you like to enable VMware automatic kernel modules?', press 'y'
 
-#### Individual/sequence of installation (ansible and sudo password required):
+#### Sequence installation (ansible and sudo password are required):
   * `cd ~/dotfiles/conf.ansible`
   * `ansible-playbook play.bash.yml`
   * `ansible-playbook play.chrome.yml`
