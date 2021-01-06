@@ -62,6 +62,7 @@ autocmd BufWinEnter * silent! loadview  " load view (state)
 " ===================== copy-paste/clipboard/yank
 vmap <leader>y y:new ~/.vbuf<CR>VGp:x<CR> " copy to file
 nmap <leader>p :r ~/.vbuf<CR>             " paste from file
+set paste
 
 " ==================== history/save
 let g:netrw_dirhistmax = 0        " will stop writing to the history file
