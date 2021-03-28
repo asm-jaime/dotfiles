@@ -5,6 +5,7 @@ set rtp+=~/dotfiles/bundle/Vundle.vim
 call vundle#begin("~/dotfiles/bundle")
 Plugin 'gmarik/Vundle.vim'
 Plugin 'w0rp/ale'
+Plugin 'zxqfl/tabnine-vim'
 call vundle#end()
 
 " ========== syntax
@@ -54,6 +55,7 @@ set shiftwidth=2                " set n whitespace when pressed >> and <<.
 set autoindent                  " autotabs for new line
 set nostartofline               " not change cursor when change positiona in buffer
 set cindent                     " enable indents with C style
+" set paste
 
 " ========== save view state
 autocmd BufWinLeave * silent! mkview    " save view (state) (folds, cursor, etc)
@@ -62,7 +64,7 @@ autocmd BufWinEnter * silent! loadview  " load view (state)
 " ===================== copy-paste/clipboard/yank
 vmap <leader>y y:new ~/.vbuf<CR>VGp:x<CR> " copy to file
 nmap <leader>p :r ~/.vbuf<CR>             " paste from file
-set paste
+" set clipboard=unnamed,unnamedplus
 
 " ==================== history/save
 let g:netrw_dirhistmax = 0        " will stop writing to the history file
