@@ -91,6 +91,8 @@ export GOBIN=$GOPATH/bin
 
 # ========== ranger settings
 export EDITOR=vim
+#set editing-mode vi
+#set keymap vi
 
 # ========== npm
 export PATH=~/.npm-global/bin:$PATH
