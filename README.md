@@ -28,7 +28,7 @@ Other examples are here [/docs](./docs)
   * `cd ~`
   * `sudo apt-get install git`
   * `git clone https://github.com/asm-jaime/dotfiles`
-  * `bash ~/dotfiles/conf.ansible/start.install.ansible.sh`
+  * `bash ~/dotfiles/conf.ansible/start.install.ansible.compatible.sh`
   * `sudo apt install gcc && sudo apt install build-essential && sudo apt-get update`
 #### SSH
   * copy your `.ssh` to your home directory
