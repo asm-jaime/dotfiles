@@ -1,6 +1,0 @@
----
-- name: install doublecommander
-  hosts: localhost
-  remote_user: "{{ this_user }}"
-  roles:
-  - role: doublecmd

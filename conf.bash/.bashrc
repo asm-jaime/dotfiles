@@ -1,126 +1,88 @@
-# If not running interactively, don't do anything
+# Stop here for non-interactive shells.
 case $- in
-    *i*) ;;
-      *) return;;
+  *i*) ;;
+  *) return ;;
 esac
 
-# ========== history
-
-# don't put duplicate lines
-# HISTCONTROL=ignoreboth
+# Share useful history between open terminals without keeping duplicates.
 HISTCONTROL=ignoreboth:erasedups
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=400000
 HISTFILESIZE=500000
-
-# ========== interfase
-
-# update the values of LINES and COLUMNS.
+shopt -s histappend
 shopt -s checkwinsize
 
-# use arrow for search a command
-export PROMPT_COMMAND='history -a'
+# Up/down search from the text already typed on the command line.
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
-# short patch in command line
-export PS1='$(whoami):${PWD/*\//}>'
+# Keep the prompt compact and update the terminal title at each prompt. Using
+# PROMPT_COMMAND avoids the old DEBUG trap firing for every shell command.
+__dotfiles_prompt_command() {
+  local last_status=$?
+  history -a
+  history -n
+  printf '\033]0;%s\007' "${PWD##*/}"
+  return "$last_status"
+}
+PROMPT_COMMAND=__dotfiles_prompt_command
+PS1='\u:\W> '
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# User-level command locations needed by the current Vim/.NET workflow.
+__dotfiles_path_prepend() {
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="$1${PATH:+:$PATH}" ;;
+  esac
+}
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+for user_bin in \
+  "$HOME/.local/bin" \
+  "$HOME/.dotnet/tools" \
+  "$HOME/.opencode/bin" \
+  /usr/local/cuda-12.4/bin
+do
+  if [ -d "$user_bin" ]; then
+    __dotfiles_path_prepend "$user_bin"
+  fi
+done
+unset user_bin
+unset -f __dotfiles_path_prepend
+export PATH
+
+if [ -d /usr/local/cuda-12.4/lib64 ]; then
+  case ":${LD_LIBRARY_PATH:-}:" in
+    *:/usr/local/cuda-12.4/lib64:*) ;;
+    *) LD_LIBRARY_PATH="/usr/local/cuda-12.4/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" ;;
+  esac
+  export LD_LIBRARY_PATH
 fi
 
-# some more ls aliases
+export EDITOR=vim
+export VISUAL=vim
+
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if command -v notify-send >/dev/null 2>&1; then
+  alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history 1 | sed -E "s/^ *[0-9]+ +//; s/[;&|] *alert$//")"'
 fi
 
-# enable programmable completion features
+if [ -f "$HOME/.bash_aliases" ]; then
+  . "$HOME/.bash_aliases"
+fi
+
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
+  if [ -r /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
+  elif [ -r /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
 fi
 
-# ========== set tab title
-
-function tab_title {
-  if [ -z "$1" ]
-  then
-    title=${PWD##*/} # current directory
-  else
-    title=$1 # first param
-  fi
-
-  default_cmd="history -a"
-  if [[ $default_cmd != "${BASH_COMMAND}" ]]
-  then
-    title="$title:${BASH_COMMAND}"
-  fi
-
-  echo -n -e "\033]0;$title\007"
-}
-
-trap 'tab_title' DEBUG
-
-# ========== golang settings
-
-#export GOROOT=/usr/lib/go-1.13
-export GOPATH=$HOME/go
-export PATH=$HOME/go/bin:$PATH
-export GOBIN=$GOPATH/bin
-
-# ========== ranger settings
-export EDITOR=vim
-#set editing-mode vi
-#set keymap vi
-
-# ========== npm
-export PATH=~/.npm-global/bin:$PATH
-export MANPATH="${MANPATH-$(manpath)}:~/.npm-global/share/man"
-
-# ========== JAVA
-export JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64/'
-
-# ========== deno
-export DENO_INSTALL="/home/jaime/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export PATH="$PATH:$JAVA_HOME/bin"
-
-export ANDROID_HOME=/home/jaime/Android
-export PATH="$PATH:$ANDROID_HOME/tools"
-export PATH="$PATH:$ANDROID_HOME/tools/bin"
-export PATH="$PATH:$ANDROID_HOME/platform-tools"
-
-# ========== nmap
-alias nmap='"/mnt/c/Program Files (x86)/Nmap/nmap.exe"'
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/jaime/.sdkman"
-[[ -s "/home/jaime/.sdkman/bin/sdkman-init.sh" ]] && source "/home/jaime/.sdkman/bin/sdkman-init.sh"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Keep host-specific additions outside the repository-managed file.
+if [ -r "$HOME/.bashrc.local" ]; then
+  . "$HOME/.bashrc.local"
+fi

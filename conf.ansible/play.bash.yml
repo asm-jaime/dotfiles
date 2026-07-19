@@ -1,6 +1,0 @@
----
-- name: install and configure bash
-  hosts: localhost
-  remote_user: "{{ this_user }}"
-  roles:
-  - role: bash
