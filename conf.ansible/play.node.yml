@@ -1,5 +1,0 @@
----
-- name: install node
-  hosts: localhost
-  roles:
-  - role: node

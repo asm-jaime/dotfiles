@@ -1,0 +1,42 @@
+{
+  "attributes": {
+    "Tools/Editor": {
+      "Enabled": true
+    }
+  },
+  "values": {
+    "Behaviours/LynxLike": true,
+    "Behaviours/ShowSystemFiles": true,
+    "Tools/Editor/Path": "/usr/bin/vim",
+    "Tools/Editor/Parameters": "%p",
+    "Tools/Editor/RunInTerminal": true,
+    "Tools/Editor/KeepTerminalOpen": false,
+    "FileOperations/UseTrash": true,
+    "FileOperations/Options/CheckFreeSpace": true,
+    "FileOperations/Options/CopyAttributes": true,
+    "FileOperations/Options/CopyTime": true,
+    "FileOperations/Options/CopyOwnership": false,
+    "FileOperations/Options/CopyPermissions": false,
+    "QuickSearch/MatchBeginning": true,
+    "QuickSearch/MatchEnding": true,
+    "QuickSearch/Case": 1,
+    "QuickFilter/AutoHide": true
+  },
+  "hotkeys": [
+    {
+      "shortcut": "Ctrl+C",
+      "command": "cm_CopyToClipboard",
+      "control": "Files Panel"
+    },
+    {
+      "shortcut": "Ctrl+V",
+      "command": "cm_PasteFromClipboard",
+      "control": "Files Panel"
+    },
+    {
+      "shortcut": "Ctrl+X",
+      "command": "cm_CutToClipboard",
+      "control": "Files Panel"
+    }
+  ]
+}

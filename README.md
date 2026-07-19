@@ -1,56 +1,78 @@
-### dotfiles
+# Ubuntu terminal dotfiles
 
- Here are my personal environment:
-  * vm: vmware, docker
-  * operation system: ubuntu
-  * installer: ansible
-  * shell: bash
-  * editor: neovim
-  * browser: chrome
-  * file manager: doublecmd
-  The personal enviromnment configured for c/go/js programming.
+A small Vim-only Ubuntu environment for terminal editing, linting, and .NET
+debugging.
 
-#### Example:
+The maintained surface is intentionally narrow:
 
-![Image of tmux panel](docs/example.vi.png)
+- Bash history, prompt, completion, aliases, and user-local tool paths
+- Vim editing options, persistent undo/views, netrw, and terminal behavior
+- ALE linting for C/C++, C#, Python, and shell files
+- Vimspector debugging through NetCoreDbg
+- Optional Double Commander integration with Vim and desktop-style file copy
 
-Other examples are here [/docs](./docs)
+## Install the dotfiles
 
-#### Dirs
+```sh
+cd ~/dotfiles
+./install.sh
+```
 
-  * `conf.ansible` - instructions/scripts/files for configure/install environment
-  * `conf.bash` - dotfiles for std.shell
-  * `conf.util` - dotfiles for all other utilites like eslint/youcompleteme/..
-  * `docs`- docs/faqs/examples
+The script only creates `~/.bashrc` and `~/.vimrc` links plus Vim's undo/view
+directories. Existing files are moved to a timestamped directory under
+`~/.dotfiles-backup`. Start a new shell after installation.
 
-#### Preparation
+For Ubuntu clipboard support and the configured linters:
 
-  * `cd ~`
-  * `sudo apt-get install git`
-  * `git clone https://github.com/asm-jaime/dotfiles`
-  * `bash ~/dotfiles/conf.ansible/start.install.ansible.compatible.sh`
-  * `sudo apt install gcc && sudo apt install build-essential && sudo apt-get update`
-#### SSH
-  * copy your `.ssh` to your home directory
-  * `cd ~`
-  * `chown -R your_user:your_user .ssh` (`chown -R jaime:jaime .ssh`)
-  
-#### vmwtools (only when under vmware environment)
-  * `sudo apt install net-tools`
-  * `put the linux.iso from host system to virtual cdrom, or click 'menu->Install VMware Tools...'`
-  * `copy VMWareTools*.gz to /tmp and cd /tmp/vmware-tools`
-  * `sudo ./vmware-install.pl`
-    * if the warning: 'the path is not valid path to the gcc binary', press 'y'->'/usr/bin/gcc'->'n'
-    * if the warning: 'Would you like to enable VMware automatic kernel modules?', press 'y'
+```sh
+sudo apt install vim-gtk3 clang clang-tidy cppcheck pylint shellcheck
+```
 
-#### Sequence installation (ansible and sudo password are required):
-  * `cd ~/dotfiles/conf.ansible`
-  * `ansible-playbook play.bash.yml`
-  * `ansible-playbook play.chrome.yml`
-  * `ansible-playbook play.doublecmd.yml`
-  * `ansible-playbook play.git.yml` (quick configure your git. `~/.ssh` keys required)
-  * `ansible-playbook play.node.yml`
-  * `ansible-playbook play.docker.yml` (logout required)
-  * `ansible-playbook play.mongodb.yml`
-  * `ansible-playbook play.vi.yml`
-  * `ansible-playbook play.vi-ale.yml`
+Install the two optional Vim packages with Vim's native package layout:
+
+```sh
+mkdir -p ~/.vim/pack/dotfiles/start ~/.vim/pack/dotfiles/opt
+git clone --depth 1 https://github.com/dense-analysis/ale.git \
+  ~/.vim/pack/dotfiles/start/ale
+git clone --depth 1 https://github.com/puremourning/vimspector.git \
+  ~/.vim/pack/dotfiles/opt/vimspector
+```
+
+## Double Commander
+
+Start Double Commander once if this is a new installation. Then close it and
+run:
+
+```sh
+./install-doublecmd.sh
+```
+
+The portable preferences live in `conf.doublecmd/settings.json`. The installer
+merges that one safe file into Double Commander's native `doublecmd.xml` and
+`shortcuts.scf`, backing both up first. It configures terminal Vim, safe file
+operation defaults, search behavior, and desktop-style Ctrl+C/V/X file-panel
+hotkeys. Histories, tabs, caches, window positions, credentials, and absolute
+personal paths are neither stored nor copied.
+
+## Vim essentials
+
+- `Esc` in a Vim terminal: return to Vim Normal mode
+- `Ctrl+C` in Visual mode: copy the selection
+- `Ctrl+C` in terminal mode: interrupt the terminal process
+- `,,f`: open the netrw file browser
+- `,an` / `,ap`: next / previous ALE diagnostic
+- `,ad`: show the current ALE diagnostic
+- `F5`, `F9`, `F10`, `F11`, `F12`: continue, breakpoint, and stepping controls
+- `F3`, `F4`, `F6`: stop, restart, and pause debugging
+
+See [Vim terminal debugging](docs/VIM_TERMINAL_DEBUGGING.md) for the
+NetCoreDbg/Vimspector setup and a project configuration example.
+
+## Layout
+
+- `init.vim` — complete Vim configuration
+- `conf.bash/.bashrc` — complete interactive Bash configuration
+- `install.sh` — safe Bash/Vim linker
+- `install-doublecmd.sh` — optional focused Double Commander configurator
+- `conf.doublecmd/settings.json` — portable Double Commander preferences
+- `docs/VIM_TERMINAL_DEBUGGING.md` — debugging guide

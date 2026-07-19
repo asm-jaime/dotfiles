@@ -1,6 +1,0 @@
----
-- name: install and configure vi
-  hosts: localhost
-  remote_user: "{{ this_user }}"
-  roles:
-  - role: vi

@@ -1,3 +1,0 @@
----
-- name: install go langserver
-  command: bash -lc "go get -u github.com/sourcegraph/go-langserver"

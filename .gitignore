@@ -1,22 +1,10 @@
-# Logs
-logs
+# Editor and tool state
 *.log
-npm-debug.log*
-pip-log.txt
+*.pyc
+*.swp
 .netrwhist
 
-# personal key/accs
-conf.plugins/.floorc.json
-
-#Translations
-
-bundle
-undodir/
-view
-sessions
-autoload/
-ftplugin/
-
-z_buff
-
-*.pyc
+# Old local scratch names
+logs/
+sessions/
+z_buff/
