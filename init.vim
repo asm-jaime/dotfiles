@@ -128,6 +128,56 @@ nnoremap <silent> <leader>an <Plug>(ale_next_wrap)
 nnoremap <silent> <leader>ap <Plug>(ale_previous_wrap)
 nnoremap <silent> <leader>ad :ALEDetail<CR>
 
+function! s:CSharpMethodName(line_text) abort
+  return matchstr(
+        \ a:line_text,
+        \ '^\s*\%(\%(public\|private\|protected\|internal\|static\|async\|virtual\|override\|sealed\|new\|partial\)\s\+\)*\S\+\s\+\zs\h\w*\ze\s*('
+        \ )
+endfunction
+
+function! s:DebugNUnitTestUnderCursor() abort
+  if &filetype !=# 'cs'
+    echoerr 'F2 NUnit debugging is available only in C# files'
+    return
+  endif
+
+  let attribute_line = searchpos('^\s*\[Test\]\s*$', 'bcnW')[0]
+  if attribute_line == 0
+    echoerr 'No [Test] method found at the cursor'
+    return
+  endif
+
+  let method_line = 0
+  let test_name = ''
+  for line_number in range(attribute_line + 1, min([line('$'), attribute_line + 20]))
+    let candidate = s:CSharpMethodName(getline(line_number))
+    if !empty(candidate)
+      let method_line = line_number
+      let test_name = candidate
+      break
+    endif
+  endfor
+
+  if method_line == 0
+    echoerr 'No method declaration found after [Test]'
+    return
+  endif
+
+  for line_number in range(method_line + 1, line('$'))
+    if !empty(s:CSharpMethodName(getline(line_number)))
+      if line('.') >= line_number
+        echoerr 'Place the cursor on or inside a [Test] method'
+        return
+      endif
+      break
+    endif
+  endfor
+
+  call vimspector#SetLineBreakpoint(expand('%:p'), method_line)
+  echo 'Debugging NUnit test: ' . test_name
+  call vimspector#LaunchWithSettings({ 'TestFilter': 'Name=' . test_name })
+endfunction
+
 " Vimspector talks to the already-installed NetCoreDbg adapter directly.
 " Keeping it under opt means this file also loads cleanly before installation.
 if isdirectory(expand('~/.vim/pack/dotfiles/opt/vimspector'))
@@ -138,5 +188,8 @@ if isdirectory(expand('~/.vim/pack/dotfiles/opt/vimspector'))
         \   'command': [expand('~/.local/bin/netcoredbg'), '--interpreter=vscode'],
         \ },
         \}
-  packadd! vimspector
+  packadd vimspector
+  nnoremap <silent> <F2> :call <SID>DebugNUnitTestUnderCursor()<CR>
+  nmap <silent> <F7> <Plug>VimspectorStepInto
+  nmap <silent> <F8> <Plug>VimspectorStepOver
 endif

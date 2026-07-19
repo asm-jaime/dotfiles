@@ -17,8 +17,8 @@ Neither tool is a completion engine.
 - NetCoreDbg installed at `~/.local/bin/netcoredbg`
 - A .NET project built with debug symbols
 
-The repository installer only links the dotfiles. The README contains the
-Ubuntu Vim and Vimspector installation commands. NetCoreDbg stays in
+`install-vim.sh` links the dotfiles and installs ALE and Vimspector. The README
+contains the Ubuntu Vim dependency commands. NetCoreDbg stays in
 `~/.local/bin`.
 
 Check the local setup with:
@@ -32,8 +32,11 @@ vim --version | grep -E 'VIM - Vi IMproved|\+python3|\+terminal'
 
 | Key | Action |
 | --- | --- |
+| `F2` | Debug the NUnit `[Test]` method under the cursor |
 | `F9` | Toggle a breakpoint on the current line |
 | `F5` | Start or continue |
+| `F8` | Step over when the terminal reserves `F10` |
+| `F7` | Step into when the terminal reserves `F11` |
 | `F10` | Step over |
 | `F11` | Step into |
 | `F12` | Step out |
@@ -47,17 +50,20 @@ Vim Normal mode.
 ## Project configuration
 
 Vimspector reads `.vimspector.json` from the project root. This example starts
-a built .NET assembly and asks for an optional NUnit filter when the session
-starts:
+a built .NET test assembly. The `F2` mapping supplies its NUnit filter from the
+`[Test]` method under the cursor:
 
 ```json
 {
   "configurations": {
-    "Debug .NET test assembly": {
+    "Debug NUnit test": {
       "adapter": "netcoredbg",
       "filetypes": ["cs"],
-      "variables": {
-        "TestFilter": "Name=VisualFrameFromState_shuld_be_rendered_with_sprite_at_state_position"
+      "breakpoints": {
+        "exception": {
+          "user-unhandled": "N",
+          "all": "N"
+        }
       },
       "configuration": {
         "request": "launch",
@@ -74,8 +80,8 @@ starts:
 }
 ```
 
-Change the `TestFilter` variable for the test being debugged. NetCoreDbg starts
-the managed assembly directly; the equivalent non-debugging command is:
+NetCoreDbg starts the managed assembly directly. The equivalent non-debugging
+command for one test is:
 
 ```sh
 dotnet Tests/bin/Debug/net10.0/Tests.dll \

@@ -8,6 +8,8 @@ default_config_dir="$config_root/doublecmd"
 config_dir=${DOUBLECMD_CONFIG_DIR:-"$default_config_dir"}
 main_config="$config_dir/doublecmd.xml"
 shortcut_config="$config_dir/shortcuts.scf"
+script_source="$repo_dir/conf.doublecmd/scripts/copy-active-path.lua"
+script_target="$config_dir/scripts/copy-active-path.lua"
 
 if [[ $config_dir == "$default_config_dir" ]] && pgrep -x doublecmd >/dev/null 2>&1; then
   printf 'Close Double Commander before changing its configuration.\n' >&2
@@ -24,14 +26,21 @@ backup_root="$HOME/.dotfiles-backup"
 mkdir -p -- "$backup_root"
 backup_dir=$(mktemp -d "$backup_root/doublecmd-$(date -u +%Y%m%dT%H%M%SZ)-XXXXXX")
 cp -a -- "$main_config" "$shortcut_config" "$backup_dir/"
+if [[ -f $script_target ]]; then
+  mkdir -p -- "$backup_dir/scripts"
+  cp -a -- "$script_target" "$backup_dir/scripts/"
+fi
 
-python3 - "$main_config" "$shortcut_config" "$settings_file" <<'PY'
+mkdir -p -- "${script_target%/*}"
+install -m 0644 -- "$script_source" "$script_target"
+
+python3 - "$main_config" "$shortcut_config" "$settings_file" "$config_dir" <<'PY'
 import sys
 import os
 import json
 import xml.etree.ElementTree as ET
 
-main_path, shortcuts_path, settings_path = sys.argv[1:]
+main_path, shortcuts_path, settings_path, config_dir = sys.argv[1:]
 with open(settings_path, encoding="utf-8") as settings_handle:
     settings = json.load(settings_handle)
 
@@ -99,6 +108,9 @@ for binding in settings.get("hotkeys", []):
     hotkey = ET.SubElement(main_form, "Hotkey")
     set_child(hotkey, "Shortcut", shortcut)
     set_child(hotkey, "Command", binding["command"])
+    for parameter in binding.get("params", []):
+        param = ET.SubElement(hotkey, "Param")
+        param.text = parameter.replace("${DOUBLECMD_CONFIG_DIR}", config_dir)
     if control is not None:
         set_child(hotkey, "Control", control)
 

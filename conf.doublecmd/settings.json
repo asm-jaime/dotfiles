@@ -37,6 +37,18 @@
       "shortcut": "Ctrl+X",
       "command": "cm_CutToClipboard",
       "control": "Files Panel"
+    },
+    {
+      "shortcut": "Ctrl+Shift+C",
+      "command": "cm_CopyFullNamesToClip"
+    },
+    {
+      "shortcut": "Ctrl+Shift+P",
+      "command": "cm_ExecuteScript",
+      "params": [
+        "${DOUBLECMD_CONFIG_DIR}/scripts/copy-active-path.lua",
+        "%\"0%D"
+      ]
     }
   ]
 }
