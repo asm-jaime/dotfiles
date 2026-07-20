@@ -229,6 +229,55 @@ if isdirectory(expand('~/.vim/pack/dotfiles/opt/vimspector'))
     endif
   endfunction
 
+  function! s:VimspectorBalanceSidebar() abort
+    if !empty(s:vimspector_zoom_restore)
+          \ || !exists('g:vimspector_session_windows')
+      return
+    endif
+
+    let windows = g:vimspector_session_windows
+    let pane_names = ['variables', 'watches', 'stack_trace']
+    for name in pane_names
+      if !has_key(windows, name) || !win_id2win(windows[name])
+        return
+      endif
+    endfor
+
+    if get(windows, 'mode', '') ==# 'horizontal'
+      let total_height = 0
+      for name in pane_names
+        let total_height += winheight(win_id2win(windows[name]))
+        call win_execute(windows[name], 'setlocal nowinfixheight')
+      endfor
+
+      " Variables and Watches get exactly the same height. StackTrace uses
+      " the remaining third (including any rounding row).
+      let value_height = max([3, total_height / 3])
+      let stack_height = max([3, total_height - (2 * value_height)])
+      call win_execute(windows.stack_trace, 'resize ' . stack_height)
+      call win_execute(windows.watches, 'resize ' . value_height)
+      call win_execute(windows.variables, 'resize ' . value_height)
+      call win_execute(windows.variables, 'setlocal winfixheight')
+      call win_execute(windows.watches, 'setlocal winfixheight')
+    else
+      let total_width = 0
+      for name in pane_names
+        let total_width += winwidth(win_id2win(windows[name]))
+        call win_execute(windows[name], 'setlocal nowinfixwidth')
+      endfor
+
+      let value_width = max([12, total_width / 3])
+      let stack_width = max([12, total_width - (2 * value_width)])
+      call win_execute(windows.stack_trace, 'vertical resize ' . stack_width)
+      call win_execute(windows.watches, 'vertical resize ' . value_width)
+      call win_execute(windows.variables, 'vertical resize ' . value_width)
+      call win_execute(windows.variables, 'setlocal winfixwidth')
+      call win_execute(windows.watches, 'setlocal winfixwidth')
+    endif
+  endfunction
+
+  command! VimspectorBalanceSidebar call <SID>VimspectorBalanceSidebar()
+
   function! s:VimspectorSetUpUI() abort
     let s:vimspector_zoom_restore = ''
     let windows = g:vimspector_session_windows
@@ -251,28 +300,14 @@ if isdirectory(expand('~/.vim/pack/dotfiles/opt/vimspector'))
       endif
     endfor
 
-    " An empty Watches pane should not take the same space as useful locals.
-    if get(windows, 'mode', '') ==# 'horizontal'
-      if has_key(windows, 'variables') && win_id2win(windows.variables)
-        call win_execute(windows.variables, 'resize 999')
-      endif
-      if has_key(windows, 'watches') && win_id2win(windows.watches)
-        call win_execute(windows.watches, 'resize 1')
-      endif
-      if has_key(windows, 'stack_trace') && win_id2win(windows.stack_trace)
-        call win_execute(windows.stack_trace, 'resize 3')
-      endif
-    else
-      if has_key(windows, 'variables') && win_id2win(windows.variables)
-        call win_execute(windows.variables, 'vertical resize 999')
-      endif
-      if has_key(windows, 'watches') && win_id2win(windows.watches)
-        call win_execute(windows.watches, 'vertical resize 12')
-      endif
-      if has_key(windows, 'stack_trace') && win_id2win(windows.stack_trace)
-        call win_execute(windows.stack_trace, 'vertical resize 24')
-      endif
+    " Some terminals do not pass the Delete key through consistently. Make
+    " dd remove the stored watch instead of merely deleting its rendered line.
+    if has_key(windows, 'watches') && win_id2win(windows.watches)
+      call win_execute(windows.watches,
+            \ 'nnoremap <silent> <buffer> dd :<C-u>call vimspector#DeleteWatch()<CR>')
     endif
+
+    call s:VimspectorBalanceSidebar()
 
     call win_gotoid(original_window)
   endfunction
@@ -284,6 +319,7 @@ if isdirectory(expand('~/.vim/pack/dotfiles/opt/vimspector'))
   augroup dotfiles_vimspector_ui
     autocmd!
     autocmd User VimspectorUICreated call <SID>VimspectorSetUpUI()
+    autocmd User VimspectorJumpedToFrame call <SID>VimspectorBalanceSidebar()
     autocmd User VimspectorDebugEnded call <SID>VimspectorResetUIState()
   augroup END
 
