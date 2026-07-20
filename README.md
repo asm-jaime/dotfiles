@@ -76,9 +76,11 @@ This installs the same two shortcuts using Total Commander's native commands:
 - `F7`, `F8`, `F12`: step into, step over, and step out
 - `F5`, `F9`, `F10`, `F11`, `F12`: continue, breakpoint, and stepping controls
 - `F3`, `F4`, `F6`: stop, restart, and pause debugging
+- `,dc`, `,dv`, `,dw`, `,ds`, `,do`: focus code, variables, watches, stack, or output
+- `,dz`: expand the current debugger pane and restore the layout
 
-See [Vim terminal debugging](docs/VIM_TERMINAL_DEBUGGING.md) for the
-NetCoreDbg/Vimspector setup and a project configuration example.
+See [Vim terminal debugging](docs/VIM_TERMINAL_DEBUGGING.txt) for the concise
+NetCoreDbg/Vimspector workflow and shortcut reference.
 
 ## Layout
 
@@ -88,4 +90,4 @@ NetCoreDbg/Vimspector setup and a project configuration example.
 - `install-doublecmd.sh` — optional focused Double Commander configurator
 - `install-totalcmd-shortcuts.sh` — focused Total Commander shortcut merger
 - `conf.doublecmd/settings.json` — portable Double Commander preferences
-- `docs/VIM_TERMINAL_DEBUGGING.md` — debugging guide
+- `docs/VIM_TERMINAL_DEBUGGING.txt` — debugging guide

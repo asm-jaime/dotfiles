@@ -182,6 +182,11 @@ endfunction
 " Keeping it under opt means this file also loads cleanly before installation.
 if isdirectory(expand('~/.vim/pack/dotfiles/opt/vimspector'))
   let g:vimspector_enable_mappings = 'HUMAN'
+  let g:vimspector_sidebar_width = 52
+  let g:vimspector_bottombar_height = 8
+  let g:vimspector_code_minwidth = 72
+  let g:vimspector_topbar_height = 12
+  let g:vimspector_code_minheight = 12
   let g:vimspector_adapters = {
         \ 'netcoredbg': {
         \   'name': 'netcoredbg',
@@ -189,7 +194,106 @@ if isdirectory(expand('~/.vim/pack/dotfiles/opt/vimspector'))
         \ },
         \}
   packadd vimspector
+
+  let s:vimspector_zoom_restore = ''
+
+  function! s:VimspectorFocusWindow(name) abort
+    let target_window = get(get(g:, 'vimspector_session_windows', {}), a:name, 0)
+    if !exists('g:vimspector_session_windows')
+          \ || win_id2tabwin(target_window)[0] == 0
+      echoerr 'The Vimspector ' . a:name . ' window is not open'
+      return
+    endif
+
+    if !empty(s:vimspector_zoom_restore)
+      execute s:vimspector_zoom_restore
+      let s:vimspector_zoom_restore = ''
+    endif
+    call win_gotoid(target_window)
+  endfunction
+
+  function! s:VimspectorToggleZoom() abort
+    if !exists('g:vimspector_session_windows')
+      echoerr 'No Vimspector session is open'
+      return
+    endif
+
+    if empty(s:vimspector_zoom_restore)
+      let s:vimspector_zoom_restore = winrestcmd()
+      wincmd |
+      wincmd _
+      echo 'Debugger pane expanded; press ,dz to restore the layout'
+    else
+      execute s:vimspector_zoom_restore
+      let s:vimspector_zoom_restore = ''
+    endif
+  endfunction
+
+  function! s:VimspectorSetUpUI() abort
+    let s:vimspector_zoom_restore = ''
+    let windows = g:vimspector_session_windows
+    let original_window = win_getid()
+
+    for name in ['variables', 'watches', 'stack_trace', 'output']
+      if has_key(windows, name) && win_id2win(windows[name])
+        call win_execute(windows[name],
+              \ 'setlocal nonumber norelativenumber nowrap sidescroll=1 sidescrolloff=3')
+      endif
+    endfor
+
+    " Enter or Tab expands an object. K shows its complete value and type.
+    for name in ['variables', 'watches']
+      if has_key(windows, name) && win_id2win(windows[name])
+        call win_execute(windows[name],
+              \ 'nnoremap <silent> <buffer> <Tab> :<C-u>call vimspector#ExpandVariable()<CR>')
+        call win_execute(windows[name],
+              \ 'nmap <silent> <buffer> K <Plug>VimspectorBalloonEval')
+      endif
+    endfor
+
+    " An empty Watches pane should not take the same space as useful locals.
+    if get(windows, 'mode', '') ==# 'horizontal'
+      if has_key(windows, 'variables') && win_id2win(windows.variables)
+        call win_execute(windows.variables, 'resize 999')
+      endif
+      if has_key(windows, 'watches') && win_id2win(windows.watches)
+        call win_execute(windows.watches, 'resize 1')
+      endif
+      if has_key(windows, 'stack_trace') && win_id2win(windows.stack_trace)
+        call win_execute(windows.stack_trace, 'resize 3')
+      endif
+    else
+      if has_key(windows, 'variables') && win_id2win(windows.variables)
+        call win_execute(windows.variables, 'vertical resize 999')
+      endif
+      if has_key(windows, 'watches') && win_id2win(windows.watches)
+        call win_execute(windows.watches, 'vertical resize 12')
+      endif
+      if has_key(windows, 'stack_trace') && win_id2win(windows.stack_trace)
+        call win_execute(windows.stack_trace, 'vertical resize 24')
+      endif
+    endif
+
+    call win_gotoid(original_window)
+  endfunction
+
+  function! s:VimspectorResetUIState() abort
+    let s:vimspector_zoom_restore = ''
+  endfunction
+
+  augroup dotfiles_vimspector_ui
+    autocmd!
+    autocmd User VimspectorUICreated call <SID>VimspectorSetUpUI()
+    autocmd User VimspectorDebugEnded call <SID>VimspectorResetUIState()
+  augroup END
+
   nnoremap <silent> <F2> :call <SID>DebugNUnitTestUnderCursor()<CR>
   nmap <silent> <F7> <Plug>VimspectorStepInto
   nmap <silent> <F8> <Plug>VimspectorStepOver
+  nnoremap <silent> <leader>dc :call <SID>VimspectorFocusWindow('code')<CR>
+  nnoremap <silent> <leader>dv :call <SID>VimspectorFocusWindow('variables')<CR>
+  nnoremap <silent> <leader>dw :call <SID>VimspectorFocusWindow('watches')<CR>
+  nnoremap <silent> <leader>ds :call <SID>VimspectorFocusWindow('stack_trace')<CR>
+  nnoremap <silent> <leader>do :call <SID>VimspectorFocusWindow('output')<CR>
+  nnoremap <silent> <leader>dz :call <SID>VimspectorToggleZoom()<CR>
 endif

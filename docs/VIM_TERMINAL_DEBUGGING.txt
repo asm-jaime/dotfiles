@@ -1,0 +1,94 @@
+VIM TERMINAL DEBUGGING WITH NETCOREDBG
+======================================
+
+Debugging path:
+
+  Vim -> Vimspector -> DAP -> NetCoreDbg -> .NET/NUnit
+
+SETUP
+-----
+
+  Vimspector:  ~/.vim/pack/dotfiles/opt/vimspector
+  NetCoreDbg:  ~/.local/bin/netcoredbg
+  Project:     .vimspector.json in the project root
+
+Build the Debug assemblies before debugging:
+
+  dotnet build Tanks.sln -c Debug
+
+DEBUG ONE NUNIT TEST
+--------------------
+
+1. Open the C# test file in Vim.
+2. Put the cursor on or inside a method marked [Test].
+3. Press F2. Vim selects that test, sets its entry breakpoint, and starts it.
+4. Inspect variables, watches, the call stack, source, and test output.
+5. Press F3 to stop. Use :qa to exit without discarding unsaved changes.
+
+DEBUGGER SHORTCUTS
+------------------
+
+  F2       debug the NUnit [Test] method under the cursor
+  F3       stop
+  F4       restart the previous session
+  F5       start or continue
+  F6       pause
+  F7       step into
+  F8       step over
+  F9       toggle a breakpoint on the current line
+  F10      step over; GNOME Terminal may open its menu instead
+  F11      step into; GNOME Terminal may use it for fullscreen
+  F12      step out
+  ,F8      run to cursor
+  ,F9      add a conditional breakpoint or logpoint
+  ,dc      focus source code
+  ,dv      focus Variables
+  ,dw      focus Watches
+  ,ds      focus StackTrace
+  ,do      focus Console/output
+  ,dz      expand the current debugger pane; press again to restore
+
+VARIABLES AND WATCHES
+---------------------
+
+  j / k              move between values
+  Enter or Tab       expand or collapse an object
+  K                  show the complete value and type
+  :VimspectorWatch x add expression x to Watches
+  Delete             remove the selected watch
+  Ctrl+Enter / ,Enter change a value when NetCoreDbg permits it
+
+VIM AND TERMINAL KEYS
+---------------------
+
+  Esc      return from terminal mode to Vim Normal mode
+  Ctrl+C   interrupt a terminal process; copy when in Visual mode
+  :qa      exit safely; refuses if edits are unsaved
+  :qa!     exit and discard unsaved edits
+
+Double Commander: F4 opens the selected file in terminal Vim.
+
+COMMAND-LINE FALLBACK
+---------------------
+
+Run one test without the debugger:
+
+  dotnet Tests/bin/Debug/net10.0/Tests.dll --filter 'Name=<test_method>'
+
+Debug one test directly:
+
+  netcoredbg --interpreter=cli -- dotnet \
+    Tests/bin/Debug/net10.0/Tests.dll --filter 'Name=<test_method>'
+
+Useful NetCoreDbg commands:
+
+  break File.cs:60          set a source-line breakpoint
+  break Namespace.Type.Method
+  run                       start
+  next / step / finish      step over / into / out
+  print variable            inspect a value
+  backtrace                 show the call stack
+  info break                list breakpoints
+  delete 1                  delete breakpoint 1
+  continue                  resume
+  quit                      exit
