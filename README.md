@@ -52,18 +52,6 @@ hotkeys, and these path-copy shortcuts:
 Histories, tabs, caches, window positions, credentials, and absolute personal
 paths are neither stored nor copied.
 
-## Total Commander
-
-On a machine with Total Commander, close it and pass its `wincmd.ini` to:
-
-```sh
-./install-totalcmd-shortcuts.sh /path/to/wincmd.ini
-```
-
-This installs the same two shortcuts using Total Commander's native commands:
-`cm_CopyFullNamesToClip` for `Ctrl+Shift+C` and `cm_CopySrcPathToClip` for
-`Ctrl+Shift+P`. The existing INI is backed up first.
-
 ## Vim essentials
 
 - `Esc` in a Vim terminal: return to Vim Normal mode
