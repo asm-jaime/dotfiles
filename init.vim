@@ -128,6 +128,104 @@ nnoremap <silent> <leader>an <Plug>(ale_next_wrap)
 nnoremap <silent> <leader>ap <Plug>(ale_previous_wrap)
 nnoremap <silent> <leader>ad :ALEDetail<CR>
 
+" Use the Vim9 LSP client for semantic C# navigation. Keep its completion,
+" diagnostics, and highlighting disabled because ALE already owns that UI.
+if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
+  " GUI launchers do not necessarily inherit the interactive shell's
+  " DOTNET_ROOT.  Global-tool apphosts such as csharp-ls need it when .NET is
+  " installed outside the platform default (for example, /opt/dotnet).
+  if empty($DOTNET_ROOT)
+    let s:dotnet_executable = exepath('dotnet')
+    if !empty(s:dotnet_executable)
+      let $DOTNET_ROOT = fnamemodify(resolve(s:dotnet_executable), ':h')
+    endif
+  endif
+
+  let g:lsp_options = {
+        \ 'autoComplete': v:false,
+        \ 'autoHighlightDiags': v:false,
+        \ 'highlightDiagInline': v:false,
+        \ 'semanticHighlight': v:false,
+        \ 'showDiagInBalloon': v:false,
+        \ 'showDiagInPopup': v:false,
+        \ 'showDiagWithSign': v:false,
+        \ 'showSignature': v:false,
+        \}
+
+  function! s:SetUpCSharpLspMappings() abort
+    if &filetype !=# 'cs'
+      return
+    endif
+
+    nnoremap <silent> <buffer> <C-]> :<C-u>call <SID>CSharpNavigate(0)<CR>
+    nnoremap <silent> <buffer> <C-S-]> :<C-u>call <SID>CSharpNavigate(1)<CR>
+    nnoremap <silent> <buffer> g<C-]> :<C-u>call <SID>CSharpNavigate(1)<CR>
+  endfunction
+
+  function! s:FinishQueuedCSharpNavigation(request, timer) abort
+    if !bufexists(a:request.buffer)
+          \ || win_id2win(a:request.window) == 0
+          \ || win_getid() != a:request.window
+          \ || bufnr() != a:request.buffer
+      call timer_stop(a:timer)
+      return
+    endif
+
+    if LspServerReady()
+      call timer_stop(a:timer)
+      call cursor(a:request.line, a:request.column)
+      execute (a:request.open_in_tab
+            \ ? 'tab LspGotoDefinition'
+            \ : 'LspGotoDefinition')
+      return
+    endif
+
+    let a:request.attempts += 1
+    if a:request.attempts >= 200
+      call timer_stop(a:timer)
+      echoerr 'C# language server did not become ready; use :LspServer show status'
+    endif
+  endfunction
+
+  function! s:CSharpNavigate(open_in_tab) abort
+    if LspServerReady()
+      execute (a:open_in_tab
+            \ ? 'tab LspGotoDefinition'
+            \ : 'LspGotoDefinition')
+      return
+    endif
+
+    echo 'C# language server is starting; definition request queued'
+    let request = {
+          \ 'attempts': 0,
+          \ 'buffer': bufnr(),
+          \ 'column': col('.'),
+          \ 'line': line('.'),
+          \ 'open_in_tab': a:open_in_tab,
+          \ 'window': win_getid(),
+          \}
+    call timer_start(100,
+          \ function('<SID>FinishQueuedCSharpNavigation', [request]),
+          \ {'repeat': 200})
+  endfunction
+
+  augroup dotfiles_csharp_lsp
+    autocmd!
+    autocmd User LspSetup call LspAddServer([{
+          \ 'name': 'csharp-ls',
+          \ 'filetype': 'cs',
+          \ 'path': expand('~/.dotnet/tools/csharp-ls'),
+          \ 'args': [],
+          \ 'rootSearch': ['.git/'],
+          \ 'syncInit': v:true,
+          \}])
+    autocmd FileType cs call <SID>SetUpCSharpLspMappings()
+    " Apply again after loadview restores any obsolete buffer-local mappings.
+    autocmd BufWinEnter *.cs call <SID>SetUpCSharpLspMappings()
+    autocmd User LspAttached call <SID>SetUpCSharpLspMappings()
+  augroup END
+endif
+
 function! s:CSharpMethodName(line_text) abort
   return matchstr(
         \ a:line_text,

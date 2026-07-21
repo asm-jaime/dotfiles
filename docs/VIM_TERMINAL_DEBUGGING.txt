@@ -48,6 +48,28 @@ DEBUGGER SHORTCUTS
   ,do      focus Console/output
   ,dz      expand the current debugger pane; press again to restore
 
+C# CODE NAVIGATION
+------------------
+
+Navigation is provided by Vim9 LSP, csharp-ls, and Roslyn; no tags file is needed.
+Start Vim in or below the directory containing the solution or project.
+
+  Ctrl+]         go to the definition in the current Vim window
+  Ctrl+Shift+]   go to the definition in a new Vim tab, when the terminal
+                 reports Ctrl+Shift+] as a distinct key
+  g Ctrl+]       always go to the definition in a new Vim tab
+  Ctrl+T         jump back after current-window navigation
+  :tabclose      close a definition opened in a new tab
+
+The language server reads the current solution and tracks saved source changes,
+so navigation updates after a method is renamed. A definition request made
+during server startup is queued automatically. Use :LspServer show status to
+check the server or :LspServer restart if a request ever becomes stuck.
+
+Vim derives DOTNET_ROOT from the installed dotnet executable when a desktop
+launcher does not provide it. This is required for csharp-ls when .NET is
+installed outside the platform's default runtime directory.
+
 VARIABLES AND WATCHES
 ---------------------
 

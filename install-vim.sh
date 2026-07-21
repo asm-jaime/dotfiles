@@ -49,6 +49,23 @@ install_vim_package() {
   printf 'installed: %s at %s\n' "$name" "$target"
 }
 
+install_dotnet_tool() {
+  local package=$1
+  local executable=$2
+
+  if command -v "$executable" >/dev/null 2>&1; then
+    printf 'already installed: %s at %s\n' "$package" "$(command -v "$executable")"
+    return
+  fi
+
+  command -v dotnet >/dev/null 2>&1 || {
+    printf 'cannot install %s: dotnet is not installed\n' "$package" >&2
+    return 1
+  }
+
+  dotnet tool install --global "$package"
+}
+
 mkdir -p -- "$HOME/.vim/undo" "$HOME/.vim/view"
 link_config "$repo_dir/conf.bash/.bashrc" "$HOME/.bashrc"
 link_config "$repo_dir/init.vim" "$HOME/.vimrc"
@@ -57,6 +74,11 @@ install_vim_package \
   ALE \
   https://github.com/dense-analysis/ale.git \
   "$HOME/.vim/pack/dotfiles/start/ale"
+install_vim_package \
+  LSP \
+  https://github.com/yegappan/lsp.git \
+  "$HOME/.vim/pack/dotfiles/start/lsp"
+install_dotnet_tool csharp-ls csharp-ls
 install_vim_package \
   Vimspector \
   https://github.com/puremourning/vimspector.git \
