@@ -8,8 +8,12 @@ default_config_dir="$config_root/doublecmd"
 config_dir=${DOUBLECMD_CONFIG_DIR:-"$default_config_dir"}
 main_config="$config_dir/doublecmd.xml"
 shortcut_config="$config_dir/shortcuts.scf"
-script_source="$repo_dir/conf.doublecmd/scripts/copy-active-path.lua"
-script_target="$config_dir/scripts/copy-active-path.lua"
+copy_script_source="$repo_dir/conf.doublecmd/scripts/copy-active-path.lua"
+copy_script_target="$config_dir/scripts/copy-active-path.lua"
+debug_lua_source="$repo_dir/conf.doublecmd/scripts/open-debug-vim.lua"
+debug_lua_target="$config_dir/scripts/open-debug-vim.lua"
+debug_shell_source="$repo_dir/conf.doublecmd/scripts/open-debug-vim.sh"
+debug_shell_target="$config_dir/scripts/open-debug-vim.sh"
 
 if [[ $config_dir == "$default_config_dir" ]] && pgrep -x doublecmd >/dev/null 2>&1; then
   printf 'Close Double Commander before changing its configuration.\n' >&2
@@ -26,13 +30,19 @@ backup_root="$HOME/.dotfiles-backup"
 mkdir -p -- "$backup_root"
 backup_dir=$(mktemp -d "$backup_root/doublecmd-$(date -u +%Y%m%dT%H%M%SZ)-XXXXXX")
 cp -a -- "$main_config" "$shortcut_config" "$backup_dir/"
-if [[ -f $script_target ]]; then
+if [[ -f $copy_script_target || -f $debug_lua_target || -f $debug_shell_target ]]; then
   mkdir -p -- "$backup_dir/scripts"
-  cp -a -- "$script_target" "$backup_dir/scripts/"
+  for installed_script in "$copy_script_target" "$debug_lua_target" "$debug_shell_target"; do
+    if [[ -f $installed_script ]]; then
+      cp -a -- "$installed_script" "$backup_dir/scripts/"
+    fi
+  done
 fi
 
-mkdir -p -- "${script_target%/*}"
-install -m 0644 -- "$script_source" "$script_target"
+mkdir -p -- "${copy_script_target%/*}"
+install -m 0644 -- "$copy_script_source" "$copy_script_target"
+install -m 0644 -- "$debug_lua_source" "$debug_lua_target"
+install -m 0755 -- "$debug_shell_source" "$debug_shell_target"
 
 python3 - "$main_config" "$shortcut_config" "$settings_file" "$config_dir" <<'PY'
 import sys

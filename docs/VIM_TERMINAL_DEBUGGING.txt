@@ -99,6 +99,29 @@ VIM AND TERMINAL KEYS
 
 Double Commander: F4 opens the selected file in terminal Vim.
 
+DOUBLE COMMANDER: PRIVATE OR SHARED VIM
+---------------------------------------
+
+  F4              open ordinary terminal Vim (no tmux)
+  Ctrl+Shift+F4   open Vim in a new shared tmux session
+
+Shared sessions use the first available name: debug-1, debug-2, and so on.
+The tmux status line starts with the session name, for example [debug-1].
+
+Tell Codex the displayed name to share the debugger session. From another
+terminal, the equivalent command is:
+
+  tmux attach-session -t debug-1
+
+Press Ctrl+B, then D to detach without closing Vim. Reattach with the command
+above. Exiting Vim normally ends its tmux session; F4 remains unchanged.
+
+Codex does not keep a persistent tmux client attached, so there is no need to
+ask it to disconnect. It reads or controls the named session only when asked.
+By default it captures the visible terminal viewport, not the complete Vim
+buffer or scrollback; a very large file is not copied into the conversation.
+Use ordinary F4 whenever the Vim session should remain private.
+
 COMMAND-LINE FALLBACK
 ---------------------
 

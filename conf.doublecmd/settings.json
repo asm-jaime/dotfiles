@@ -51,6 +51,15 @@
       ]
     },
     {
+      "shortcut": "Ctrl+Shift+F4",
+      "command": "cm_ExecuteScript",
+      "params": [
+        "${DOUBLECMD_CONFIG_DIR}/scripts/open-debug-vim.lua",
+        "${DOUBLECMD_CONFIG_DIR}/scripts/open-debug-vim.sh",
+        "%\"0%p0"
+      ]
+    },
+    {
       "shortcut": "Ctrl+Shift+F",
       "command": "cm_Search",
       "replace_command": true
