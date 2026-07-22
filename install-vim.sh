@@ -49,6 +49,23 @@ install_vim_package() {
   printf 'installed: %s at %s\n' "$name" "$target"
 }
 
+install_apt_package() {
+  local package=$1
+
+  if dpkg-query -W -f='${Status}' "$package" 2>/dev/null \
+      | grep -qx 'install ok installed'; then
+    printf 'already installed: %s\n' "$package"
+    return
+  fi
+
+  command -v sudo >/dev/null 2>&1 || {
+    printf 'cannot install %s: sudo is not installed\n' "$package" >&2
+    return 1
+  }
+
+  sudo apt-get install -y "$package"
+}
+
 install_dotnet_tool() {
   local package=$1
   local executable=$2
@@ -70,6 +87,20 @@ mkdir -p -- "$HOME/.vim/undo" "$HOME/.vim/view"
 link_config "$repo_dir/conf.bash/.bashrc" "$HOME/.bashrc"
 link_config "$repo_dir/init.vim" "$HOME/.vimrc"
 
+install_apt_package ripgrep
+install_vim_package \
+  FZF \
+  https://github.com/junegunn/fzf.git \
+  "$HOME/.vim/pack/dotfiles/start/fzf"
+"$HOME/.vim/pack/dotfiles/start/fzf/install" --bin
+mkdir -p -- "$HOME/.local/bin"
+link_config \
+  "$HOME/.vim/pack/dotfiles/start/fzf/bin/fzf" \
+  "$HOME/.local/bin/fzf"
+install_vim_package \
+  FZF-Vim \
+  https://github.com/junegunn/fzf.vim.git \
+  "$HOME/.vim/pack/dotfiles/start/fzf-vim"
 install_vim_package \
   ALE \
   https://github.com/dense-analysis/ale.git \

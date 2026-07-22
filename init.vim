@@ -107,6 +107,40 @@ let g:netrw_chgwin = 1
 let g:netrw_dirhistmax = 0
 nnoremap <silent> <leader><leader>f :leftabove 20vsplit<CR>:edit .<CR>
 
+" Fast, project-wide navigation. Resolve the Git root explicitly because
+" autochdir otherwise makes searches start beside the current file.
+function! s:ProjectRoot() abort
+  let start_dir = expand('%:p:h')
+  if empty(start_dir) || !isdirectory(start_dir)
+    let start_dir = getcwd()
+  endif
+
+  let root = system('git -C ' . shellescape(start_dir)
+        \ . ' rev-parse --show-toplevel 2>/dev/null')
+  if v:shell_error
+    return start_dir
+  endif
+  return substitute(root, '\n\+$', '', '')
+endfunction
+
+function! s:FindProjectFile() abort
+  call fzf#vim#files(s:ProjectRoot(),
+        \ fzf#vim#with_preview({'options': ['--layout=reverse']}), 0)
+endfunction
+
+function! s:SearchProject() abort
+  let command = 'rg --column --line-number --no-heading --color=always'
+        \ . ' --smart-case -- '
+  call fzf#vim#grep2(command, '',
+        \ fzf#vim#with_preview({'dir': s:ProjectRoot()}), 0)
+endfunction
+
+command! ProjectFiles call <SID>FindProjectFile()
+command! ProjectSearch call <SID>SearchProject()
+nnoremap <silent> <C-p> :ProjectFiles<CR>
+nnoremap <silent> <leader>g :ProjectSearch<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+
 " ALE runs linters and fixers. Missing executables are skipped, so each
 " language stays optional.
 let g:ale_linters = {
@@ -157,9 +191,11 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
       return
     endif
 
-    nnoremap <silent> <buffer> <C-]> :<C-u>call <SID>CSharpNavigate(0)<CR>
-    nnoremap <silent> <buffer> <C-S-]> :<C-u>call <SID>CSharpNavigate(1)<CR>
-    nnoremap <silent> <buffer> g<C-]> :<C-u>call <SID>CSharpNavigate(1)<CR>
+    nnoremap <silent> <buffer> <C-]> :<C-u>call <SID>CSharpNavigate(0, 'LspGotoDefinition')<CR>
+    nnoremap <silent> <buffer> <C-S-]> :<C-u>call <SID>CSharpNavigate(1, 'LspGotoDefinition')<CR>
+    nnoremap <silent> <buffer> g<C-]> :<C-u>call <SID>CSharpNavigate(1, 'LspGotoDefinition')<CR>
+    nnoremap <silent> <buffer> <C-F12> :<C-u>call <SID>CSharpNavigate(0, 'LspGotoImpl')<CR>
+    nnoremap <silent> <buffer> <leader>i :<C-u>call <SID>CSharpNavigate(0, 'LspGotoImpl')<CR>
   endfunction
 
   function! s:FinishQueuedCSharpNavigation(request, timer) abort
@@ -174,9 +210,7 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
     if LspServerReady()
       call timer_stop(a:timer)
       call cursor(a:request.line, a:request.column)
-      execute (a:request.open_in_tab
-            \ ? 'tab LspGotoDefinition'
-            \ : 'LspGotoDefinition')
+      execute (a:request.open_in_tab ? 'tab ' : '') . a:request.command
       return
     endif
 
@@ -187,11 +221,9 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
     endif
   endfunction
 
-  function! s:CSharpNavigate(open_in_tab) abort
+  function! s:CSharpNavigate(open_in_tab, command) abort
     if LspServerReady()
-      execute (a:open_in_tab
-            \ ? 'tab LspGotoDefinition'
-            \ : 'LspGotoDefinition')
+      execute (a:open_in_tab ? 'tab ' : '') . a:command
       return
     endif
 
@@ -200,6 +232,7 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
           \ 'attempts': 0,
           \ 'buffer': bufnr(),
           \ 'column': col('.'),
+          \ 'command': a:command,
           \ 'line': line('.'),
           \ 'open_in_tab': a:open_in_tab,
           \ 'window': win_getid(),

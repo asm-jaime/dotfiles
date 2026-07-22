@@ -102,8 +102,11 @@ for binding in settings.get("hotkeys", []):
     shortcut = binding["shortcut"]
     control = binding.get("control")
     for hotkey in list(main_form.findall("Hotkey")):
-        if (hotkey.findtext("Shortcut") == shortcut
-                and hotkey.findtext("Control") == control):
+        same_control = hotkey.findtext("Control") == control
+        replaces_shortcut = hotkey.findtext("Shortcut") == shortcut
+        replaces_command = (binding.get("replace_command", False)
+                            and hotkey.findtext("Command") == binding["command"])
+        if same_control and (replaces_shortcut or replaces_command):
             main_form.remove(hotkey)
     hotkey = ET.SubElement(main_form, "Hotkey")
     set_child(hotkey, "Shortcut", shortcut)

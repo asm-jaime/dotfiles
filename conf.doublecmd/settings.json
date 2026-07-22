@@ -49,6 +49,11 @@
         "${DOUBLECMD_CONFIG_DIR}/scripts/copy-active-path.lua",
         "%\"0%D"
       ]
+    },
+    {
+      "shortcut": "Ctrl+Shift+F",
+      "command": "cm_Search",
+      "replace_command": true
     }
   ]
 }

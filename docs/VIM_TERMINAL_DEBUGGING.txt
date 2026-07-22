@@ -55,11 +55,20 @@ Navigation is provided by Vim9 LSP, csharp-ls, and Roslyn; no tags file is neede
 Start Vim in or below the directory containing the solution or project.
 
   Ctrl+]         go to the definition in the current Vim window
+  Ctrl+F12       list or open implementations
+  ,i             list or open implementations (terminal-safe fallback)
   Ctrl+Shift+]   go to the definition in a new Vim tab, when the terminal
                  reports Ctrl+Shift+] as a distinct key
   g Ctrl+]       always go to the definition in a new Vim tab
   Ctrl+T         jump back after current-window navigation
   :tabclose      close a definition opened in a new tab
+
+FAST PROJECT SEARCH
+-------------------
+
+  Ctrl+P         fuzzy project files
+  ,g             live project text search
+  ,b             open buffers
 
 The language server reads the current solution and tracks saved source changes,
 so navigation updates after a method is renamed. A definition request made
