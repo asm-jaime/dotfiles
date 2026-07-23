@@ -12,10 +12,6 @@ SETUP
   NetCoreDbg:  ~/.local/bin/netcoredbg
   Project:     .vimspector.json in the project root
 
-Build the Debug assemblies before debugging:
-
-  dotnet build Tanks.sln -c Debug
-
 DEBUG ONE NUNIT TEST
 --------------------
 
@@ -57,21 +53,35 @@ Start Vim in or below the directory containing the solution or project.
   Ctrl+]         go to the definition in the current Vim window
   Ctrl+F12       list or open implementations
   ,i             list or open implementations (terminal-safe fallback)
+  Shift+F12      list all references/usages of the variable, method, or class
+  ,r             list all references/usages (terminal-safe fallback)
   Ctrl+Shift+]   go to the definition in a new Vim tab, when the terminal
                  reports Ctrl+Shift+] as a distinct key
   g Ctrl+]       always go to the definition in a new Vim tab
   Ctrl+T         jump back after current-window navigation
   :tabclose      close a definition opened in a new tab
 
+References open in a list below the source.  Use j/k to select a usage, Enter
+to open it, and q to close the list.  :lclose also closes it from any window.
+
 FAST PROJECT SEARCH
 -------------------
 
-  Ctrl+P         fuzzy project files
-  ,g             live project text search
-  ,b             open buffers
+  Ctrl+P             fuzzy project files
+  Alt+Shift+F        search text in every project file type
+  ,b                 open buffers
+
+To search only selected file types, supply a ripgrep glob:
+
+  :ProjectSearch *.cs              C# files only
+  :ProjectSearch *.py              Python files only
+  :ProjectSearch *.{cs,csproj}     C# source and project files
+
+The picker opens immediately; type to search live.  Esc (or Ctrl+C) closes it,
+and Enter opens the selected result.
 
 The language server reads the current solution and tracks saved source changes,
-so navigation updates after a method is renamed. A definition request made
+so navigation updates after a method is renamed. A navigation request made
 during server startup is queued automatically. Use :LspServer show status to
 check the server or :LspServer restart if a request ever becomes stuck.
 
@@ -86,7 +96,7 @@ VARIABLES AND WATCHES
   Enter or Tab       expand or collapse an object
   K                  show the complete value and type
   :VimspectorWatch x add expression x to Watches
-  Delete             remove the selected watch
+  dd                 remove the selected watch
   Ctrl+Enter / ,Enter change a value when NetCoreDbg permits it
 
 VIM AND TERMINAL KEYS

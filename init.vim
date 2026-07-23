@@ -46,6 +46,13 @@ augroup END
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-c> <C-c>
 
+" FZF is a terminal job, so it must receive Escape itself to cancel.  Override
+" the general terminal mapping only in FZF buffers.
+augroup dotfiles_fzf_terminal
+  autocmd!
+  autocmd FileType fzf tnoremap <silent> <buffer> <Esc> <Esc>
+augroup END
+
 " Desktop-style copy/paste. In terminal mode these keys remain untouched, so
 " Ctrl+C interrupts the job and the terminal emulator owns Ctrl+Shift+V.
 if has('clipboard')
@@ -125,21 +132,48 @@ endfunction
 
 function! s:FindProjectFile() abort
   call fzf#vim#files(s:ProjectRoot(),
-        \ fzf#vim#with_preview({'options': ['--layout=reverse']}), 0)
+        \ fzf#vim#with_preview({
+        \   'options': [
+        \     '--layout=reverse',
+        \     '--header', 'Esc: close | Enter: open',
+        \   ],
+        \ }), 0)
 endfunction
 
-function! s:SearchProject() abort
+function! s:SearchProject(file_glob) abort
   let command = 'rg --column --line-number --no-heading --color=always'
-        \ . ' --smart-case -- '
+        \ . ' --smart-case'
+  if !empty(a:file_glob)
+    let command .= ' --glob ' . fzf#shellescape(a:file_glob)
+  endif
+  let command .= ' -- '
   call fzf#vim#grep2(command, '',
-        \ fzf#vim#with_preview({'dir': s:ProjectRoot()}), 0)
+        \ fzf#vim#with_preview({
+        \   'dir': s:ProjectRoot(),
+        \   'options': [
+        \     '--layout=reverse',
+        \     '--header', 'Esc: close | Enter: open',
+        \   ],
+        \ }), 0)
 endfunction
 
 command! ProjectFiles call <SID>FindProjectFile()
-command! ProjectSearch call <SID>SearchProject()
+command! -nargs=? ProjectSearch call <SID>SearchProject(<q-args>)
 nnoremap <silent> <C-p> :ProjectFiles<CR>
-nnoremap <silent> <leader>g :ProjectSearch<CR>
+silent! nunmap <leader>g
+silent! nunmap <C-M-S-F>
+nnoremap <silent> <M-S-f> :ProjectSearch<CR>
+" GNOME Terminal sends Alt+Shift+F as a legacy Escape-prefixed key even when
+" Vim requests modifyOtherKeys.  Match that real byte sequence as a fallback.
+nnoremap <silent> <Esc>F :ProjectSearch<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
+
+" Location/quickfix lists are ordinary Vim windows.  Give them an obvious,
+" local close key without changing q anywhere else.
+augroup dotfiles_list_windows
+  autocmd!
+  autocmd FileType qf nnoremap <silent> <buffer> q :close<CR>
+augroup END
 
 " ALE runs linters and fixers. Missing executables are skipped, so each
 " language stays optional.
@@ -196,6 +230,8 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
     nnoremap <silent> <buffer> g<C-]> :<C-u>call <SID>CSharpNavigate(1, 'LspGotoDefinition')<CR>
     nnoremap <silent> <buffer> <C-F12> :<C-u>call <SID>CSharpNavigate(0, 'LspGotoImpl')<CR>
     nnoremap <silent> <buffer> <leader>i :<C-u>call <SID>CSharpNavigate(0, 'LspGotoImpl')<CR>
+    nnoremap <silent> <buffer> <S-F12> :<C-u>call <SID>CSharpNavigate(0, 'LspShowReferences')<CR>
+    nnoremap <silent> <buffer> <leader>r :<C-u>call <SID>CSharpNavigate(0, 'LspShowReferences')<CR>
   endfunction
 
   function! s:FinishQueuedCSharpNavigation(request, timer) abort
@@ -227,7 +263,7 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
       return
     endif
 
-    echo 'C# language server is starting; definition request queued'
+    echo 'C# language server is starting; navigation request queued'
     let request = {
           \ 'attempts': 0,
           \ 'buffer': bufnr(),
