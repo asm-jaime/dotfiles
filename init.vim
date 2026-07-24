@@ -199,6 +199,10 @@ nnoremap <silent> <leader>ad :ALEDetail<CR>
 " Use the Vim9 LSP client for semantic C# navigation. Keep its completion,
 " diagnostics, and highlighting disabled because ALE already owns that UI.
 if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
+  " Keep ordinary editing responsive. The C# language server is enabled on
+  " demand by the navigation mappings below.
+  let g:lsp_enable = v:false
+
   " GUI launchers do not necessarily inherit the interactive shell's
   " DOTNET_ROOT.  Global-tool apphosts such as csharp-ls need it when .NET is
   " installed outside the platform default (for example, /opt/dotnet).
@@ -263,6 +267,7 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
       return
     endif
 
+    call g:LspEnable()
     echo 'C# language server is starting; navigation request queued'
     let request = {
           \ 'attempts': 0,
