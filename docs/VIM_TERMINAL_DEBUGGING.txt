@@ -69,6 +69,7 @@ FAST PROJECT SEARCH
 
   Ctrl+P             fuzzy project files
   Alt+Shift+F        search text in every project file type
+  ,s                 semantic project search in natural language
   ,b                 open buffers
 
 To search only selected file types, supply a ripgrep glob:
@@ -79,6 +80,17 @@ To search only selected file types, supply a ripgrep glob:
 
 The picker opens immediately; type to search live.  Esc (or Ctrl+C) closes it,
 and Enter opens the selected result.
+
+Semantic search uses the project grepai index. Enter a description such as
+"where player actions are validated". Results open in Vim's quickfix list;
+use j/k to select a result, Enter to open it, and q to close the list.
+
+Initialize and start the background index once from a project:
+
+  grepai-project-init
+
+The configured multilingual embedding model accepts queries in many human
+languages. Exact identifiers are still best searched with Alt+Shift+F.
 
 The language server reads the current solution and tracks saved source changes,
 so navigation updates after a method is renamed. A navigation request made

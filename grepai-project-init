@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+project_dir=${1:-$PWD}
+project_dir=$(cd -- "$project_dir" && pwd)
+
+if git_root=$(git -C "$project_dir" rev-parse --show-toplevel 2>/dev/null); then
+  project_dir=$git_root
+fi
+
+command -v grepai >/dev/null 2>&1 || {
+  printf 'grepai is not installed; run install-grepai.sh first\n' >&2
+  exit 1
+}
+
+if [[ ! -f $project_dir/.grepai/config.yaml ]]; then
+  (
+    cd -- "$project_dir"
+    grepai init --provider ollama --backend qdrant --yes
+  )
+  sed -i \
+    -e 's/model: nomic-embed-text$/model: nomic-embed-text-v2-moe/' \
+    -e 's/size: 512$/size: 256/' \
+    -e 's/overlap: 50$/overlap: 32/' \
+    "$project_dir/.grepai/config.yaml"
+  printf 'configured multilingual embeddings in %s\n' \
+    "$project_dir/.grepai/config.yaml"
+else
+  printf 'already initialized: %s\n' "$project_dir"
+fi
+
+(
+  cd -- "$project_dir"
+  set +e
+  watch_output=$(grepai watch --background 2>&1)
+  watch_status=$?
+  set -e
+  printf '%s\n' "$watch_output"
+
+  if (( watch_status != 0 )); then
+    if grepai watch --status >/dev/null 2>&1; then
+      printf 'grepai watcher is running in the background\n'
+    else
+      exit "$watch_status"
+    fi
+  fi
+)

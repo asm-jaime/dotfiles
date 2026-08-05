@@ -31,6 +31,24 @@ sudo apt install vim-gtk3 clang clang-tidy cppcheck pylint shellcheck
 
 Running `install-vim.sh` again leaves existing package checkouts in place.
 
+## Semantic project search
+
+Install the local search stack, then initialize each project that should be
+searchable:
+
+```sh
+./install-grepai.sh
+cd /path/to/a/project
+grepai-project-init
+```
+
+This installs grepai, Ollama with the multilingual
+`nomic-embed-text-v2-moe` embedding model, and a localhost-only Qdrant vector
+store. `grepai-project-init` creates a project index and starts its incremental
+watcher. In Vim, press `,s` and describe the code you want to find; results
+open in the quickfix list. Codex is connected through MCP automatically.
+Claude Code is connected too when its CLI is installed.
+
 ## Double Commander
 
 Start Double Commander once if this is a new installation. Then close it and
@@ -75,6 +93,8 @@ NetCoreDbg/Vimspector workflow and shortcut reference.
 - `init.vim` — complete Vim configuration
 - `conf.bash/.bashrc` — complete interactive Bash configuration
 - `install-vim.sh` — safe Bash/Vim linker and Vim package installer
+- `install-grepai.sh` — local semantic-search stack and agent integration
+- `grepai-project-init` — initialize and watch one project index
 - `install-doublecmd.sh` — optional focused Double Commander configurator
 - `install-totalcmd-shortcuts.sh` — focused Total Commander shortcut merger
 - `conf.doublecmd/settings.json` — portable Double Commander preferences
