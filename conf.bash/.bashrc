@@ -86,3 +86,4 @@ fi
 if [ -r "$HOME/.bashrc.local" ]; then
   . "$HOME/.bashrc.local"
 fi
+export BROWSER=/usr/bin/firefox
