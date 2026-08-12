@@ -53,21 +53,17 @@ augroup dotfiles_fzf_terminal
   autocmd FileType fzf tnoremap <silent> <buffer> <Esc> <Esc>
 augroup END
 
-" Desktop-style copy/paste. In terminal mode these keys remain untouched, so
+" Keep Vim's registers separate from the system clipboard. Deletes, changes,
+" yanks, and p/P use Vim's internal registers; only these explicit mappings
+" cross the clipboard boundary. In terminal mode the keys remain untouched, so
 " Ctrl+C interrupts the job and the terminal emulator owns Ctrl+Shift+V.
+set clipboard=
 if has('clipboard')
-  set clipboard^=unnamedplus
   xnoremap <C-c> "+y
   nnoremap <C-S-v> "+p
   inoremap <C-S-v> <C-r>+
   cnoremap <C-S-v> <C-r>+
   xnoremap <C-S-v> "+p
-else
-  xnoremap <C-c> y
-  nnoremap <C-S-v> p
-  inoremap <C-S-v> <C-r>"
-  cnoremap <C-S-v> <C-r>"
-  xnoremap <C-S-v> p
 endif
 
 " Persistent undo and view state.
