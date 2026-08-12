@@ -7,6 +7,7 @@
   "values": {
     "Behaviours/LynxLike": true,
     "Behaviours/ShowSystemFiles": true,
+    "Behaviours/AutoFillColumns": true,
     "Tools/Editor/Path": "/usr/bin/vim",
     "Tools/Editor/Parameters": "%p",
     "Tools/Editor/RunInTerminal": true,
