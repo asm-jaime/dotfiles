@@ -23,6 +23,22 @@
     "QuickSearch/Case": 1,
     "QuickFilter/AutoHide": true
   },
+  "file_associations": [
+    {
+      "name": "Shell scripts",
+      "icon": "application-x-shellscript",
+      "extensions": [
+        "sh"
+      ],
+      "actions": [
+        {
+          "name": "Open",
+          "command": "{!TERMSTAYOPEN}",
+          "params": "%p"
+        }
+      ]
+    }
+  ],
   "hotkeys": [
     {
       "shortcut": "Ctrl+C",
