@@ -41,10 +41,11 @@ run:
 ```
 
 The portable preferences live in `conf.doublecmd/settings.json`. The installer
-merges that one safe file into Double Commander's native `doublecmd.xml` and
-`shortcuts.scf`, backing both up first. It configures terminal Vim, safe file
-operation defaults, search behavior, desktop-style Ctrl+C/V/X file-panel
-hotkeys, and these path-copy shortcuts:
+merges that one safe file into Double Commander's native `doublecmd.xml`,
+`shortcuts.scf`, and `extassoc.xml`, backing them up first. It configures
+terminal Vim, safe file-operation defaults, search behavior, desktop-style
+Ctrl+C/V/X file-panel hotkeys, and opens `.sh` files in a terminal that stays
+open after the script finishes. It also configures these path-copy shortcuts:
 
 - `Ctrl+Shift+C`: copy the selected file or directory with its full path
 - `Ctrl+Shift+P`: copy the current directory of the active panel
