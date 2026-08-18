@@ -166,11 +166,7 @@ command! ProjectFiles call <SID>FindProjectFile()
 command! -nargs=? ProjectSearch call <SID>SearchProject(<q-args>)
 nnoremap <silent> <C-p> :ProjectFiles<CR>
 silent! nunmap <leader>g
-silent! nunmap <C-M-S-F>
-nnoremap <silent> <M-S-f> :ProjectSearch<CR>
-" GNOME Terminal sends Alt+Shift+F as a legacy Escape-prefixed key even when
-" Vim requests modifyOtherKeys.  Match that real byte sequence as a fallback.
-nnoremap <silent> <Esc>F :ProjectSearch<CR>
+nnoremap <silent> <leader>f :ProjectSearch<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 
 " Location/quickfix lists are ordinary Vim windows.  Give them an obvious,
