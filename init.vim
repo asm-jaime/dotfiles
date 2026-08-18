@@ -16,6 +16,15 @@ highlight PmenuThumb   ctermfg=black
 
 let mapleader = ','
 
+" Encoding. Everything here is UTF-8, so nothing else is guessed. A service log
+" with one truncated character is still read as UTF-8: the broken bytes show as
+" <xx> and the Russian text around them stays readable. Vim only falls back to
+" latin1 when latin1 is in this list, and that turns every Cyrillic letter into
+" mojibake. A real Windows-1251 file, if one ever turns up: :e ++enc=cp1251
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8
+
 " Files, buffers, and windows.
 set autochdir
 set number
@@ -468,16 +477,25 @@ function! s:DebugNUnitTestUnderCursor() abort
     return
   endif
 
-  let attribute_line = searchpos('^\s*\[Test\]\s*$', 'bcnW')[0]
+  " NUnit marks a test with [Test], but also with [TestCase(...)],
+  " [TestCaseSource(...)] or [Theory], stacked one per line above the method.
+  let attribute_line = searchpos(
+        \ '^\s*\[\s*\%(Test\|TestCase\|TestCaseSource\|Theory\)\>',
+        \ 'bcnW')[0]
   if attribute_line == 0
-    echoerr 'No [Test] method found at the cursor'
+    echoerr 'No [Test], [TestCase], [TestCaseSource] or [Theory] method found at the cursor'
     return
   endif
 
   let method_line = 0
   let test_name = ''
   for line_number in range(attribute_line + 1, min([line('$'), attribute_line + 20]))
-    let candidate = s:CSharpMethodName(getline(line_number))
+    let line_text = getline(line_number)
+    " Further stacked attributes, [TestCase("a b")] included, are not methods.
+    if line_text =~# '^\s*\['
+      continue
+    endif
+    let candidate = s:CSharpMethodName(line_text)
     if !empty(candidate)
       let method_line = line_number
       let test_name = candidate
