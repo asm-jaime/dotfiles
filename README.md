@@ -57,6 +57,8 @@ paths are neither stored nor copied.
 
 - `Esc` in a Vim terminal: return to Vim Normal mode
 - `Ctrl+C` in Visual mode: copy the selection
+- `Ctrl+V` in Normal mode: start Visual block (column) selection
+- `Ctrl+Shift+V` in Insert mode: paste from the system clipboard (handled by the terminal)
 - `Ctrl+C` in terminal mode: interrupt the terminal process
 - `,,f`: open the netrw file browser
 - `,an` / `,ap`: next / previous ALE diagnostic

@@ -69,10 +69,14 @@ augroup END
 set clipboard=
 if has('clipboard')
   xnoremap <C-c> "+y
-  nnoremap <C-S-v> "+p
-  inoremap <C-S-v> <C-r>+
-  cnoremap <C-S-v> <C-r>+
-  xnoremap <C-S-v> "+p
+  " Terminal Vim can alias Ctrl+Shift+V to Ctrl+V. Let the terminal handle
+  " clipboard paste so Ctrl+V keeps its native Visual block behavior.
+  if has('gui_running')
+    nnoremap <C-S-v> "+p
+    inoremap <C-S-v> <C-r><C-p>+
+    cnoremap <C-S-v> <C-r>+
+    xnoremap <C-S-v> "+p
+  endif
 endif
 
 " Persistent undo and view state.
