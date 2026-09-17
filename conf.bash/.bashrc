@@ -49,6 +49,12 @@ unset user_bin
 unset -f __dotfiles_path_prepend
 export PATH
 
+# .NET lives in /opt/dotnet, which apphosts do not probe by default.
+# Without this, tools like csharp-ls fail with "You must install .NET to run this application."
+if [ -d /opt/dotnet ]; then
+  export DOTNET_ROOT=/opt/dotnet
+fi
+
 if [ -d /usr/local/cuda-12.4/lib64 ]; then
   case ":${LD_LIBRARY_PATH:-}:" in
     *:/usr/local/cuda-12.4/lib64:*) ;;
