@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+# ccr - pull Claude Code assistant responses out of the current session transcript.
+#
+#   ccr          open the last response in vim (visual-select, then "+y to copy)
+#   ccr 3        open the 3rd-latest response
+#   ccr -c       copy the last response straight to the X clipboard
+#   ccr -c 3     copy the 3rd-latest response
+#   ccr -l       list the last 20 responses with their index and first line
+#
+# Responses come from ~/.claude/projects/<slugged-cwd>/<newest>.jsonl, so run it
+# from the same directory the Claude Code session was started in.
+set -euo pipefail
+
+mode=open
+nth=1
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -c) mode=clip ;;
+    -l) mode=list ;;
+    -h|--help) sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    [0-9]*) nth=$1 ;;
+    *) echo "ccr: unknown argument '$1'" >&2; exit 2 ;;
+  esac
+  shift
+done
+
+slug=$(printf '%s' "$PWD" | sed 's#[/.]#-#g')
+dir="$HOME/.claude/projects/$slug"
+[ -d "$dir" ] || { echo "ccr: no transcripts for $PWD ($dir)" >&2; exit 1; }
+
+transcript=$(ls -t "$dir"/*.jsonl 2>/dev/null | head -1)
+[ -n "$transcript" ] || { echo "ccr: no .jsonl transcript in $dir" >&2; exit 1; }
+
+extract() {
+  MODE="$1" NTH="$2" python3 - "$transcript" <<'PY'
+import json, os, sys
+
+mode, nth = os.environ["MODE"], int(os.environ["NTH"])
+responses = []
+with open(sys.argv[1], encoding="utf-8") as fh:
+    for line in fh:
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            rec = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if rec.get("type") != "assistant":
+            continue
+        content = rec.get("message", {}).get("content")
+        if not isinstance(content, list):
+            continue
+        text = "\n".join(b.get("text", "") for b in content if b.get("type") == "text").strip()
+        if text:
+            responses.append(text)
+
+if not responses:
+    sys.exit("ccr: no assistant text found in transcript")
+
+if mode == "list":
+    for i, text in enumerate(reversed(responses[-20:]), 1):
+        print(f"{i:3}  {text.splitlines()[0][:90]}")
+    sys.exit(0)
+
+if nth > len(responses):
+    sys.exit(f"ccr: only {len(responses)} responses in this session")
+sys.stdout.write(responses[-nth])
+PY
+}
+
+case "$mode" in
+  list) extract list "$nth" ;;
+  clip)
+    if command -v wl-copy >/dev/null 2>&1; then
+      extract open "$nth" | wl-copy
+    elif command -v xclip >/dev/null 2>&1; then
+      extract open "$nth" | xclip -selection clipboard
+    elif command -v xsel >/dev/null 2>&1; then
+      extract open "$nth" | xsel --clipboard --input
+    elif command -v pbcopy >/dev/null 2>&1; then
+      extract open "$nth" | pbcopy
+    else
+      echo "ccr: no clipboard tool found (install wl-clipboard, xclip or xsel)" >&2
+      exit 1
+    fi
+    echo "ccr: response $nth copied to clipboard"
+    ;;
+  open)
+    tmp=$(mktemp "${TMPDIR:-/tmp}/ccr-XXXXXX.md")
+    trap 'rm -f "$tmp"' EXIT
+    extract open "$nth" > "$tmp"
+    editor=${EDITOR:-$(command -v vim || command -v nvim || command -v less)}
+    case "$editor" in
+      *vim) "$editor" -c 'setlocal nomodifiable' "$tmp" ;;
+      *) "$editor" "$tmp" ;;
+    esac
+    ;;
+esac

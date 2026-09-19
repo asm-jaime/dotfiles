@@ -93,3 +93,16 @@ if [ -r "$HOME/.bashrc.local" ]; then
   . "$HOME/.bashrc.local"
 fi
 export BROWSER=/usr/bin/firefox
+
+# >>> grok installer >>>  (skipped on machines without grok)
+if [[ -d "$HOME/.grok/bin" ]]; then
+  export PATH="$HOME/.grok/bin:$PATH"
+  [[ -r "$HOME/.grok/completions/bash/grok.bash" ]] && source "$HOME/.grok/completions/bash/grok.bash"
+fi
+# <<< grok installer <<<
+
+# >>> ccr (Claude Code response grabber) >>>
+[ -d "$HOME/.local/bin" ] && case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) PATH="$HOME/.local/bin:$PATH" ;; esac
+alias ccc='ccr -c'   # copy last response to clipboard
+alias ccl='ccr -l'   # list recent responses
+# <<< ccr <<<

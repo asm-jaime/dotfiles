@@ -73,11 +73,36 @@ paths are neither stored nor copied.
 See [Vim terminal debugging](docs/VIM_TERMINAL_DEBUGGING.txt) for the concise
 NetCoreDbg/Vimspector workflow and shortcut reference.
 
+## ccr — grab Claude Code answers
+
+`conf.bash/bin/ccr` pulls assistant responses out of the current Claude Code
+session transcript, so text can be selected with the keyboard instead of the
+mouse.
+
+```sh
+cd ~/dotfiles
+./install-bash.sh      # links ~/.bashrc and ~/.local/bin/ccr
+```
+
+```sh
+ccr          # last response opens in $EDITOR (vim: v to select, "+y to copy)
+ccr 3        # third-latest response
+ccr -c       # last response straight to the clipboard (alias: ccc)
+ccr -l       # list the last 20 responses with their index (alias: ccl)
+```
+
+Run it from the directory the Claude Code session was started in — transcripts
+live in `~/.claude/projects/<slugged-cwd>/`. Inside Claude Code itself, prefix
+with `!`, as in `!ccr -c`; the editor mode needs its own terminal tab. Needs
+python3, plus `wl-copy`, `xclip` or `xsel` for `-c`.
+
 ## Layout
 
 - `init.vim` — complete Vim configuration
 - `conf.bash/.bashrc` — complete interactive Bash configuration
 - `install-vim.sh` — safe Bash/Vim linker and Vim package installer
+- `install-bash.sh` — links `~/.bashrc` and the `ccr` helper into `~/.local/bin`
+- `conf.bash/bin/ccr` — Claude Code response extractor
 - `install-doublecmd.sh` — optional focused Double Commander configurator
 - `install-totalcmd-shortcuts.sh` — focused Total Commander shortcut merger
 - `conf.doublecmd/settings.json` — portable Double Commander preferences
