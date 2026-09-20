@@ -109,6 +109,9 @@ install_vim_package \
   LSP \
   https://github.com/yegappan/lsp.git \
   "$HOME/.vim/pack/dotfiles/start/lsp"
+link_config \
+  "$repo_dir/vim-pack/csharp-ls-metadata" \
+  "$HOME/.vim/pack/dotfiles/start/csharp-ls-metadata"
 install_dotnet_tool csharp-ls csharp-ls
 install_vim_package \
   Vimspector \

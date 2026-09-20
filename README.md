@@ -19,7 +19,8 @@ cd ~/dotfiles
 ```
 
 The script creates `~/.bashrc` and `~/.vimrc` links, Vim's undo/view
-directories, and installs ALE and Vimspector in Vim's native package layout.
+directories, and installs ALE, the Vim9 LSP client, csharp-ls metadata
+decompile support, and Vimspector in Vim's native package layout.
 Existing configuration files are moved to a timestamped directory under
 `~/.dotfiles-backup`. Start a new shell after installation.
 

@@ -234,13 +234,13 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
       return
     endif
 
-    nnoremap <silent> <buffer> <C-]> :<C-u>call <SID>CSharpNavigate(0, 'LspGotoDefinition')<CR>
-    nnoremap <silent> <buffer> <C-S-]> :<C-u>call <SID>CSharpNavigate(1, 'LspGotoDefinition')<CR>
-    nnoremap <silent> <buffer> g<C-]> :<C-u>call <SID>CSharpNavigate(1, 'LspGotoDefinition')<CR>
-    nnoremap <silent> <buffer> <C-F12> :<C-u>call <SID>CSharpNavigate(0, 'LspGotoImpl')<CR>
-    nnoremap <silent> <buffer> <leader>i :<C-u>call <SID>CSharpNavigate(0, 'LspGotoImpl')<CR>
-    nnoremap <silent> <buffer> <S-F12> :<C-u>call <SID>CSharpNavigate(0, 'LspShowReferences')<CR>
-    nnoremap <silent> <buffer> <leader>r :<C-u>call <SID>CSharpNavigate(0, 'LspShowReferences')<CR>
+    nnoremap <silent> <buffer> <C-]> :<C-u>call <SID>CSharpNavigate(0, 'textDocument/definition')<CR>
+    nnoremap <silent> <buffer> <C-S-]> :<C-u>call <SID>CSharpNavigate(1, 'textDocument/definition')<CR>
+    nnoremap <silent> <buffer> g<C-]> :<C-u>call <SID>CSharpNavigate(1, 'textDocument/definition')<CR>
+    nnoremap <silent> <buffer> <C-F12> :<C-u>call <SID>CSharpNavigate(0, 'textDocument/implementation')<CR>
+    nnoremap <silent> <buffer> <leader>i :<C-u>call <SID>CSharpNavigate(0, 'textDocument/implementation')<CR>
+    nnoremap <silent> <buffer> <S-F12> :<C-u>call <SID>CSharpNavigate(0, 'textDocument/references')<CR>
+    nnoremap <silent> <buffer> <leader>r :<C-u>call <SID>CSharpNavigate(0, 'textDocument/references')<CR>
   endfunction
 
   function! s:FinishQueuedCSharpNavigation(request, timer) abort
@@ -255,7 +255,7 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
     if LspServerReady()
       call timer_stop(a:timer)
       call cursor(a:request.line, a:request.column)
-      execute (a:request.open_in_tab ? 'tab ' : '') . a:request.command
+      call <SID>CSharpGoto(a:request.open_in_tab, a:request.method)
       return
     endif
 
@@ -266,9 +266,23 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
     endif
   endfunction
 
-  function! s:CSharpNavigate(open_in_tab, command) abort
+  function! s:CSharpGoto(open_in_tab, method) abort
+    if exists('*CSharpLsGoto')
+      call CSharpLsGoto(a:open_in_tab, a:method)
+      return
+    endif
+    if a:method ==# 'textDocument/implementation'
+      execute (a:open_in_tab ? 'tab ' : '') . 'LspGotoImpl'
+    elseif a:method ==# 'textDocument/references'
+      LspShowReferences
+    else
+      execute (a:open_in_tab ? 'tab ' : '') . 'LspGotoDefinition'
+    endif
+  endfunction
+
+  function! s:CSharpNavigate(open_in_tab, method) abort
     if LspServerReady()
-      execute (a:open_in_tab ? 'tab ' : '') . a:command
+      call <SID>CSharpGoto(a:open_in_tab, a:method)
       return
     endif
 
@@ -278,7 +292,7 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
           \ 'attempts': 0,
           \ 'buffer': bufnr(),
           \ 'column': col('.'),
-          \ 'command': a:command,
+          \ 'method': a:method,
           \ 'line': line('.'),
           \ 'open_in_tab': a:open_in_tab,
           \ 'window': win_getid(),
@@ -294,7 +308,8 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
           \ 'name': 'csharp-ls',
           \ 'filetype': 'cs',
           \ 'path': expand('~/.dotnet/tools/csharp-ls'),
-          \ 'args': [],
+          \ 'args': ['--features', 'metadata-uris'],
+          \ 'workspaceConfig': {'csharp': {'useMetadataUris': v:true}},
           \ 'rootSearch': ['.git/'],
           \ 'syncInit': v:true,
           \}])

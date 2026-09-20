@@ -49,6 +49,8 @@ C# CODE NAVIGATION
 
 Navigation is provided by Vim9 LSP, csharp-ls, and Roslyn; no tags file is needed.
 Start Vim in or below the directory containing the solution or project.
+Ctrl+] on a NuGet or framework method (compiled DLL only) opens ILSpy
+decompiled C# under ~/.cache/csharp-ls-decompiled/; Ctrl+T jumps back.
 
   Ctrl+]         go to the definition in the current Vim window
   Ctrl+F12       list or open implementations
