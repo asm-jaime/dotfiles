@@ -229,6 +229,59 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
         \ 'showSignature': v:false,
         \}
 
+  let s:csharp_registered_projects = {}
+  let s:csharp_targets_by_file = {}
+  let s:csharp_pending_navigation = {}
+
+  function! s:RegisterCSharpLsp() abort
+    if !executable(expand('~/.dotnet/tools/csharp-ls'))
+      echoerr 'csharp-ls is missing; run install-vim.sh'
+      return 0
+    endif
+    let file = expand('%:p')
+    if has_key(s:csharp_targets_by_file, file)
+      let target = s:csharp_targets_by_file[file]
+    else
+      let resolver = expand('~/.vim/pack/dotfiles/start/csharp-ls-metadata/bin/resolve_project.py')
+      let command = 'python3 ' . shellescape(resolver) . ' ' . shellescape(file)
+      for project in values(s:csharp_registered_projects)
+        let command .= ' ' . shellescape(fnamemodify(project, ':h'))
+      endfor
+      let result = system(command)
+      if v:shell_error || empty(result)
+        echoerr 'C# project discovery failed: ' . result
+        return 0
+      endif
+      let target = json_decode(result)
+      if has_key(target, 'error')
+        echoerr target.error
+        return 0
+      endif
+      let s:csharp_targets_by_file[file] = target
+    endif
+
+    let key = target.project . ':' . target.marker
+    if has_key(s:csharp_registered_projects, key)
+      return 1
+    endif
+    let args = ['--features', 'metadata-uris']
+    if !empty(target.solution)
+      let args = ['--solution', target.solution] + args
+    endif
+    call LspAddServer([{
+          \ 'name': 'csharp-ls-' . strpart(sha256(key), 0, 12),
+          \ 'filetype': 'cs',
+          \ 'path': expand('~/.dotnet/tools/csharp-ls'),
+          \ 'args': args,
+          \ 'workspaceConfig': {'csharp': {'useMetadataUris': v:true}},
+          \ 'rootSearch': [target.marker],
+          \ 'runIfSearch': [target.marker],
+          \ 'syncInit': v:true,
+          \}])
+    let s:csharp_registered_projects[key] = target.project
+    return 1
+  endfunction
+
   function! s:SetUpCSharpLspMappings() abort
     if &filetype !=# 'cs'
       return
@@ -243,33 +296,45 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
     nnoremap <silent> <buffer> <leader>r :<C-u>call <SID>CSharpNavigate(0, 'textDocument/references')<CR>
   endfunction
 
+  function! s:StopQueuedCSharpNavigation(request, timer) abort
+    call timer_stop(a:timer)
+    if get(s:csharp_pending_navigation, a:request.buffer, -1) == a:timer
+      call remove(s:csharp_pending_navigation, a:request.buffer)
+    endif
+  endfunction
+
   function! s:FinishQueuedCSharpNavigation(request, timer) abort
     if !bufexists(a:request.buffer)
           \ || win_id2win(a:request.window) == 0
           \ || win_getid() != a:request.window
           \ || bufnr() != a:request.buffer
-      call timer_stop(a:timer)
+      call <SID>StopQueuedCSharpNavigation(a:request, a:timer)
+      return
+    endif
+
+    if line('.') != a:request.line || col('.') != a:request.column
+      call <SID>StopQueuedCSharpNavigation(a:request, a:timer)
       return
     endif
 
     if LspServerReady()
-      call timer_stop(a:timer)
       call cursor(a:request.line, a:request.column)
-      call <SID>CSharpGoto(a:request.open_in_tab, a:request.method)
-      return
+      if <SID>CSharpGoto(a:request.open_in_tab, a:request.method, 1)
+        call <SID>StopQueuedCSharpNavigation(a:request, a:timer)
+        return
+      endif
     endif
 
     let a:request.attempts += 1
-    if a:request.attempts >= 200
-      call timer_stop(a:timer)
-      echoerr 'C# language server did not become ready; use :LspServer show status'
+    if a:request.attempts >= 80
+      call <SID>StopQueuedCSharpNavigation(a:request, a:timer)
+      echoerr 'C# server returned no navigation result after 20 seconds; check :LspServer show status'
     endif
   endfunction
 
-  function! s:CSharpGoto(open_in_tab, method) abort
+  function! s:CSharpGoto(open_in_tab, method, quiet) abort
     if exists('*CSharpLsGoto')
-      call CSharpLsGoto(a:open_in_tab, a:method)
-      return
+      return CSharpLsGoto(a:open_in_tab, a:method, a:quiet)
     endif
     if a:method ==# 'textDocument/implementation'
       execute (a:open_in_tab ? 'tab ' : '') . 'LspGotoImpl'
@@ -278,16 +343,24 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
     else
       execute (a:open_in_tab ? 'tab ' : '') . 'LspGotoDefinition'
     endif
+    return 1
   endfunction
 
   function! s:CSharpNavigate(open_in_tab, method) abort
-    if LspServerReady()
-      call <SID>CSharpGoto(a:open_in_tab, a:method)
+    call g:LspEnable()
+    if !<SID>RegisterCSharpLsp()
+      return
+    endif
+    let server = lsp#lsp#Server()
+    if !empty(server) && !get(server, 'running', 0)
+      call g:LspDisable()
+      call g:LspEnable()
+    endif
+    if LspServerReady() && <SID>CSharpGoto(a:open_in_tab, a:method, 1)
       return
     endif
 
-    call g:LspEnable()
-    echo 'C# language server is starting; navigation request queued'
+    echo 'C# project is loading; navigation request queued'
     let request = {
           \ 'attempts': 0,
           \ 'buffer': bufnr(),
@@ -297,22 +370,16 @@ if isdirectory(expand('~/.vim/pack/dotfiles/start/lsp'))
           \ 'open_in_tab': a:open_in_tab,
           \ 'window': win_getid(),
           \}
-    call timer_start(100,
+    if has_key(s:csharp_pending_navigation, request.buffer)
+      call timer_stop(s:csharp_pending_navigation[request.buffer])
+    endif
+    let s:csharp_pending_navigation[request.buffer] = timer_start(250,
           \ function('<SID>FinishQueuedCSharpNavigation', [request]),
-          \ {'repeat': 200})
+          \ {'repeat': 80})
   endfunction
 
   augroup dotfiles_csharp_lsp
     autocmd!
-    autocmd User LspSetup call LspAddServer([{
-          \ 'name': 'csharp-ls',
-          \ 'filetype': 'cs',
-          \ 'path': expand('~/.dotnet/tools/csharp-ls'),
-          \ 'args': ['--features', 'metadata-uris'],
-          \ 'workspaceConfig': {'csharp': {'useMetadataUris': v:true}},
-          \ 'rootSearch': ['.git/'],
-          \ 'syncInit': v:true,
-          \}])
     autocmd FileType cs call <SID>SetUpCSharpLspMappings()
     " Apply again after loadview restores any obsolete buffer-local mappings.
     autocmd BufWinEnter *.cs call <SID>SetUpCSharpLspMappings()

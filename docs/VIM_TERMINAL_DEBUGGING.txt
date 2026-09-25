@@ -48,7 +48,7 @@ C# CODE NAVIGATION
 ------------------
 
 Navigation is provided by Vim9 LSP, csharp-ls, and Roslyn; no tags file is needed.
-Start Vim in or below the directory containing the solution or project.
+Open a C# file belonging to a project; Vim locates its project and solution.
 Ctrl+] on a NuGet or framework method (compiled DLL only) opens ILSpy
 decompiled C# under ~/.cache/csharp-ls-decompiled/; Ctrl+T jumps back.
 
@@ -82,10 +82,11 @@ To search only selected file types, supply a ripgrep glob:
 The picker opens immediately; type to search live.  Esc (or Ctrl+C) closes it,
 and Enter opens the selected result.
 
-The language server reads the current solution and tracks saved source changes,
-so navigation updates after a method is renamed. A navigation request made
-during server startup is queued automatically. Use :LspServer show status to
-check the server or :LspServer restart if a request ever becomes stuck.
+Vim finds the owning C# project and a solution containing it automatically,
+including linked C# files listed by a project. It tracks saved source changes,
+so navigation updates after a method is renamed. A request made during project
+loading is retried automatically. If the server exits, the next navigation
+starts it again. Use :LspServer show status to inspect the current server.
 
 Vim derives DOTNET_ROOT from the installed dotnet executable when a desktop
 launcher does not provide it. This is required for csharp-ls when .NET is

@@ -41,6 +41,14 @@
   ],
   "hotkeys": [
     {
+      "shortcut": "F3",
+      "command": "cm_View",
+      "params": [
+        "cursor=1",
+        "mode=text"
+      ]
+    },
+    {
       "shortcut": "Ctrl+C",
       "command": "cm_CopyToClipboard",
       "control": "Files Panel"

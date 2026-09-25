@@ -10,7 +10,6 @@ vim9script
 const CACHE_ROOT = $HOME .. '/.cache/csharp-ls-decompiled'
 var uriByPath: dict<string> = {}
 var materialized: dict<string> = {}
-var cachedServer: dict<any> = {}
 
 def Sanitize(name: string): string
   var cleaned = substitute(name, '[^A-Za-z0-9._-]\+', '_', 'g')
@@ -54,13 +53,9 @@ def LocationRange(loc: dict<any>): dict<any>
 enddef
 
 def FindCSharpLs(): dict<any>
-  if !cachedServer->empty() && cachedServer->get('ready', false)
-    return cachedServer
-  endif
   if exists('*lsp#lsp#Server')
     var current = lsp#lsp#Server()
-    if !current->empty() && current->get('name', '') == 'csharp-ls' && current->get('ready', false)
-      cachedServer = current
+    if !current->empty() && current->get('name', '') =~# '^csharp-ls-' && current->get('ready', false)
       return current
     endif
   endif
@@ -114,14 +109,16 @@ augroup csharp_ls_metadata
   autocmd BufReadPost *.cs OnDecompiledRead()
 augroup END
 
-def RewriteMetadata(lspserver: dict<any>, loc: dict<any>): bool
+def RewriteMetadata(lspserver: dict<any>, loc: dict<any>, quiet: bool): bool
   var uri = LocationUri(loc)
   if uri !~# '^csharp:'
     return true
   endif
   var path = Materialize(lspserver, uri)
   if path == ''
-    Warn('decompiled source was not returned for ' .. uri)
+    if !quiet
+      Warn('decompiled source was not returned for ' .. uri)
+    endif
     return false
   endif
   SetLocationUri(loc, 'file://' .. path)
@@ -190,11 +187,13 @@ def RequestParams(lspserver: dict<any>, method: string): dict<any>
   return params
 enddef
 
-def g:CSharpLsGoto(open_in_tab: bool, method: string = 'textDocument/definition')
+def g:CSharpLsGoto(open_in_tab: bool, method: string = 'textDocument/definition', quiet: bool = false): bool
   var lspserver = FindCSharpLs()
   if lspserver->empty()
-    Warn('C# language server is not ready')
-    return
+    if !quiet
+      Warn('C# language server is not ready')
+    endif
+    return false
   endif
 
   var reply = lspserver.rpc(method, RequestParams(lspserver, method),
@@ -206,8 +205,10 @@ def g:CSharpLsGoto(open_in_tab: bool, method: string = 'textDocument/definition'
     elseif method == 'textDocument/references'
       emsg = 'No references found'
     endif
-    Warn(emsg)
-    return
+    if !quiet
+      Warn(emsg)
+    endif
+    return false
   endif
 
   var result = reply.result
@@ -227,13 +228,15 @@ def g:CSharpLsGoto(open_in_tab: bool, method: string = 'textDocument/definition'
 
   var usable: list<dict<any>> = []
   for loc in locations
-    if RewriteMetadata(lspserver, loc)
+    if RewriteMetadata(lspserver, loc, quiet)
       usable->add(loc)
     endif
   endfor
   if usable->empty()
-    Warn('symbol definition is not found')
-    return
+    if !quiet
+      Warn('symbol definition is not found')
+    endif
+    return false
   endif
 
   var title = 'Definitions'
@@ -245,8 +248,9 @@ def g:CSharpLsGoto(open_in_tab: bool, method: string = 'textDocument/definition'
 
   if method == 'textDocument/references' || usable->len() > 1
     ShowLocList(usable, title)
-    return
+    return true
   endif
 
   OpenLocation(usable[0], open_in_tab)
+  return true
 enddef

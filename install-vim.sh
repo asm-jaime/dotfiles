@@ -88,6 +88,7 @@ link_config "$repo_dir/conf.bash/.bashrc" "$HOME/.bashrc"
 link_config "$repo_dir/init.vim" "$HOME/.vimrc"
 
 install_apt_package ripgrep
+install_apt_package python3
 install_vim_package \
   FZF \
   https://github.com/junegunn/fzf.git \
