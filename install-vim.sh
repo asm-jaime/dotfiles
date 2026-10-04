@@ -107,6 +107,10 @@ install_vim_package \
   https://github.com/dense-analysis/ale.git \
   "$HOME/.vim/pack/dotfiles/start/ale"
 install_vim_package \
+  Fugitive \
+  https://github.com/tpope/vim-fugitive.git \
+  "$HOME/.vim/pack/dotfiles/start/fugitive"
+install_vim_package \
   LSP \
   https://github.com/yegappan/lsp.git \
   "$HOME/.vim/pack/dotfiles/start/lsp"

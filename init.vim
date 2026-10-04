@@ -14,6 +14,13 @@ highlight PmenuSel     ctermfg=black ctermbg=white
 highlight PmenuSbar    ctermbg=white
 highlight PmenuThumb   ctermfg=black
 
+" Diff mode is the one place color carries meaning, so :Gdiffsplit and
+" :Git blame stay readable without turning syntax highlighting back on.
+highlight DiffAdd      ctermfg=black ctermbg=darkgreen
+highlight DiffDelete   ctermfg=black ctermbg=darkred
+highlight DiffChange   ctermfg=black ctermbg=darkblue
+highlight DiffText     ctermfg=black ctermbg=darkcyan
+
 let mapleader = ','
 
 " Encoding. Everything here is UTF-8, so nothing else is guessed. A service log
@@ -172,6 +179,128 @@ nnoremap <silent> <C-p> :ProjectFiles<CR>
 silent! nunmap <leader>g
 nnoremap <silent> <leader>f :ProjectSearch<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
+
+" Git history and blame through Fugitive. This is the Visual Studio "View
+" History" equivalent: ,gh lists every commit that touched the current file,
+" with author and date, and Enter on an entry opens the file as it was in that
+" commit. :cnext and :cprev walk the list without leaving the revision, and in
+" a revision buffer ~ steps one commit further back, C opens the whole commit,
+" and ,gD diffs the revision against the working copy.
+"
+" ,gL is the sharpest of the three: it shows every commit that changed the
+" current line (or the selected lines), with its diff, following the lines
+" through moves and renames. Blame only names the last commit to touch a line;
+" ,gL names all of them.
+"
+" Blame answers "which commit last changed this line", not "who owns this
+" file". A line nobody has edited since the file was created still belongs to
+" whoever created the file. ,gb ignores whitespace-only changes so a
+" reindentation does not steal every line; ,gB additionally follows lines that
+" were moved or copied, within the file and from other files in the same
+" commit, which is the honest answer when code has been shuffled around.
+if isdirectory(expand('~/.vim/pack/dotfiles/start/fugitive'))
+  " Side-by-side, like the Visual Studio compare window.
+  set diffopt+=vertical
+
+  " :Gclog shows only the subject, so the history list is built here instead:
+  " the quickfix "module" column carries commit, date, and author, and the
+  " file name stays a fugitive:// path so Enter still opens that revision.
+  function! s:FileHistory() abort
+    let file_path = expand('%:p')
+    if empty(file_path) || !filereadable(file_path)
+      echohl WarningMsg | echo 'no file in this buffer' | echohl None
+      return
+    endif
+    if !exists('*FugitiveFind') || empty(FugitiveGitDir())
+      echohl WarningMsg | echo 'not inside a Git work tree' | echohl None
+      return
+    endif
+
+    " One \x01-prefixed metadata line per commit, followed by the path the
+    " file had in that commit, which --follow changes across renames.
+    let command = 'git -C ' . shellescape(fnamemodify(file_path, ':h'))
+          \ . ' log --follow --date=short --name-only --format='
+          \ . shellescape("%x01%H%x09%h%x09%ad%x09%an%x09%s")
+          \ . ' -- ' . shellescape(file_path)
+    let output = systemlist(command)
+    if v:shell_error
+      echohl WarningMsg | echo join(output, ' ') | echohl None
+      return
+    endif
+
+    let entries = []
+    let commit = {}
+    for line in output
+      if line[0] ==# "\x01"
+        let fields = split(line[1:], "\t", 1)
+        let commit = len(fields) >= 5
+              \ ? {'sha': fields[0], 'short': fields[1], 'date': fields[2],
+              \    'author': fields[3], 'subject': fields[4]}
+              \ : {}
+      elseif !empty(commit) && !empty(line)
+        let author = strcharpart(commit.author, 0, 22)
+        call add(entries, {
+              \ 'filename': FugitiveFind(commit.sha . ':' . line),
+              \ 'module': printf('%s %s %-22S', commit.short, commit.date, author),
+              \ 'lnum': 1,
+              \ 'text': commit.subject,
+              \})
+        let commit = {}
+      endif
+    endfor
+
+    if empty(entries)
+      echohl WarningMsg | echo 'no commits touch this file' | echohl None
+      return
+    endif
+
+    call setqflist([], ' ', {
+          \ 'title': 'history: ' . fnamemodify(file_path, ':t'),
+          \ 'items': entries,
+          \})
+    copen
+  endfunction
+
+  " Every commit that changed the given lines, newest first, with the diff.
+  " -L follows the lines themselves, so a move or a rename does not end the
+  " trail the way a plain blame does.
+  function! s:LineHistory(first_line, last_line) abort
+    let file_path = expand('%:p')
+    if empty(file_path) || !filereadable(file_path)
+      echohl WarningMsg | echo 'no file in this buffer' | echohl None
+      return
+    endif
+    execute 'Git log --no-patch --format=' . shellescape('%C(auto)%h %ad %an%d %s')
+          \ . ' --date=short -L' . a:first_line . ',' . a:last_line . ':'
+          \ . fnameescape(file_path)
+  endfunction
+
+  command! -range LineHistory call <SID>LineHistory(<line1>, <line2>)
+
+  command! FileHistory call <SID>FileHistory()
+
+  nnoremap <silent> <leader>gh :FileHistory<CR>
+  nnoremap <silent> <leader>gL :LineHistory<CR>
+  xnoremap <silent> <leader>gL :LineHistory<CR>
+  nnoremap <silent> <leader>gb :Git blame -w<CR>
+  nnoremap <silent> <leader>gB :Git blame -w -M -C -C<CR>
+  nnoremap <silent> <leader>gd :Gdiffsplit<CR>
+  nnoremap <silent> <leader>gD :Gdiffsplit!<CR>
+  nnoremap <silent> <leader>gs :Git<CR>
+  nnoremap <silent> <leader>gl :Gclog<CR>
+
+  " A revision opened from the history list is read-only scratch output, so q
+  " closes it the same way it closes the quickfix window.
+  augroup dotfiles_fugitive
+    autocmd!
+    autocmd FileType fugitive,fugitiveblame,git
+          \ nnoremap <silent> <buffer> q :close<CR>
+    " A revision opened from the history list keeps the file's own filetype,
+    " so it is recognised by its fugitive:// name instead.
+    autocmd BufReadPost fugitive://*
+          \ nnoremap <silent> <buffer> q :close<CR>
+  augroup END
+endif
 
 " Location/quickfix lists are ordinary Vim windows.  Give them an obvious,
 " local close key without changing q anywhere else.

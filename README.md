@@ -8,6 +8,7 @@ The maintained surface is intentionally narrow:
 - Bash history, prompt, completion, aliases, and user-local tool paths
 - Vim editing options, persistent undo/views, netrw, and terminal behavior
 - ALE linting for C/C++, C#, Python, and shell files
+- Fugitive for per-file Git history, blame, and side-by-side diffs
 - Vimspector debugging through NetCoreDbg
 - Optional Double Commander integration with Vim and keyboard-only path copying
 
@@ -63,6 +64,20 @@ paths are neither stored nor copied.
 - `Ctrl+C` in terminal mode: interrupt the terminal process
 - `,,f`: open the netrw file browser
 - `,an` / `,ap`: next / previous ALE diagnostic
+- `,gh`: Git history of the current file — commit, date, and author per entry.
+  `Enter` opens that revision, `:cnext` / `:cprev` walk it, and inside a
+  revision `~` steps one commit further back and `C` opens the whole commit
+- `,gL`: every commit that changed the current line, or the selected lines, with
+  its diff. This follows the lines through moves and renames, so it answers
+  "who wrote this" where blame only answers "who touched it last"
+- `,gb`: blame, ignoring whitespace-only changes. `Enter` opens the commit under
+  the cursor. `,gB` also follows lines moved or copied from elsewhere
+- `,gd` / `,gD`: diff the file against the index / against `HEAD`, side by side
+- `,gs`: Git status window, `,gl`: history of the whole repository
+
+Blame names the last commit that changed a line, not the author of the file: a
+line nobody has edited since the file was created still belongs to whoever
+created it. `,gL` is the one to reach for when that answer looks wrong.
 - `,ad`: show the current ALE diagnostic
 - `F2` on an NUnit `[Test]` method: stop at and debug only that test
 - `F7`, `F8`, `F12`: step into, step over, and step out
