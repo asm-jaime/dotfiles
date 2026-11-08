@@ -106,3 +106,6 @@ fi
 alias ccc='ccr -c'   # copy last response to clipboard
 alias ccl='ccr -l'   # list recent responses
 # <<< ccr <<<
+
+# opencode
+export PATH=/home/jaime/.opencode/bin:$PATH
